@@ -2102,3 +2102,6 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
   font-family: 'Material Icons', 'Material Icons'; }
   .material-icons .mat-badge-content {
     font-family: 'Roboto'; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

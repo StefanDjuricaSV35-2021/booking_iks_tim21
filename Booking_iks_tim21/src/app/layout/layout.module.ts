@@ -8,11 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [NavbarComponent, ProfileComponent, LoginComponent, FooterComponent],
   exports: [NavbarComponent, FooterComponent],
   imports: [
+    FormsModule,
     CommonModule,
     MaterialModule,
     RouterModule,

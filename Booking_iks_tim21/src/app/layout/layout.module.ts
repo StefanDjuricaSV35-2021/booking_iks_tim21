@@ -7,17 +7,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ProfileComponent, LoginComponent],
-  exports: [NavbarComponent],
+  declarations: [NavbarComponent, ProfileComponent, LoginComponent, FooterComponent],
+  exports: [NavbarComponent, FooterComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     MatToolbarModule,
     MatButtonModule
-    
   ],
 })
 export class LayoutModule {}

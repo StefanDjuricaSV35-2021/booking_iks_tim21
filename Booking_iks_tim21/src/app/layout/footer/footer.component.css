@@ -28,3 +28,7 @@
     color: white;
     transition: 0.5s;
 }
+
+body {
+    padding-bottom: 100px;
+}

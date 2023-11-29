@@ -8,6 +8,7 @@ import { ChangeProfileComponent } from './layout/change-profile/change-profile.c
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent },
   { path: 'changeProfile', component: ChangeProfileComponent },
   { path: 'login', component: LoginComponent },

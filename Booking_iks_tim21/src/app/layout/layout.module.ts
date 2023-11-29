@@ -8,16 +8,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
+import { ChangeProfileComponent } from './change-profile/change-profile.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ProfileComponent, LoginComponent, FooterComponent],
+  declarations: [
+    NavbarComponent,
+    ProfileComponent,
+    LoginComponent,
+    FooterComponent,
+    ChangeProfileComponent,
+  ],
   exports: [NavbarComponent, FooterComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
   ],
 })
 export class LayoutModule {}

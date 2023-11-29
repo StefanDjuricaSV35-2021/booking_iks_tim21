@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { ChangeProfileComponent } from './change-profile/change-profile.component';
 import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     FooterComponent,
     ChangeProfileComponent,
+    SignupComponent,
   ],
   exports: [NavbarComponent, FooterComponent],
   imports: [

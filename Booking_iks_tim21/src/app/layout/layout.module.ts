@@ -9,9 +9,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ProfileComponent, LoginComponent, FooterComponent],
+  declarations: [NavbarComponent, ProfileComponent, LoginComponent, FooterComponent, SignupComponent],
   exports: [NavbarComponent, FooterComponent],
   imports: [
     FormsModule,

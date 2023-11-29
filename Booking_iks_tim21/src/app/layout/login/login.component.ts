@@ -17,13 +17,12 @@ export class LoginComponent {
   }
 
   logIn() {
-    //this.router.navigate(['profile']);
     console.log(this.password);
     console.log(this.email);
+    //this.router.navigate(['profile']);
   }
 
   signUp(){
-    //sign-up
-    this.router.navigate(['profile']);
+    this.router.navigate(['signup']);
   }
 }

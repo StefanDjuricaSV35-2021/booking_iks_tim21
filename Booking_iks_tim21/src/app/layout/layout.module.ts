@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { ChangeProfileComponent } from './change-profile/change-profile.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChangeProfileComponent } from './change-profile/change-profile.componen
   ],
   exports: [NavbarComponent, FooterComponent],
   imports: [
+    FormsModule,
     CommonModule,
     MaterialModule,
     RouterModule,

@@ -1,0 +1,53 @@
+.coordinatingDiv {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    color: #434343;
+}
+
+.profileInfoFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 75px;
+    height: auto;
+    width: 800px;
+    background-color: #DBDFE2;
+    padding: 30px;
+    border-radius: 22px;
+}
+
+.nameFrame {
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+font-weight: bold;
+font-size: 30px;
+margin-bottom: 20px;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.info {
+    font-size: 18px;
+}
+
+.changeButton {
+    width: fit-content;
+}
+
+.buttonFrame {
+    display: flex;
+    justify-content: center;
+}

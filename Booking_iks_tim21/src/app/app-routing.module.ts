@@ -6,14 +6,20 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './layout/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { ChangeProfileComponent } from './layout/change-profile/change-profile.component';
+import {AccommodationDetailsComponent} from "./accommodation-details/accommodation-details.component";
+import {MainPageComponent} from "./main-page/main-page.component";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent },
   { path: 'changeProfile', component: ChangeProfileComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'accommodation', component: AccommodationDetailsComponent },
+  { path: 'mainPage', component: MainPageComponent }
+
+
 ];
 
 @NgModule({

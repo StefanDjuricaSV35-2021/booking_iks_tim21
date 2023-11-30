@@ -87,9 +87,7 @@
           <span style="font-size: medium;">Unlimited sandwiches</span>
         </div>
         <div class="cal-and-desc">
-          <div class="calendar container">
 
-          </div>
           <div class="description container">
                     <span style="font-size: medium;">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -102,9 +100,14 @@
                       officia deserunt mollit anim id est laborum.
                     </span>
           </div>
+          <div class="calendar container">
+            <mat-card style="border-radius: inherit" >
+              <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+          </div>
         </div>
       </div>
-      <button style="width: fit-content;" type="button" class=" text1 button">
+      <button style="width: fit-content;align-self: flex-end" type="button" class=" text1 button">
         Make Reservation
       </button>
     </div>

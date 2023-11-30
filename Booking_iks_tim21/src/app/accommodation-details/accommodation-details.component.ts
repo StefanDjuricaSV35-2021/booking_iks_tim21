@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./accommodation-details.component.css']
 })
 export class AccommodationDetailsComponent {
+  selected: null | undefined;
 
 }

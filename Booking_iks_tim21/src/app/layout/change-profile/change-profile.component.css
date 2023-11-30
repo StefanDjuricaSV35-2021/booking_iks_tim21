@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 75px 0 40px 0;
     height: auto;
     width: 750px;
@@ -17,21 +18,11 @@
     border-radius: 22px;
 }
 
-.nameFrame {
-    display: flex;
-    justify-content: center;
-}
-
-.name {
-font-weight: bold;
-font-size: 30px;
-margin-bottom: 20px;
-}
 
 .profileInfo {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
 }
 
 .title {
@@ -39,15 +30,24 @@ margin-bottom: 20px;
     font-size: 20px;
 }
 
-.info {
+.inputField {
+    height: 40px;
+    width: 400px;
+    margin-bottom: 5px;
     font-size: 18px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.changeButton {
-    width: fit-content;
+.inputLabel {
+    font-size: 16px;
+    margin-bottom: 3px;
+    margin-top: 7px;
+    font-weight: 500;
 }
 
 .buttonFrame {
     display: flex;
     justify-content: center;
+    padding: 5px;
 }

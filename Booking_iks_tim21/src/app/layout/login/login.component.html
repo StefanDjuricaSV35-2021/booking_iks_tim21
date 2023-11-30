@@ -1,1 +1,35 @@
-<p>login works!</p>
+<form>
+  <div class="form-outline mb-4">
+    <label class="form-label" >Email address</label>
+    <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Enter your email..." class="form-control"/>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" >Password</label>
+    <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Enter your password..." class="form-control"/>
+  </div>
+  
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+          <label class="form-check-label" for="form2Example31"> Remember me </label>
+        </div>
+      </div>
+  
+      <div class="col">
+        <a href="#!">Forgot password? </a>
+      </div>
+    </div>
+  
+    <button (click)="logIn()" type="button" class="btn btn-block btn-floating mx-1">
+        Log in
+    </button>
+  
+    <div class="text-center pt-2">
+      <p>Not a member?</p>
+      <button (click)="signUp()" type="button" class="btn btn-block btn-floating mx-1">
+        Sign up
+      </button>
+    </div>
+  </form>

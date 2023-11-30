@@ -56,6 +56,6 @@ export class SignupComponent {
     console.log(this.password);
     console.log(this.passwordRepeat);
     console.log(this.isLandlord);
-    // this.router.navigate(['profile']);
+    this.router.navigate(['mainPage']);
   }
 }

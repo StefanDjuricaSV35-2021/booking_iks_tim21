@@ -19,7 +19,7 @@ export class LoginComponent {
   logIn() {
     console.log(this.password);
     console.log(this.email);
-    //this.router.navigate(['profile']);
+    this.router.navigate(['mainPage']);
   }
 
   signUp(){

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     margin: 0;
-    color: #434343;
+    color: black;
 }
 
 .profileInfoFrame {
@@ -12,10 +12,11 @@
     align-items: center;
     margin: 75px 0 40px 0;
     height: auto;
-    width: 750px;
-    background-color: #DBDFE2;
+    width: 500px;
+    background-color: white;
+    box-shadow: 0 2px 32px rgba(0, 0, 0, 0.15);
     padding: 30px;
-    border-radius: 22px;
+    border-radius: 4px;
 }
 
 
@@ -26,7 +27,7 @@
 }
 
 .title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 20px;
 }
 

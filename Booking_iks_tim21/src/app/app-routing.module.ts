@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './layout/profile/profile.component';
+import { ProfileComponent } from './profile/profile/profile.component';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './layout/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
-import { ChangeProfileComponent } from './layout/change-profile/change-profile.component';
-import {AccommodationDetailsComponent} from "./accommodation-details/accommodation-details.component";
-import {MainPageComponent} from "./main-page/main-page.component";
-
+import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
+import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -17,9 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'accommodation', component: AccommodationDetailsComponent },
-  { path: 'mainPage', component: MainPageComponent }
-
-
+  { path: 'mainPage', component: MainPageComponent },
 ];
 
 @NgModule({

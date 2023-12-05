@@ -1,25 +1,25 @@
 <div class="coordinatingDiv">
   <div class="profileInfoFrame">
     <div class="nameFrame">
-      <p class="name">John Doe</p>
+      <p class="name">{{ user.name }} {{ user.surname }}</p>
       <div></div>
     </div>
     <div class="profileInfo">
       <p class="title">Adress</p>
-      <p class="info">21st street no. 225</p>
-      <p class="info">New York, USA</p>
+      <p class="info">{{ user.street }}</p>
+      <p class="info">{{ user.city }}, {{ user.country }}</p>
     </div>
     <div class="profileInfo">
       <p class="title">Contact Info</p>
-      <p class="info">+38106123456</p>
+      <p class="info">{{ user.phone }}</p>
     </div>
     <div class="profileInfo">
       <p class="title">Login Credentials</p>
-      <p class="info">example&commat;gmail.com</p>
+      <p class="info">{{ user.email }}</p>
     </div>
     <div class="profileInfo">
       <p class="title">Role</p>
-      <p class="info">User</p>
+      <p class="info">{{ user.type }}</p>
     </div>
     <div class="buttonFrame">
       <a mat-raised-button routerLink="/changeProfile">Change Profile</a>

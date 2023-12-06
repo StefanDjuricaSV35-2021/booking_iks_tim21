@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Accomodation} from "../accommodation-details/model";
+import {AccommodationPreviewDTO} from "../accommodation-preview/model/accommodationPreviewDTO";
+import {AccommodationPreviewService} from "../accommodation-preview/service/accommodation-preview.service";
+import {User} from "../profile/model/user.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-main-page',
@@ -8,21 +12,21 @@ import {Accomodation} from "../accommodation-details/model";
 })
 export class MainPageComponent implements OnInit{
 
-  public acc: Accomodation[] =[];
+  public acc: AccommodationPreviewDTO[];
+  public bla:string;
 
-  ngOnInit(): void {
-
-    this.acc.push(new Accomodation(1,"a","a","a",1))
-    this.acc.push(new Accomodation(2,"b","a","a",1))
-    this.acc.push(new Accomodation(3,"c","a","a",1))
-    this.acc.push(new Accomodation(4,"d","a","a",1))
-    this.acc.push(new Accomodation(5,"e","a","a",1))
-
-
-
-
+  constructor(private route: ActivatedRoute,private service: AccommodationPreviewService) {
   }
 
 
+  ngOnInit() {
+
+
+    this.service.findAll().subscribe(data => {
+      this.acc = data;
+    });
+
+
+  }
 
 }

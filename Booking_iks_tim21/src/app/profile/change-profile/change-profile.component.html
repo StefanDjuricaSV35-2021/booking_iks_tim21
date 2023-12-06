@@ -26,9 +26,9 @@
       <label class="inputLabel">Email</label>
       <input type="email" placeholder="{{ user.email }}" class="inputField" />
       <label class="inputLabel">Password</label>
-      <input type="password" [value]="getPasswordStars()" class="inputField" />
+      <input type="password" value="{{ user.password }}" class="inputField" />
       <label class="inputLabel">Repeat Password</label>
-      <input type="password" [value]="getPasswordStars()" class="inputField" />
+      <input type="password" value="{{ user.password }}" class="inputField" />
     </div>
     <div class="buttonFrame">
       <a mat-raised-button routerLink="/profile">Save Changes</a>

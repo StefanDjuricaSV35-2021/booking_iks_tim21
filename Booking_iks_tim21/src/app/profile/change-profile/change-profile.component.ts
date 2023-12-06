@@ -24,8 +24,4 @@ export class ChangeProfileComponent implements OnInit {
       });
     });
   }
-
-  getPasswordStars(): string {
-    return '*'.repeat(this.user.password.length);
-  }
 }

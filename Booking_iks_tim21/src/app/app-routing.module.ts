@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { AppComponent } from './app.component';
 
-import { LoginComponent } from './layout/login/login.component';
+import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';

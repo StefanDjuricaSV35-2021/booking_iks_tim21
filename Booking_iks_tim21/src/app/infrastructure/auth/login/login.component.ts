@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthModule } from '../auth.module';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  
   constructor(private router: Router) {}
-  email:string = "";
-  password:string = "";
+  email: string = '';
+  password: string = '';
 
-  ngOnInit(){
-
-  }
+  ngOnInit() {}
 
   logIn() {
     console.log(this.password);
@@ -22,7 +20,7 @@ export class LoginComponent {
     this.router.navigate(['mainPage']);
   }
 
-  signUp(){
+  signUp() {
     this.router.navigate(['signup']);
   }
 }

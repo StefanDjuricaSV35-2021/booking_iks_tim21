@@ -6,6 +6,7 @@
   align-items: center;
   flex-direction: column;
 
+
 }
 .apartment-info {
   padding: 30px;
@@ -19,9 +20,9 @@
   width: 90%;
   height: auto;
   display: flex;
-  align-self: center;
-  align-items: center;
   gap: 20px;
+  align-self: center;
+  justify-content: center;
 }
 .basic-info {
   width: auto;
@@ -64,7 +65,6 @@
   flex-direction: row;
 }
 .amenities {
-  background-color: #0a3622;
   gap: 10px;
   padding: 20px;
   width: auto;

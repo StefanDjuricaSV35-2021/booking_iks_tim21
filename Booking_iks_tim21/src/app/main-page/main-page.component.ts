@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Accomodation} from "../accommodation-details/model";
 import {AccommodationPreviewDTO} from "../accommodation-preview/model/accommodationPreviewDTO";
 import {AccommodationPreviewService} from "../accommodation-preview/service/accommodation-preview.service";
 import {User} from "../profile/model/user.model";
@@ -21,11 +20,9 @@ export class MainPageComponent implements OnInit{
 
   ngOnInit() {
 
-
     this.service.findAll().subscribe(data => {
       this.acc = data;
     });
-
 
   }
 

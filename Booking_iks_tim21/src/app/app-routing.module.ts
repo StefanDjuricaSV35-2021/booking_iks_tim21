@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'changeProfile', component: ChangeProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'accommodation', component: AccommodationDetailsComponent },
+  { path: 'accommodation/:id', component: AccommodationDetailsComponent },
   { path: 'mainPage', component: MainPageComponent },
 ];
 

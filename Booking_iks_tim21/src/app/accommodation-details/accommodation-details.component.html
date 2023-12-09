@@ -23,7 +23,6 @@
 
 </head>
 <body>
-<link rel="stylesheet" href="./accommodation-details.component.css" />
 <div>
   <link href="./accommodation-details.component.css" rel="stylesheet" />
 
@@ -31,14 +30,14 @@
     <div class="apartment-info">
       <div class="info-and-picture">
         <div class="basic-info container">
-          <h3>Name</h3>
-          <span style="font-size: medium;">Type</span>
+          <h3>{{acc.name}}</h3>
+          <span style="font-size: medium;">{{acc.type}}</span>
           <div style=" display: flex; align-items: center">
             <img
               alt="Frame2403"
               src="../../assets/images/guest.svg"
             />
-            <span style="font-size: medium;">1-4</span>
+            <span style="font-size: medium;">{{acc.minGuests}}-{{acc.maxGuests}}</span>
           </div>
           <div style="display: flex; flex-direction: column;">
             <span style="font-size: medium;">Price: 15.000 RSD</span>
@@ -62,7 +61,7 @@
       </div>
       <div class="location-and-review">
               <span class="text1 container">
-                Location, City
+               {{acc.location}}
               </span>
         <button
           type="button"
@@ -81,10 +80,7 @@
       <div class="additional-info">
         <div class="amenities container">
           <h3>Amenities</h3>
-          <span style="font-size: medium;">TV</span>
-          <span style="font-size: medium;">Wifi</span>
-          <span style="font-size: medium;">Parking</span>
-          <span style="font-size: medium;">Unlimited sandwiches</span>
+          <span style="font-size: medium;" *ngFor="let amenity of acc.amenities">{{amenity}}</span >
         </div>
         <div class="cal-and-desc">
 

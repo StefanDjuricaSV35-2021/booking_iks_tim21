@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {AccommodationDetailsDTO} from "./model/AccommodationDetailsDTO";
+import {ActivatedRoute} from "@angular/router";
+import {AccommodationPreviewService} from "../accommodation-preview/service/accommodation-preview.service";
+import {AccommodationDetailsService} from "./service/accommodation-details.service";
 
 @Component({
   selector: 'app-accommodation-details',
@@ -7,5 +11,16 @@ import { Component } from '@angular/core';
 })
 export class AccommodationDetailsComponent {
   selected: null | undefined;
+  id:number;
+  acc:AccommodationDetailsDTO;
+  constructor(private route: ActivatedRoute,private service: AccommodationDetailsService) {}
+  ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get('id')!
+
+    this.service.findById(this.id).subscribe(data => {
+      this.acc = data;
+    });
+  }
+
 
 }

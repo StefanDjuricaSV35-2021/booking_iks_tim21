@@ -14,8 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ProfileModule } from './profile/profile.module';
 import { AccommodationPreviewComponent } from './accommodation-preview/accommodation-preview.component';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [

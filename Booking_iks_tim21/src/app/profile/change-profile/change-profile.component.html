@@ -1,40 +1,85 @@
 <div class="coordinatingDiv">
-  <div class="profileInfoFrame">
+  <form class="profileInfoFrame" [formGroup]="changeProfileForm">
     <div class="profileInfo">
       <p class="title">Personal Information</p>
       <label class="inputLabel">Name</label>
-      <input type="text" placeholder="{{ user.name }}" class="inputField" />
+      <input type="text" class="inputField" formControlName="name" />
+      <mat-error *ngIf="changeProfileForm.get('name')!.hasError('required')">
+        Name is required
+      </mat-error>
+
       <label class="inputLabel">Surname</label>
-      <input type="text" placeholder="{{ user.surname }}" class="inputField" />
+      <input type="text" class="inputField" formControlName="surname" />
+      <mat-error *ngIf="changeProfileForm.get('surname')!.hasError('required')">
+        Surname is required
+      </mat-error>
     </div>
+
     <div class="profileInfo">
-      <p class="title">Adress</p>
+      <p class="title">Address</p>
       <label class="inputLabel">Street</label>
-      <input type="text" placeholder="{{ user.street }}" class="inputField" />
+      <input type="text" class="inputField" formControlName="street" />
+      <mat-error *ngIf="changeProfileForm.get('street')!.hasError('required')">
+        Street is required
+      </mat-error>
+
       <label class="inputLabel">City</label>
-      <input type="text" placeholder="{{ user.city }}" class="inputField" />
+      <input type="text" class="inputField" formControlName="city" />
+      <mat-error *ngIf="changeProfileForm.get('city')!.hasError('required')">
+        City is required
+      </mat-error>
+
       <label class="inputLabel">Country</label>
-      <input type="text" placeholder="{{ user.country }}" class="inputField" />
+      <input type="text" class="inputField" formControlName="country" />
+      <mat-error *ngIf="changeProfileForm.get('country')!.hasError('required')">
+        Country is required
+      </mat-error>
     </div>
+
     <div class="profileInfo">
       <p class="title">Contact Info</p>
       <label class="inputLabel">Phone</label>
-      <input type="tel" placeholder="{{ user.phone }}" class="inputField" />
+      <input type="tel" class="inputField" formControlName="phone" />
+      <mat-error *ngIf="changeProfileForm.get('phone')!.hasError('minlength')">
+        Phone must be at least 6 characters
+      </mat-error>
     </div>
+
     <div class="profileInfo">
       <p class="title">Login Credentials</p>
       <label class="inputLabel">Email</label>
-      <input type="email" placeholder="{{ user.email }}" class="inputField" />
+      <input type="email" class="inputField" formControlName="email" />
+      <mat-error *ngIf="changeProfileForm.get('email')!.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="changeProfileForm.get('email')!.hasError('email')">
+        Invalid email format
+      </mat-error>
+
       <label class="inputLabel">Password</label>
-      <input type="password" value="{{ user.password }}" class="inputField" />
+      <input type="password" class="inputField" formControlName="password" />
+      <mat-error
+        *ngIf="changeProfileForm.get('password')!.hasError('minlength')"
+      >
+        Password must be at least 5 characters
+      </mat-error>
+
       <label class="inputLabel">Repeat Password</label>
-      <input type="password" value="{{ user.password }}" class="inputField" />
+      <input
+        type="password"
+        class="inputField"
+        formControlName="repeatPassword"
+      />
+      <mat-error *ngIf="changeProfileForm.hasError('passwordMismatch')">
+        Passwords do not match
+      </mat-error>
     </div>
+
     <div class="buttonFrame">
-      <a mat-raised-button routerLink="/profile">Save Changes</a>
+      <a mat-raised-button (click)="saveChanges()">Save Changes</a>
     </div>
     <div class="buttonFrame">
       <a mat-raised-button color="warn">Delete Profile</a>
     </div>
-  </div>
+  </form>
 </div>

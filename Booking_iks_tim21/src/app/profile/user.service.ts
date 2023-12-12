@@ -7,10 +7,14 @@ import { User } from './model/user.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   getUser(id: number): Observable<User> {
     return this.httpClient.get<User>(environment.apiHost + 'users/' + id);
+  }
+
+  update(user: User): Observable<User> {
+    return this.httpClient.put<User>(environment.apiHost + 'users', user);
   }
 }

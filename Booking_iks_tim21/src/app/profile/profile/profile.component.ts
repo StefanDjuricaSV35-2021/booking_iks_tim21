@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../profile.service';
+import { UserService } from '../user.service';
 import { User } from '../model/user.model';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
 
-  constructor(private route: ActivatedRoute, private service: ProfileService) {}
+  constructor(private route: ActivatedRoute, private service: UserService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

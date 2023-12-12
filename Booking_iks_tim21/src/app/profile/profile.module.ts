@@ -5,9 +5,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../infrastructure/material/material.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [ChangeProfileComponent, ProfileComponent],
-  imports: [CommonModule, RouterModule, MatButtonModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+  ],
 })
 export class ProfileModule {}

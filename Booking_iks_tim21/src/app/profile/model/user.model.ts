@@ -1,14 +1,14 @@
 export interface User {
   id?: number;
   role?: Role;
-  email?: string;
-  password?: string;
-  name?: string;
-  surname?: string;
-  country?: string;
-  city?: string;
-  street?: string;
-  phone?: string;
+  email?: string | null;
+  password?: string | null;
+  name?: string | null;
+  surname?: string | null;
+  country?: string | null;
+  city?: string | null;
+  street?: string | null;
+  phone?: string | null;
   enabled?: boolean;
 }
 

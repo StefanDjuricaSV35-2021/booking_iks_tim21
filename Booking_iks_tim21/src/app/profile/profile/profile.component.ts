@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = +params['userId'];
-      //hardcoded to get user with id 1, for now.
-      this.service.getUser(1).subscribe({
+      //hardcoded to get user with id 7, for now.
+      this.service.getUser(7).subscribe({
         next: (data: User) => {
           this.user = data;
         },

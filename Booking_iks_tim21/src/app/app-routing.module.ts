@@ -7,7 +7,8 @@ import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './features/main-page/main-page.component';
+import {SearchResultsComponent} from "./features/search/components/search-results-page/search-results.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'changeProfile', component: ChangeProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'search', component: SearchResultsComponent },
   { path: 'accommodation/:id', component: AccommodationDetailsComponent },
   { path: 'mainPage', component: MainPageComponent },
 ];

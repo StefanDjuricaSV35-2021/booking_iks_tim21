@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {AccommodationDetailsDTO} from "./model/AccommodationDetailsDTO";
 import {ActivatedRoute} from "@angular/router";
-import {AccommodationPreviewService} from "../accommodation-preview/service/accommodation-preview.service";
 import {AccommodationDetailsService} from "./service/accommodation-details.service";
 
 @Component({

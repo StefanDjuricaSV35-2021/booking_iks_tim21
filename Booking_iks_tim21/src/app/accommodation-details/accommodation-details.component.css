@@ -61,21 +61,22 @@
   width: 70%;
   height: auto;
   display: flex;
+  justify-content: center;
   align-self: center;
   flex-direction: row;
 }
 .amenities {
   gap: 10px;
   padding: 20px;
-  width: auto;
+  width: 30%;
   display: flex;
   flex-direction: column;
 
 }
 .cal-and-desc {
-  padding: 10px;
-  padding-top: 0px;
+  padding: 0 10px 0 10px;
   gap: 20px;
+  width: 70%;
   align-self:flex-start;
   display: flex;
   align-items: center;

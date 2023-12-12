@@ -1,7 +1,7 @@
 
 export interface AccommodationPreviewDTO {
   id?: number;
-  photo: string;
+  image: string;
   location: string;
   name:string;
 }

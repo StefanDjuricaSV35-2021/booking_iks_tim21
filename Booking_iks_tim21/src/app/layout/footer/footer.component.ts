@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
     './footer.component.css']
 })
 export class FooterComponent {
-  myPrimaryColor = '#082c3c'; 
+  myPrimaryColor = '#082c3c';
 }

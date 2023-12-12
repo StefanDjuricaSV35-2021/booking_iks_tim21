@@ -1,7 +1,7 @@
-<div class="accommodation-list">
+
   <mat-card style="margin: 20px" class="example-card">
 
-    <img  mat-card-image src="../../assets/images/aptimage.png" alt="Photo of a Shiba Inu">
+    <img  mat-card-image src="{{'data:image/png;base64,' + accommodationPreview.image}}">
     <mat-card-content>
       <p>
         Name: {{accommodationPreview.name}}
@@ -17,4 +17,4 @@
       <button mat-button [routerLink]="['/accommodation', accommodationPreview.id]">See details</button>
     </mat-card-actions>
   </mat-card>
-</div>
+

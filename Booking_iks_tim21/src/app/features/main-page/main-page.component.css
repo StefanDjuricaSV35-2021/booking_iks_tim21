@@ -1,0 +1,11 @@
+
+.accommodation-list{
+  width: 60%;
+  border-width: 2px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+
+}

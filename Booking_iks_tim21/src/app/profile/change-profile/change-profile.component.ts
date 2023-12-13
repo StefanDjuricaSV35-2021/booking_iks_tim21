@@ -32,7 +32,10 @@ export class ChangeProfileComponent implements OnInit {
       street: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.minLength(6)]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.minLength(5)]),
       repeatPassword: new FormControl('', [Validators.minLength(5)]),
@@ -61,8 +64,8 @@ export class ChangeProfileComponent implements OnInit {
       country: this.user.country,
       phone: this.user.phone,
       email: this.user.email,
-      password: this.user.password,
-      repeatPassword: this.user.password,
+      password: '',
+      repeatPassword: '',
     });
   }
 
@@ -92,7 +95,16 @@ export class ChangeProfileComponent implements OnInit {
         next: (updatedUser: User) => {
           this.router.navigate(['/profile']);
         },
-        error: (error) => {},
+        error: (error) => {
+          this.snackBar.open(
+            'Failed to change profile, another account uses the same email',
+            'Close',
+            {
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            }
+          );
+        },
       });
     } else if (passwordMatchError) {
       this.snackBar.open('Passwords do not match', 'Close', {
@@ -100,6 +112,20 @@ export class ChangeProfileComponent implements OnInit {
         horizontalPosition: 'center',
       });
     }
+  }
+
+  deleteProfile() {
+    this.service.delete(this.user.id).subscribe({
+      next: () => {
+        this.router.navigate(['/mainPage']);
+      },
+      error: (error) => {
+        this.snackBar.open('Failed to delete profile', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      },
+    });
   }
 
   passwordMatchValidator(
@@ -116,7 +142,7 @@ export class ChangeProfileComponent implements OnInit {
     const password = passwordControl.value;
     const repeatPassword = repeatPasswordControl.value;
 
-    if (password && repeatPassword && password !== repeatPassword) {
+    if ((password || repeatPassword) && password !== repeatPassword) {
       repeatPasswordControl.setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
     } else {

@@ -40,6 +40,9 @@
       <p class="title">Contact Info</p>
       <label class="inputLabel">Phone</label>
       <input type="tel" class="inputField" formControlName="phone" />
+      <mat-error *ngIf="changeProfileForm.get('phone')!.hasError('required')">
+        Phone is required
+      </mat-error>
       <mat-error *ngIf="changeProfileForm.get('phone')!.hasError('minlength')">
         Phone must be at least 6 characters
       </mat-error>
@@ -56,7 +59,7 @@
         Invalid email format
       </mat-error>
 
-      <label class="inputLabel">Password</label>
+      <label class="inputLabel">New Password (optional)</label>
       <input type="password" class="inputField" formControlName="password" />
       <mat-error
         *ngIf="changeProfileForm.get('password')!.hasError('minlength')"
@@ -73,13 +76,20 @@
       <mat-error *ngIf="changeProfileForm.hasError('passwordMismatch')">
         Passwords do not match
       </mat-error>
+      <mat-error
+        *ngIf="changeProfileForm.get('password')!.hasError('minlength')"
+      >
+        Password must be at least 5 characters
+      </mat-error>
     </div>
 
     <div class="buttonFrame">
       <a mat-raised-button (click)="saveChanges()">Save Changes</a>
     </div>
     <div class="buttonFrame">
-      <a mat-raised-button color="warn">Delete Profile</a>
+      <a mat-raised-button color="warn" (click)="deleteProfile()"
+        >Delete Profile</a
+      >
     </div>
   </form>
 </div>

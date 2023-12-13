@@ -17,4 +17,8 @@ export class UserService {
   update(user: User): Observable<User> {
     return this.httpClient.put<User>(environment.apiHost + 'users', user);
   }
+
+  delete(id: number) {
+    return this.httpClient.delete<User>(environment.apiHost + 'users/' + id);
+  }
 }

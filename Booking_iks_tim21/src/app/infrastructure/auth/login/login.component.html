@@ -1,25 +1,22 @@
-<form>
-  <div class="form-outline mb-4">
-    <label class="form-label">Email address</label>
+<form [formGroup]='loginForm' (ngSubmit)="login()">
+  <mat-form-field class="full-width">
+    <mat-label>Email</mat-label>
     <input
-      type="email"
-      [(ngModel)]="email"
-      [ngModelOptions]="{ standalone: true }"
-      placeholder="Enter your email..."
-      class="form-control"
+    matInput
+    type="text"
+    name="email"
+    formControlName="email"
     />
-  </div>
-
-  <div class="form-outline mb-4">
-    <label class="form-label">Password</label>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <mat-label>Password</mat-label>
     <input
+      matInput
       type="password"
-      [(ngModel)]="password"
-      [ngModelOptions]="{ standalone: true }"
-      placeholder="Enter your password..."
-      class="form-control"
+      name="password"
+      formControlName="password"
     />
-  </div>
+  </mat-form-field>
 
   <div class="row mb-4">
     <div class="col d-flex justify-content-center">
@@ -43,9 +40,9 @@
   </div>
 
   <button
-    (click)="logIn()"
-    type="button"
+    type="submit" 
     class="btn btn-block btn-floating mx-1"
+    mat-raised-button
   >
     Log in
   </button>
@@ -53,7 +50,7 @@
   <div class="text-center pt-2">
     <p>Not a member?</p>
     <button
-      (click)="signUp()"
+      (click)="signup()"
       type="button"
       class="btn btn-block btn-floating mx-1"
     >

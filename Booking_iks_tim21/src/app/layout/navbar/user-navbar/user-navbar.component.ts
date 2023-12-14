@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-navbar',
@@ -9,6 +11,12 @@ import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 })
 export class UserNavbarComponent {
   constructor(private authService: AuthService, private router: Router) {}
+
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  someMethod() {
+    this.trigger.openMenu();
+  }
 
   logOut(): void {
     // localStorage.removeItem('user');

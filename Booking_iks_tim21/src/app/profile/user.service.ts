@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../env/env';
 import { Observable } from 'rxjs';
 import { User } from './model/user.model';
+import { ActivationRequest } from './model/activationRequest.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,14 @@ export class UserService {
     return this.httpClient.get<User>(
       environment.apiHost + 'users/email/' + email
     );
+  }
+
+  activateAccount(email: string): Observable<User> {
+    return this.httpClient.get<User>(environment.apiHost + 'users/activate/account/' + email);
+    
+  }
+
+  getActivationRequest(email: string): Observable<ActivationRequest> {
+    return this.httpClient.get<ActivationRequest>(environment.apiHost + 'users/activate/' + email);
   }
 }

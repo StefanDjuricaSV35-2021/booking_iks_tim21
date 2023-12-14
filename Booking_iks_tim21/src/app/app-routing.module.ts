@@ -4,10 +4,11 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { AppComponent } from './app.component';
 
 import { LoginComponent } from './infrastructure/auth/login/login.component';
-import { SignupComponent } from './layout/signup/signup.component';
+import { SignupComponent } from './infrastructure/auth/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'accommodation/:id', component: AccommodationDetailsComponent },
   { path: 'mainPage', component: MainPageComponent },
+  { path: 'activate', component: ActivateAccountComponent },
+  { path: 'activate/:email', component: ActivateAccountComponent },
+
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthModule } from '../auth.module';
 import { AuthService } from '../auth.service';
@@ -11,7 +11,7 @@ import { AuthResponse } from '../model/auth-resposne.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router) {
@@ -19,8 +19,8 @@ export class LoginComponent {
   }
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
   })
   
 

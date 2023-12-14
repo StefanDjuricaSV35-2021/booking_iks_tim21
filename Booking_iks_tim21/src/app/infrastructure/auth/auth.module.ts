@@ -11,11 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { JwtModule } from '@auth0/angular-jwt';
+import { SignupComponent } from './signup/signup.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ActivateAccountComponent } from './signup/activate.account/activate.account.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent,SignupComponent, ActivateAccountComponent],
   exports: [],
   imports: [
     FormsModule,
@@ -28,7 +31,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    JwtModule
+    JwtModule,
+    MatCheckboxModule,
   ],
 })
 export class AuthModule {}

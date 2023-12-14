@@ -1,0 +1,117 @@
+<form [formGroup]='signUpForm' (ngSubmit)="signUp()">
+    
+    <mat-form-field class="full-width">
+        <mat-label>Street</mat-label>
+        <input
+        matInput
+        type="text"
+        name="street"
+        formControlName="street"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>City</mat-label>
+        <input
+          matInput
+          type="text"
+          name="city"
+          formControlName="city"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Country</mat-label>
+        <input
+          matInput
+          type="text"
+          name="country"
+          formControlName="country"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          name="name"
+          formControlName="name"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Surname</mat-label>
+        <input
+          matInput
+          type="text"
+          name="surname"
+          formControlName="surname"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Phone</mat-label>
+        <input
+          matInput
+          type="text"
+          name="phone"
+          formControlName="phone"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+        matInput
+        type="email"
+        name="email"
+        formControlName="email"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          formControlName="password"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Repeat Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="passwordRepeat"
+          formControlName="passwordRepeat"
+        />
+    </mat-form-field>
+
+    <mat-checkbox name="isOwner" formControlName="isOwner" class="custom-checkbox">
+        Check if you are signing up as appartment owner.
+    </mat-checkbox>
+    
+    
+    <button
+    type="submit" 
+    class="btn btn-block btn-floating mx-1"
+    mat-raised-button
+    >
+        Sign up
+    </button>
+
+    <div class="text-center pt-2">
+        <p>Already have an account??</p>
+        
+        <button
+            (click)="logIn()"
+            type="button"
+            class="btn btn-block btn-floating mx-1"
+        >
+            Log In
+        </button>
+    </div>
+</form>

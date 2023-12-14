@@ -5,6 +5,8 @@ import { environment } from '../../../env/env';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthResponse } from './model/auth-resposne.model';
 import { Login } from './model/login.model';
+import { SignUp } from './model/signup.model';
+import { User } from 'src/app/profile/model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.user$.next(this.getRole());
+  }
+
+  signup(auth: SignUp):  Observable<User> {
+    return this.http.post<User>(environment.apiHost + 'signup', auth, {
+      headers: this.headers,
+    });
   }
 
   login(auth: Login): Observable<AuthResponse> {

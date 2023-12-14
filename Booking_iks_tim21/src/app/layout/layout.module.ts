@@ -7,7 +7,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { SignupComponent } from './signup/signup.component';
 import { UserNavbarComponent } from './navbar/user-navbar/user-navbar.component';
 import { LoggedOutNavbarComponent } from './navbar/logged-out-navbar/logged-out-navbar.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,7 +15,6 @@ import { MatMenuModule } from '@angular/material/menu';
   declarations: [
     NavbarComponent,
     FooterComponent,
-    SignupComponent,
     UserNavbarComponent,
     LoggedOutNavbarComponent,
   ],

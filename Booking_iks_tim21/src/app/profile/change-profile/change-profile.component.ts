@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User } from '../model/user.model';
+import { Role, User } from '../model/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,
@@ -19,6 +19,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class ChangeProfileComponent implements OnInit {
   user: User = {} as User;
+  role: string = '';
 
   changeProfileForm: FormGroup;
 
@@ -61,6 +62,8 @@ export class ChangeProfileComponent implements OnInit {
       this.service.getUserByEmail(userEmail).subscribe({
         next: (data: User) => {
           this.user = data;
+          this.role = this.user.role as unknown as string;
+
           this.populateForm();
         },
       });
@@ -129,14 +132,30 @@ export class ChangeProfileComponent implements OnInit {
   deleteProfile() {
     this.service.delete(this.user.id).subscribe({
       next: (_) => {
-        //localStorage.removeItem('user');
+        localStorage.removeItem('user');
         this.router.navigate(['/mainPage']);
+        window.location.reload();
       },
       error: (error) => {
-        this.snackBar.open('Failed to delete profile', 'Close', {
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
+        if (this.role == 'GUEST') {
+          this.snackBar.open(
+            'Failed to delete profile, you still have active reservations',
+            'Close',
+            {
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            }
+          );
+        } else {
+          this.snackBar.open(
+            'Failed to delete profile, your accommodations still have active reservations',
+            'Close',
+            {
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            }
+          );
+        }
       },
     });
   }

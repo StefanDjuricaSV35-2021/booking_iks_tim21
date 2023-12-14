@@ -9,9 +9,15 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { UserNavbarComponent } from './navbar/user-navbar/user-navbar.component';
 import { LoggedOutNavbarComponent } from './navbar/logged-out-navbar/logged-out-navbar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, UserNavbarComponent, LoggedOutNavbarComponent],
+  declarations: [
+    NavbarComponent,
+    FooterComponent,
+    UserNavbarComponent,
+    LoggedOutNavbarComponent,
+  ],
   exports: [NavbarComponent, FooterComponent],
   imports: [
     FormsModule,
@@ -20,6 +26,7 @@ import { LoggedOutNavbarComponent } from './navbar/logged-out-navbar/logged-out-
     RouterModule,
     MatToolbarModule,
     MatButtonModule,
+    MatMenuModule,
   ],
 })
 export class LayoutModule {}

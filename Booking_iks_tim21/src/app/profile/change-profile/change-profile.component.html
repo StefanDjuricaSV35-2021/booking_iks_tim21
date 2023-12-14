@@ -87,7 +87,11 @@
       <a mat-raised-button (click)="saveChanges()">Save Changes</a>
     </div>
     <div class="buttonFrame">
-      <a mat-raised-button color="warn" (click)="deleteProfile()"
+      <a
+        mat-raised-button
+        color="warn"
+        (click)="deleteProfile()"
+        *ngIf="role !== 'ADMIN'"
         >Delete Profile</a
       >
     </div>

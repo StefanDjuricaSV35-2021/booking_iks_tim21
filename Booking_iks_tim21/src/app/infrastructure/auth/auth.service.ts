@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthResponse } from './model/auth-response.model';
 import { environment } from '../../../env/env';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthResponse } from './model/auth-resposne.model';
+import { Login } from './model/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    skip: 'true',
   });
+
+  private jwtHelper: JwtHelperService = new JwtHelperService();
 
   user$ = new BehaviorSubject('');
   userState = this.user$.asObservable();
@@ -21,14 +23,14 @@ export class AuthService {
     this.user$.next(this.getRole());
   }
 
-  login(auth: any): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(environment.apiHost + 'logIn', auth, {
+  login(auth: Login): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(environment.apiHost + 'signin', auth, {
       headers: this.headers,
     });
   }
 
   logout(): Observable<string> {
-    return this.http.get(environment.apiHost + 'logOut', {
+    return this.http.get(environment.apiHost + 'signOut', {
       responseType: 'text',
     });
   }
@@ -36,8 +38,8 @@ export class AuthService {
   getRole(): any {
     if (this.isLoggedIn()) {
       const accessToken: any = localStorage.getItem('user');
-      const helper = new JwtHelperService();
-      return helper.decodeToken(accessToken).role[0].authority;
+      console.log(accessToken);
+      return this.jwtHelper.decodeToken(accessToken).role.authority;
     }
     return null;
   }

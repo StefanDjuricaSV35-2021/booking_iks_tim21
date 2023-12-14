@@ -6,6 +6,13 @@ import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import {ReactiveFormsModule} from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { JwtModule } from '@auth0/angular-jwt';
+
+
 
 @NgModule({
   declarations: [LoginComponent],
@@ -17,6 +24,11 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     MatToolbarModule,
     MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    JwtModule
   ],
 })
 export class AuthModule {}

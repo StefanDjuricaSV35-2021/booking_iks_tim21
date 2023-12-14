@@ -21,4 +21,10 @@ export class UserService {
   delete(id: number) {
     return this.httpClient.delete<User>(environment.apiHost + 'users/' + id);
   }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.httpClient.get<User>(
+      environment.apiHost + 'users/email/' + email
+    );
+  }
 }

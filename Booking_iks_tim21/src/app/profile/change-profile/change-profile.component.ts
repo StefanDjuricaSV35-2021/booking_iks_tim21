@@ -9,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/infrastructure/auth/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-change-profile',
@@ -24,7 +26,8 @@ export class ChangeProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private service: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService
   ) {
     this.changeProfileForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -43,10 +46,19 @@ export class ChangeProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/mainPage']);
+      return;
+    }
+
     this.route.params.subscribe((params) => {
       const id = +params['userId'];
-      // hardcoded to get user with id 7, for now.
-      this.service.getUser(7).subscribe({
+
+      const jwtHelperService = new JwtHelperService();
+      const userFromLocalStorage: any = localStorage.getItem('user');
+      const userEmail: string =
+        jwtHelperService.decodeToken(userFromLocalStorage).sub;
+      this.service.getUserByEmail(userEmail).subscribe({
         next: (data: User) => {
           this.user = data;
           this.populateForm();
@@ -116,7 +128,8 @@ export class ChangeProfileComponent implements OnInit {
 
   deleteProfile() {
     this.service.delete(this.user.id).subscribe({
-      next: () => {
+      next: (_) => {
+        //localStorage.removeItem('user');
         this.router.navigate(['/mainPage']);
       },
       error: (error) => {

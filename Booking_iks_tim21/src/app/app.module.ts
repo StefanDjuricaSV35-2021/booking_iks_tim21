@@ -16,6 +16,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AccommodationPreviewComponent } from './accommodation-preview/accommodation-preview.component';
 import { ProfileModule } from './profile/profile.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './infrastructure/auth/interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,13 @@ import { ProfileModule } from './profile/profile.module';
     MatNativeDateModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../infrastructure/material/material.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [ChangeProfileComponent, ProfileComponent],
@@ -21,6 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MaterialModule,
     MatSnackBarModule,
     MatFormFieldModule,
+    JwtModule,
   ],
+  providers: [],
 })
 export class ProfileModule {}

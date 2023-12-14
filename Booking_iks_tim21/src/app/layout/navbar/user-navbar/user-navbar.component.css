@@ -1,5 +1,5 @@
 .buttonDiv {
-    width: 200px;
+    width: 170px;
     display: flex;
     justify-content:space-between;
 
@@ -11,6 +11,12 @@ a {
 }   
 
 button {
+    margin-top: 4px;
     font-size: 17px;
     font-weight: bold;
 }  
+
+.profileImg {
+    width: 43px;
+    height: 43px;
+}

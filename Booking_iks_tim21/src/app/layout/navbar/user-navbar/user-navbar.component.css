@@ -1,0 +1,16 @@
+.buttonDiv {
+    width: 200px;
+    display: flex;
+    justify-content:space-between;
+
+}
+
+a {
+    font-size: 17px;
+    font-weight: bold;
+}   
+
+button {
+    font-size: 17px;
+    font-weight: bold;
+}  

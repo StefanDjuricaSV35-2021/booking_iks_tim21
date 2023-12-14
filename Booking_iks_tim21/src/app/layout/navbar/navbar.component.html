@@ -19,8 +19,7 @@
 
   <div class="spacer"></div>
   <div class="navButtons">
-    <a mat-raised-button routerLink="login">Log in</a>
-    <a mat-raised-button routerLink="signup">Sign Up</a>
-    <a mat-raised-button routerLink="/profile">Profile</a>
+    <app-logged-out-navbar *ngIf="role == null"></app-logged-out-navbar>
+    <app-user-navbar *ngIf="role != null"></app-user-navbar>
   </div>
 </mat-toolbar>

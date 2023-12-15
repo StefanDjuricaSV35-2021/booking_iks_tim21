@@ -53,10 +53,9 @@
             </button>
           </div>
         </div>
-        <img
-          alt="Aptimage"
-          src="../../assets/images/aptimage.png"
+        <app-image-slider
           class="apartmentinfouser-aptimage"
+          [slides]="Array.from(acc.photos.values())"
         />
       </div>
       <div class="location-and-review">

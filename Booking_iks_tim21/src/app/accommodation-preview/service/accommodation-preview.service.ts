@@ -9,10 +9,10 @@ import {environment} from "../../../env/env";
 })
 export class AccommodationPreviewService {
 
+
   constructor(private http: HttpClient) {
   }
   public findAll(): Observable<AccommodationPreviewDTO[]> {
-    return this.http.get<AccommodationPreviewDTO[]>(environment.apiHost + 'accommodations');
+    return this.http.get<AccommodationPreviewDTO[]>(environment.apiHost + 'accommodations/previews');
   }
-
 }

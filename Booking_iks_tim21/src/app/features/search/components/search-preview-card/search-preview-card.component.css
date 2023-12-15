@@ -1,10 +1,10 @@
 
 .card{
-  max-width: 1000px;
-  min-width: 300px;
-  max-height: 200px;
+  width: 800px;
+  height: 200px;
   display: flex;
   flex-direction: row;
+  align-self: center;
 }
 .image{
   object-fit: contain;
@@ -21,6 +21,8 @@
 #price{
   margin-top: auto;
   margin-left: auto;
+  margin-right: 10px;
+  font-size: larger;
 }
 
 #location{

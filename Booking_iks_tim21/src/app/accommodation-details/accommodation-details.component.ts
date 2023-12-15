@@ -20,6 +20,6 @@ export class AccommodationDetailsComponent {
       this.acc = data;
     });
   }
-
+    protected readonly Array = Array;
 
 }

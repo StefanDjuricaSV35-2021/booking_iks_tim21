@@ -28,5 +28,4 @@ export class MainPageComponent implements OnInit{
 
 
   }
-
 }

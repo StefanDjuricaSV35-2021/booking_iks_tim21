@@ -1,28 +1,41 @@
-<head>
-  <link href="./search-bar.component.css" rel="stylesheet" />
-</head>
-<body>
+
+
 <div class="bar">
-  <div class="location">
-    <p >Location</p>
-    <input  type="text" placeholder="Where are you going?">
-  </div>
-  <div class="check-in">
-    <p >Check in</p>
-    <input type="text" placeholder="Add dates">
-  </div>
-  <div class="check-out">
-    <p >Check out</p>
-    <input type="text" placeholder="Add dates">
-  </div>
-  <div class="guests">
-    <p >Guests</p>
-    <input type="text" placeholder="Add guests">
-  </div>
-  <div class="search">
-    <button mat-mini-fab color="primary" class="lightBlue" routerLink="/search">
+
+  <form [formGroup]="searchForm" style="display: inherit;gap: inherit">
+
+    <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
+      <mat-label>Location</mat-label>
+      <input [(ngModel)]="location" matInput formControlName="location" >
+    </mat-form-field>
+
+
+
+      <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
+        <mat-label>Arrival</mat-label>
+        <input (dateChange)="arrivalChanged(arrivalVal)"  [formControl]="date" matInput [matDatepicker]="pickerArrival" #arrivalVal>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
+        <mat-datepicker  #pickerArrival></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field hideRequiredMarker  [subscriptSizing]="'dynamic'" >
+        <mat-label>Departure</mat-label>
+        <input (dateChange)="departureChanged(departureVal)"  [formControl]="date2" matInput [matDatepicker]="pickerDeparture" #departureVal>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDeparture></mat-datepicker>
+      </mat-form-field>
+
+
+    <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
+      <mat-label>Guests</mat-label>
+      <input [(ngModel)]="noGuests" matInput type="number" formControlName="noGuests" >
+    </mat-form-field>
+
+  </form>
+
+  <div >
+    <button mat-mini-fab color="primary" class="lightBlue" (click)="validateForm() ">
       <mat-icon>search</mat-icon>
     </button>
   </div>
 </div>
-</body>

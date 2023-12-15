@@ -4,4 +4,5 @@ export interface AccommodationPreviewDTO {
   image: string;
   location: string;
   name:string;
+  price:number;
 }

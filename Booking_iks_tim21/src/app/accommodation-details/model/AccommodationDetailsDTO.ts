@@ -10,6 +10,7 @@ export class AccommodationDetailsDTO {
    amenities: Set<Amenity>;
    photos: Set<string>;
    daysForCancellation: number;
+   perNight:boolean;
 }
 
 enum AccommodationType {

@@ -18,6 +18,11 @@ import { AccommodationPreviewComponent } from './accommodation-preview/accommoda
 import { ProfileModule } from './profile/profile.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './infrastructure/auth/interceptor';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,7 @@ import { Interceptor } from './infrastructure/auth/interceptor';
     AccommodationDetailsComponent,
     MainPageComponent,
     AccommodationPreviewComponent,
+    AccommodationCreatinoComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,10 @@ import { Interceptor } from './infrastructure/auth/interceptor';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   providers: [
     {

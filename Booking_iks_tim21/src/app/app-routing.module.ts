@@ -10,6 +10,7 @@ import { AccommodationDetailsComponent } from './accommodation-details/accommoda
 import { MainPageComponent } from './main-page/main-page.component';
 import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
 import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
+import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'ownersAccommodations',
     component: OwnersAccommodationsPageComponent,
+  },
+  {
+    path: 'ownersAccommodation/:id',
+    component: OwnersAccommodationDetailsComponent,
   },
 ];
 

@@ -12,11 +12,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { OwnersAccommodationsPageComponent } from './owners-accommodations-page/owners-accommodations-page.component';
 import { RouterModule } from '@angular/router';
+import { OwnersAccommodationDetailsComponent } from './owners-accommodation-details/owners-accommodation-details.component';
 
 @NgModule({
   declarations: [
     OwnersAccommodationPreviewComponent,
     OwnersAccommodationsPageComponent,
+    OwnersAccommodationDetailsComponent,
   ],
   imports: [
     CommonModule,

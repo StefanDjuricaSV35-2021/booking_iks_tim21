@@ -79,10 +79,7 @@ export class AccommodationCreatinoComponent implements OnInit {
 
   accommodationTypes = this.getKeysFromEnum(AccommodationType);
 
-  imageList: string[] = [];
-  selectedFiles : string[]= [];
-  selectedImage: string | null = null;
-  selectedImageName:string | null = null;
+  
 
 
   availableAmenities: string[] = this.getKeysFromEnum(Amenity);
@@ -110,39 +107,63 @@ export class AccommodationCreatinoComponent implements OnInit {
     });
   }
 
+  imageList: string[] = [];
+  selectedFiles : string[]= [];
+  selectedImage: string | null = null;
+  selectedImageName:string | null = null;
+
   addImage(): void {
-    if (this.selectedImage && this.selectedImageName ) {//
+    if (this.selectedImage && this.selectedImageName) {
       this.imageList.push(this.selectedImage);
       this.selectedFiles.push(this.selectedImageName);
-      this.selectedImage = null;
-      this.selectedImageName = null;
+      this.resetSelectedImage();
     }
   }
-
+  
   removeImage(image: string): void {
     const index = this.imageList.indexOf(image);
     if (index !== -1) {
       this.imageList.splice(index, 1);
       this.selectedFiles.splice(index, 1);
     }
-  } 
-
+  }
+  
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.selectedImageName=file.name;
-      this.convertImageToBase64(file);
+      this.selectedImageName = file.name;
+  
+      this.convertImageToBase64(file)
+        .then((base64Image: string) => {
+          this.selectedImage = base64Image;
+        })
+        .catch((error) => {
+          console.error('Error converting image to base64:', error);
+        });
     }
   }
-
-  convertImageToBase64(file: File): void {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.selectedImage = e.target.result;
-    };
-    reader.readAsDataURL(file);
+  
+  convertImageToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        resolve(e.target.result);
+      };
+  
+      reader.onerror = (error) => {
+        reject(error);
+      };
+  
+      reader.readAsDataURL(file);
+    });
   }
-
+  
+  resetSelectedImage(): void {
+    this.selectedImage = null;
+    this.selectedImageName = null;
+  }
+  
   addAmenity(amenity: string): void {
     this.availableAmenities = this.availableAmenities.filter(a => a !== amenity);
     this.selectedAmenities.push(amenity);
@@ -223,72 +244,74 @@ export class AccommodationCreatinoComponent implements OnInit {
 
   
   createAccommodation(){
-    
 
-    // if(this.pricingForm.valid){
-    //   const formData = this.pricingForm.value;
+    if(this.pricingForm.valid){
+      const formData = this.pricingForm.value;
 
-    //   if(this.imageList.length<=0){
-    //     alert("Your accommodation needs at least 1 photo.");
-    //     return;
-    //   }
+      if(this.imageList.length<=0){
+        alert("Your accommodation needs at least 1 photo.");
+        return;
+      }
 
-    //   if(this.selectedAmenities.length<=0){
-    //     alert("Your accommodation needs at least 1 amenity.");
-    //     return;
-    //   }
+      if(this.selectedAmenities.length<=0){
+        alert("Your accommodation needs at least 1 amenity.");
+        return;
+      }
 
-    //   if(formData.minGuests>formData.maxGuests){
-    //     alert("Your minimum guest number needs to be lower than your maximum guest number.");
-    //     return;
-    //   }
+      if(formData.minGuests>formData.maxGuests){
+        alert("Your minimum guest number needs to be lower than your maximum guest number.");
+        return;
+      }
       
-    //   const accommodation:AccommodationDetailsDTO ={
-    //     id:0,
-    //     ownerId: this.user.id,
-    //     name: formData.name,
-    //     type: this.getEnumFromKeys(this.selectedAmenities, Amenity)[0],
-    //     location: formData.street+" "+formData.city+" "+formData.country,
-    //     minGuests: formData.minGuests,
-    //     maxGuests: formData.maxGuests,
-    //     description:  formData.description,
-    //     amenities: this.getEnumFromKeys( [formData.accommodationType], AccommodationType),
-    //     photos: ["john.jpg"],
-    //     daysForCancellation: formData.daysForCancellation,
-    //     perNight: this.pricingForm.get('perNight')?.value || false,
-    //     enabled:false,
-    //   }
-
-      console.log(this.imageList);
-
-    //   this.accommodationService.createAccommodation(accommodation).subscribe({
-    //     next: (data: AccommodationDetailsDTO) => {
-    //       this.pricingList.forEach(pricing => {
+      const accommodation:AccommodationDetailsDTO ={
+        id:0,
+        ownerId: this.user.id,
+        name: formData.name,
+        type: this.getEnumFromKeys( [formData.accommodationType], AccommodationType)[0],
+        location: formData.street+" "+formData.city+" "+formData.country,
+        minGuests: formData.minGuests,
+        maxGuests: formData.maxGuests,
+        description:  formData.description,
+        amenities: this.getEnumFromKeys(this.selectedAmenities, Amenity),
+        // photos: this.imageList,
+        photos: [],
+        daysForCancellation: formData.daysForCancellation,
+        perNight: this.pricingForm.get('perNight')?.value || false,
+        enabled:false,
+      }
+      this.accommodationService.createAccommodation(accommodation).subscribe({
+        next: (data: AccommodationDetailsDTO) => {
+          this.pricingList.forEach(pricing => {
               
-    //           pricing.accommodationId=data.id;
-    //           this.accommodationPricingService.createAccommodationPricing(pricing).subscribe({
-    //             next: (data: AccommodationPricingDTO) => {
-    //               console.log(data);
-    //             },
-    //             error: (error) => {
-    //               console.error('Failed to create accommodation pricing:', error);
+              pricing.accommodationId=data.id;
+              this.accommodationPricingService.createAccommodationPricing(pricing).subscribe({
+                next: (data: AccommodationPricingDTO) => {
+                  console.log(data);
+                },
+                error: (error) => {
+                  console.error('Failed to create accommodation pricing:', error);
           
-    //               const errorMessage = error?.error?.message || 'Failed to create accommodation pricing';
-    //               alert(errorMessage);
-    //             }
-    //           });
-    //       });
-    //     },
-    //     error: (error) => {
-    //       console.log(accommodation);
-    //       console.error('Failed to create accommodation:', error);
-    //       const errorMessage = error?.error?.message || 'Failed to create accommodation.';
-    //       alert(errorMessage);
-    //     }
-    //   });
-    // }else{
-    //   alert("Before creating a new pricing time slot you must fill out all of the form parameters");
-    // }
+                  const errorMessage = error?.error?.message || 'Failed to create accommodation pricing';
+                  alert(errorMessage);
+                  return;
+                }
+              });
+
+              alert("Successfuly added your accommodation. You will be notified once the admin approves your accommodation.")
+
+          });
+        },
+        error: (error) => {
+          console.log(accommodation);
+          console.error('Failed to create accommodation:', error);
+          const errorMessage = error?.error?.message || 'Failed to create accommodation.';
+          alert(errorMessage);
+        }
+      });
+      
+    }else{
+      alert("Before creating a new pricing time slot you must fill out all of the form parameters");
+    }
   }
 }
 

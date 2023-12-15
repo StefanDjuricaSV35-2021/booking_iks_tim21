@@ -9,6 +9,7 @@ import { ChangeProfileComponent } from './profile/change-profile/change-profile.
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
+import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -20,7 +21,10 @@ const routes: Routes = [
   { path: 'mainPage', component: MainPageComponent },
   { path: 'activate', component: ActivateAccountComponent },
   { path: 'activate/:email', component: ActivateAccountComponent },
-
+  {
+    path: 'ownersAccommodations',
+    component: OwnersAccommodationsPageComponent,
+  },
 ];
 
 @NgModule({

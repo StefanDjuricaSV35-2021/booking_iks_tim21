@@ -18,6 +18,7 @@ import { AccommodationPreviewComponent } from './accommodation-preview/accommoda
 import { ProfileModule } from './profile/profile.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './infrastructure/auth/interceptor';
+import { OwnersAccommodationsModule } from './owners-accommodations/owners-accommodations.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { Interceptor } from './infrastructure/auth/interceptor';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    OwnersAccommodationsModule,
   ],
   providers: [
     {

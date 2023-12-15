@@ -10,12 +10,21 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./user-navbar.component.css'],
 })
 export class UserNavbarComponent {
+  role: string = '';
+
   constructor(private authService: AuthService, private router: Router) {}
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   someMethod() {
     this.trigger.openMenu();
+  }
+
+  ngOnInit(): void {
+    this.authService.userState.subscribe((result) => {
+      console.log('User state changed:', result);
+      this.role = result;
+    });
   }
 
   logOut(): void {

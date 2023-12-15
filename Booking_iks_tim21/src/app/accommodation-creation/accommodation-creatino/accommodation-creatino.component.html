@@ -136,6 +136,7 @@
       matInput
       rows="4"
       type="text"
+      name="description"
       formControlName="description"
       ></textarea>
     </mat-form-field>
@@ -185,8 +186,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of pricingList; let i = index">
-            <td>{{ item.timeslot.startDate | date: 'shortDate' }}</td>
-            <td>{{ item.timeslot.endDate | date: 'shortDate' }}</td>
+            <td>{{ item.timeSlot.startDate | date: 'shortDate' }}</td>
+            <td>{{ item.timeSlot.endDate | date: 'shortDate' }}</td>
             <td>{{ item.price }}</td>
             <td><button (click)="removeItem(i)" class="btn btn-danger">Remove</button></td>
           </tr>

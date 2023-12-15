@@ -3,11 +3,13 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, FormB
 import { AccommodationPricingDTO } from './model/accommodationPricing.model';
 import { AppModule } from 'src/app/app.module';
 import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/profile/user.service';
 import { User } from 'src/app/profile/model/user.model';
+import { AccommodationDetailsService } from 'src/app/accommodation-details/service/accommodation-details.service';
+import { AccommodationPricingService } from './service/accommodationPricing.service';
 
 enum Amenity {
   TV,
@@ -40,6 +42,9 @@ export class AccommodationCreatinoComponent implements OnInit {
     private authService: AuthService,
     private service: UserService,
     private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private accommodationService: AccommodationDetailsService,
+    private accommodationPricingService: AccommodationPricingService,
 
   ){
     this.pricingForm = new FormGroup({
@@ -89,6 +94,20 @@ export class AccommodationCreatinoComponent implements OnInit {
       this.router.navigate(['/mainPage']);
       return;
     }
+
+    this.route.params.subscribe((params) => {
+      const id = +params['userId'];
+
+      const jwtHelperService = new JwtHelperService();
+      const userFromLocalStorage: any = localStorage.getItem('user');
+      const userEmail: string =
+        jwtHelperService.decodeToken(userFromLocalStorage).sub;
+      this.service.getUserByEmail(userEmail).subscribe({
+        next: (data: User) => {
+          this.user = data;
+        },
+      });
+    });
   }
 
   addImage(): void {
@@ -110,8 +129,8 @@ export class AccommodationCreatinoComponent implements OnInit {
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
-    this.selectedImageName=file.name;
     if (file) {
+      this.selectedImageName=file.name;
       this.convertImageToBase64(file);
     }
   }
@@ -142,8 +161,8 @@ export class AccommodationCreatinoComponent implements OnInit {
     }
   
     for (const item of pricingList) {
-      const existingStartDate = new Date(item.timeslot.startDate);
-      const existingEndDate = new Date(item.timeslot.endDate);
+      const existingStartDate = new Date(item.timeSlot.startDate);
+      const existingEndDate = new Date(item.timeSlot.endDate);
   
       if ((startDate >= existingStartDate && startDate <= existingEndDate) ||
           (endDate >= existingStartDate && endDate <= existingEndDate) ||
@@ -167,7 +186,7 @@ export class AccommodationCreatinoComponent implements OnInit {
       if (this.validateDates(startDate, endDate, this.pricingList)) {
         const newItem = new AccommodationPricingDTO({
           accommodationId: 0,
-          timeslot: {
+          timeSlot: {
             startDate: startDate.getTime(),
             endDate: endDate.getTime(),
           },
@@ -192,60 +211,84 @@ export class AccommodationCreatinoComponent implements OnInit {
     return Object.keys(enumObj).filter(key => !isNaN(Number(enumObj[key])));
   }
 
-  private getEnumFromKey(key: string, enumObj: any): any {
-    return enumObj[key];
-  }
-
   private getEnumFromKeys(keys: string[], enumObj: any): any {
-    const result: any = {};
+    const result: any[] = [];
+
     keys.forEach((key) => {
-      result[key] = enumObj[key];
+      result.push(enumObj[key]);
     });
-    return result;
+
+  return result;
   }
 
   
   createAccommodation(){
+    
+
     // if(this.pricingForm.valid){
+    //   const formData = this.pricingForm.value;
 
-      const jwtHelperService = new JwtHelperService();
-      const userFromLocalStorage: any = localStorage.getItem('user');
-      const userEmail: string = jwtHelperService.decodeToken(userFromLocalStorage).sub;
-      this.service.getUserByEmail(userEmail).subscribe({
-        next: (data: User) => {
-          this.user = data;
-        },
-      });
-      console.log(this.user.id);
-      // const formData = this.pricingForm.value;
+    //   if(this.imageList.length<=0){
+    //     alert("Your accommodation needs at least 1 photo.");
+    //     return;
+    //   }
 
-      // if(this.imageList.length<=0){
-      //   alert("Your accommodation needs at least 1 photo.");
-      //   return;
-      // }
+    //   if(this.selectedAmenities.length<=0){
+    //     alert("Your accommodation needs at least 1 amenity.");
+    //     return;
+    //   }
 
-      // if(this.selectedAmenities.length<=0){
-      //   alert("Your accommodation needs at least 1 amenity.");
-      //   return;
-      // }
+    //   if(formData.minGuests>formData.maxGuests){
+    //     alert("Your minimum guest number needs to be lower than your maximum guest number.");
+    //     return;
+    //   }
       
-      // const accommodation:AccommodationDetailsDTO ={
-      //   id:0,
-      //   ownerId: this.user.id,
-      //   name: formData.name,
-      //   type: this.getEnumFromKey(formData.type, AccommodationType),
-      //   location: formData.street+" "+formData.city+" "+formData.country,
-      //   minGuests: formData.minGuests,
-      //   maxGuests: formData.maxGuests,
-      //   description: formData.description,
-      //   amenities: this.getEnumFromKeys(this.selectedAmenities, Amenity),
-      //   photos: new Set(this.imageList),
-      //   daysForCancellation: formData.daysForCancellation,
-      //   perNight: this.pricingForm.get('perNight')?.value || false,
-      // }
-      // console.log(accommodation);
+    //   const accommodation:AccommodationDetailsDTO ={
+    //     id:0,
+    //     ownerId: this.user.id,
+    //     name: formData.name,
+    //     type: this.getEnumFromKeys(this.selectedAmenities, Amenity)[0],
+    //     location: formData.street+" "+formData.city+" "+formData.country,
+    //     minGuests: formData.minGuests,
+    //     maxGuests: formData.maxGuests,
+    //     description:  formData.description,
+    //     amenities: this.getEnumFromKeys( [formData.accommodationType], AccommodationType),
+    //     photos: ["john.jpg"],
+    //     daysForCancellation: formData.daysForCancellation,
+    //     perNight: this.pricingForm.get('perNight')?.value || false,
+    //     enabled:false,
+    //   }
+
+      console.log(this.imageList);
+
+    //   this.accommodationService.createAccommodation(accommodation).subscribe({
+    //     next: (data: AccommodationDetailsDTO) => {
+    //       this.pricingList.forEach(pricing => {
+              
+    //           pricing.accommodationId=data.id;
+    //           this.accommodationPricingService.createAccommodationPricing(pricing).subscribe({
+    //             next: (data: AccommodationPricingDTO) => {
+    //               console.log(data);
+    //             },
+    //             error: (error) => {
+    //               console.error('Failed to create accommodation pricing:', error);
+          
+    //               const errorMessage = error?.error?.message || 'Failed to create accommodation pricing';
+    //               alert(errorMessage);
+    //             }
+    //           });
+    //       });
+    //     },
+    //     error: (error) => {
+    //       console.log(accommodation);
+    //       console.error('Failed to create accommodation:', error);
+    //       const errorMessage = error?.error?.message || 'Failed to create accommodation.';
+    //       alert(errorMessage);
+    //     }
+    //   });
+    // }else{
+    //   alert("Before creating a new pricing time slot you must fill out all of the form parameters");
     // }
-    // alert("Before creating a new pricing time slot you must fill out all of the form parameters");
   }
 }
 

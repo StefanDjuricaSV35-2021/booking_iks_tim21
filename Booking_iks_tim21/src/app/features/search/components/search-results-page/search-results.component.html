@@ -1,0 +1,9 @@
+<app-search-bar [location]="params['location']"
+                [dateFrom]="params['dateFrom']"
+                [dateTo]="params['dateTo']"
+                [noGuests]="params['noGuests']"
+/>
+<div class="content">
+  <app-filter-sidebar style="align-self: flex-start"/>
+  <app-search-preview-card [accommodationPreview]="accommodation" style="margin: 20px" *ngFor="let accommodation of accommodationPreviews"/>
+</div>

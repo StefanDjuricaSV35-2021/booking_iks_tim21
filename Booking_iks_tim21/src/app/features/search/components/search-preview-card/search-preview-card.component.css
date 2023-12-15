@@ -1,0 +1,49 @@
+
+.card{
+  width: 800px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+.image{
+  object-fit: contain;
+  width: 40%;
+}
+.info{
+  width: 60%;
+  gap: 3px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+#price{
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: 10px;
+  font-size: larger;
+}
+
+#location{
+}
+
+#name{
+  font-size: x-large;
+}
+
+#type{
+  margin-top: 7px;
+}
+
+.greyed-small{
+  opacity: 60%;
+  font-size: small;
+}
+
+#button{
+  width: fit-content;
+  margin-left: auto;
+
+}
+

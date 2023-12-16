@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
-  Validators,
-  ValidatorFn,
   AbstractControl,
   FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
 } from '@angular/forms';
-import { AccommodationPricingDTO } from './model/accommodationPricing.model';
-import { AppModule } from 'src/app/app.module';
-import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserService } from 'src/app/profile/user.service';
-import { User } from 'src/app/profile/model/user.model';
+import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creatino/model/accommodationPricing.model';
+import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creatino/service/accommodationPricing.service';
+import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
 import { AccommodationDetailsService } from 'src/app/accommodation-details/service/accommodation-details.service';
-import { AccommodationPricingService } from './service/accommodationPricing.service';
+import { AuthService } from 'src/app/infrastructure/auth/auth.service';
+import { User } from 'src/app/profile/model/user.model';
+import { UserService } from 'src/app/profile/user.service';
+import {
+  AccommodationChangeRequestDTO,
+  RequestStatus,
+} from './model/AccommodationChangeRequestDTO';
+import { AccommodationChangeRequestService } from './service/accommodation-change-request.service';
+import { AccommodationPricingChangeRequestService } from './service/accommodation-pricing-change-request.service';
+import { AccommodationPricingChangeRequestDTO } from './model/AccommodationPricingChangeRequestDTO';
 
 enum Amenity {
   TV,
@@ -33,11 +39,13 @@ enum AccommodationType {
 }
 
 @Component({
-  selector: 'app-accommodation-creatino',
-  templateUrl: './accommodation-creatino.component.html',
-  styleUrls: ['./accommodation-creatino.component.css'],
+  selector: 'app-change-accommodation',
+  templateUrl: './change-accommodation.component.html',
+  styleUrls: ['./change-accommodation.component.css'],
 })
-export class AccommodationCreatinoComponent implements OnInit {
+export class ChangeAccommodationComponent {
+  accommodationId: number;
+  accommodation: AccommodationDetailsDTO;
   pricingForm: FormGroup;
   dateForm: FormGroup;
   user: User;
@@ -50,7 +58,9 @@ export class AccommodationCreatinoComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private accommodationService: AccommodationDetailsService,
-    private accommodationPricingService: AccommodationPricingService
+    private accommodationPricingService: AccommodationPricingService,
+    private accommodationChangeRequestService: AccommodationChangeRequestService,
+    private accommodationPricingChangeRequestService: AccommodationPricingChangeRequestService
   ) {
     this.pricingForm = new FormGroup({
       street: new FormControl(null, [Validators.required]),
@@ -86,6 +96,7 @@ export class AccommodationCreatinoComponent implements OnInit {
   }
 
   pricingList: AccommodationPricingDTO[] = [];
+  pricingChangeRequestList: AccommodationPricingChangeRequestDTO[] = [];
 
   accommodationTypes = this.getKeysFromEnum(AccommodationType);
 
@@ -111,6 +122,48 @@ export class AccommodationCreatinoComponent implements OnInit {
         },
       });
     });
+
+    this.accommodationId = +this.route.snapshot.paramMap.get('id')!;
+
+    this.accommodationPricingService
+      .getActivePricingsForAccommodation(this.accommodationId)
+      .subscribe((data) => {
+        this.pricingList = data;
+      });
+
+    this.accommodationService
+      .findById(this.accommodationId)
+      .subscribe((data) => {
+        this.accommodation = data;
+        this.populateForm();
+      });
+  }
+
+  populateForm() {
+    this.pricingForm.patchValue({
+      street: this.accommodation.location.split(',')[0],
+      city: this.accommodation.location.split(',')[1],
+      country: this.accommodation.location.split(',')[2],
+      name: this.accommodation.name,
+      accommodationType: this.accommodation.type.toString(),
+      minGuests: this.accommodation.minGuests,
+      maxGuests: this.accommodation.maxGuests,
+      daysForCancellation: this.accommodation.daysForCancellation,
+      description: this.accommodation.description,
+      priceType: this.accommodation.perNight ? 'night' : 'guest',
+    });
+
+    for (const amenity of this.accommodation.amenities as unknown as string[]) {
+      this.addAmenity(amenity);
+    }
+    this.pricingForm.reset;
+
+    //this.imageList = this.accommodation.photos || [];
+
+    for (const photo of this.accommodation.photos) {
+      this.imageList.push(photo);
+    }
+    this.resetSelectedImage();
   }
 
   imageList: string[] = [];
@@ -235,9 +288,7 @@ export class AccommodationCreatinoComponent implements OnInit {
           },
           price: price,
         });
-
         this.pricingList.push(newItem);
-        this.pricingForm.reset();
       }
       return;
     }
@@ -264,7 +315,7 @@ export class AccommodationCreatinoComponent implements OnInit {
     return result;
   }
 
-  createAccommodation() {
+  createAccommodationChangeRequest() {
     if (this.pricingForm.valid) {
       const formData = this.pricingForm.value;
 
@@ -285,9 +336,28 @@ export class AccommodationCreatinoComponent implements OnInit {
         return;
       }
 
-      const accommodation: AccommodationDetailsDTO = {
+      for (const pricingItem of this.pricingList) {
+        let newItem: AccommodationPricingChangeRequestDTO = {
+          id: 0,
+          accommodationChangeRequestId: 0,
+          status: RequestStatus.PENDING,
+          accommodationId: this.accommodation.id,
+          timeSlot: {
+            startDate: pricingItem.timeSlot.startDate,
+            endDate: pricingItem.timeSlot.endDate,
+          },
+          price: pricingItem.price,
+        };
+
+        this.pricingChangeRequestList.push(newItem);
+      }
+
+      const accommodationChangeRequest: AccommodationChangeRequestDTO = {
         id: 0,
-        ownerId: this.user.id,
+        requestCreationDate: Date.now(),
+        status: RequestStatus.PENDING,
+        accommodationId: this.accommodation.id,
+        ownerId: this.accommodation.ownerId,
         name: formData.name,
         type: this.getEnumFromKeys(
           [formData.accommodationType],
@@ -303,50 +373,57 @@ export class AccommodationCreatinoComponent implements OnInit {
         photos: [],
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
-        enabled: false,
+        enabled: true,
       };
-      this.accommodationService.createAccommodation(accommodation).subscribe({
-        next: (data: AccommodationDetailsDTO) => {
-          this.pricingList.forEach((pricing) => {
-            pricing.accommodationId = data.id;
-            this.accommodationPricingService
-              .createAccommodationPricing(pricing)
-              .subscribe({
-                next: (data: AccommodationPricingDTO) => {
-                  console.log(data);
-                },
-                error: (error) => {
-                  console.error(
-                    'Failed to create accommodation pricing:',
-                    error
-                  );
+      this.accommodationChangeRequestService
+        .createAccommodationChangeRequest(accommodationChangeRequest)
+        .subscribe({
+          next: (data: AccommodationChangeRequestDTO) => {
+            this.pricingChangeRequestList.forEach((pricingChangeRequest) => {
+              pricingChangeRequest.accommodationChangeRequestId = data.id;
+              this.accommodationPricingChangeRequestService
+                .createAccommodationPricingChangeRequest(pricingChangeRequest)
+                .subscribe({
+                  next: (data: AccommodationPricingChangeRequestDTO) => {
+                    console.log(data);
+                  },
+                  error: (error) => {
+                    console.error(
+                      'Failed to create accommodation pricing change request:',
+                      error
+                    );
 
-                  const errorMessage =
-                    error?.error?.message ||
-                    'Failed to create accommodation pricing';
-                  alert(errorMessage);
-                  return;
-                },
-              });
+                    const errorMessage =
+                      error?.error?.message ||
+                      'Failed to create accommodation pricing change request';
+                    alert(errorMessage);
+                    return;
+                  },
+                });
 
-            alert(
-              'Successfuly added your accommodation. You will be notified once the admin approves your accommodation.'
+              alert(
+                'Successfuly added your accommodation change request. You will be notified once the admin approves your accommodation.'
+              );
+            });
+          },
+          error: (error) => {
+            console.log(accommodationChangeRequest);
+            console.error(
+              'Failed to create accommodation change request:',
+              error
             );
-          });
-        },
-        error: (error) => {
-          console.log(accommodation);
-          console.error('Failed to create accommodation:', error);
-          const errorMessage =
-            error?.error?.message || 'Failed to create accommodation.';
-          alert(errorMessage);
-        },
-      });
+            const errorMessage =
+              error?.error?.message ||
+              'Failed to create accommodation change request.';
+            alert(errorMessage);
+          },
+        });
     } else {
       alert(
         'Before creating a new pricing time slot you must fill out all of the form parameters'
       );
     }
+    this.router.navigate(['/ownersAccommodation/' + this.accommodation.id]);
   }
 }
 

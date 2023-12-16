@@ -24,4 +24,6 @@ export class OwnersAccommodationDetailsComponent {
       this.acc = data;
     });
   }
+
+  protected readonly Array = Array;
 }

@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-image-slider',
   templateUrl: './image-slider.component.html',
-  styleUrls: ['./image-slider.component.css']
+  styleUrls: ['./image-slider.component.css'],
 })
 export class ImageSliderComponent {
   @Input() slides: string[] = [];
@@ -27,8 +27,8 @@ export class ImageSliderComponent {
   }
 
   getCurrentSlideString() {
-    console.log("aa")
-    return 'url('+ 'data:image/jpg;base64,'+this.slides[this.currentIndex]+')';
+    return (
+      'url(' + 'data:image/jpg;base64,' + this.slides[this.currentIndex] + ')'
+    );
   }
-
 }

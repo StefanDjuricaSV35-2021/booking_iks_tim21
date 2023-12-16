@@ -16,12 +16,6 @@ export class UserNavbarComponent {
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
-  role: string = '';
-
-  ngOnInit(): void {
-    this.role = this.authService.getRole();
-  }
-
   someMethod() {
     this.trigger.openMenu();
   }
@@ -34,9 +28,6 @@ export class UserNavbarComponent {
   }
 
   logOut(): void {
-    // localStorage.removeItem('user');
-    // this.authService.setUser();
-    // this.router.navigate(['/mainPage']);
     this.authService.logout().subscribe({
       next: (_) => {
         localStorage.removeItem('user');

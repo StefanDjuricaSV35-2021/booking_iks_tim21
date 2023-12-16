@@ -1,0 +1,86 @@
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-container form {
+    margin-bottom: 20px;
+  }
+  
+  .form-container table {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .form-container th, .form-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .form-container button.btn-danger {
+    background-color: #082c3c;
+    color: #fff;
+  }
+  
+  .form-container tbody tr {
+    margin-bottom: 5px;
+  }
+  
+  .form-container button {
+    background-color: #082c3c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; 
+  }
+  
+  .form-container button:hover {
+    background-color: rgb(5, 51, 63);
+  }
+  
+  .form-container .image-preview {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .form-container .preview-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .form-container .image-list {
+    margin-top: 20px;
+  }
+  
+  .form-container .image-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .form-container .image-list li {
+    margin-bottom: 5px;
+  }
+  
+  .form-container div {
+    padding-top: 10px;
+  }
+  
+  .btn {
+    margin-right: 13px;
+  }
+  

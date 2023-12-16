@@ -11,7 +11,7 @@ export class AccommodationPreviewService {
   constructor(private http: HttpClient) {}
   public findAll(): Observable<AccommodationPreviewDTO[]> {
     return this.http.get<AccommodationPreviewDTO[]>(
-      environment.apiHost + 'accommodations'
+      environment.apiHost + 'accommodations/previews'
     );
   }
 }

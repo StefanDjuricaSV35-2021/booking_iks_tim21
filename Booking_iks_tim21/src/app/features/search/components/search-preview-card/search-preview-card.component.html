@@ -1,0 +1,19 @@
+<mat-card class="card">
+
+  <img  mat-card-image class="image"  src="{{'data:image/png;base64,' + accommodationPreview.image}}">
+  <mat-card-content class="info">
+    <span class="greyed-small" id="location" style="opacity: 60%">
+      {{accommodationPreview.location}}
+    </span>
+    <span id="name">
+      {{accommodationPreview.name}}
+    </span>
+    <span id="type">
+      type,guests
+    </span>
+    <span id="price">
+      {{accommodationPreview.price}}$
+    </span>
+    <button id="button" mat-button >See details</button>
+  </mat-card-content>
+</mat-card>

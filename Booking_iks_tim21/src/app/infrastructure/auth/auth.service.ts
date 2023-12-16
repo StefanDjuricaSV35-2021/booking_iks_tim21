@@ -46,7 +46,6 @@ export class AuthService {
   getRole(): any {
     if (this.isLoggedIn()) {
       const accessToken: any = localStorage.getItem('user');
-      console.log(accessToken);
       return this.jwtHelper.decodeToken(accessToken).role[0].authority;
     }
     return null;

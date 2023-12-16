@@ -18,6 +18,11 @@ import { AccommodationPreviewComponent } from './accommodation-preview/accommoda
 import { ProfileModule } from './profile/profile.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './infrastructure/auth/interceptor';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchPreviewCardComponent } from './features/search/components/search-preview-card/search-preview-card.component'
@@ -26,13 +31,13 @@ import {SearchModule} from "./features/search/search.module";
 import {FilterSidebarComponent} from "./features/search/components/filter-sidebar/filter-sidebar.component";
 import {SharedModule} from "./shared/shared.module";
 
-
 @NgModule({
   declarations: [
     AppComponent,
     AccommodationDetailsComponent,
     MainPageComponent,
     AccommodationPreviewComponent,
+    AccommodationCreatinoComponent,
   ],
   imports: [
     SearchModule,
@@ -45,6 +50,10 @@ import {SharedModule} from "./shared/shared.module";
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
     MatIconModule,
     NgOptimizedImage,
     SharedModule

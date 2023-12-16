@@ -8,6 +8,7 @@ import { SignupComponent } from './infrastructure/auth/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
 import { MainPageComponent } from './features/main-page/main-page.component';
 import {SearchResultsComponent} from "./features/search/components/search-results-page/search-results.component";
 
@@ -22,7 +23,7 @@ const routes: Routes = [
   { path: 'mainPage', component: MainPageComponent },
   { path: 'activate', component: ActivateAccountComponent },
   { path: 'activate/:email', component: ActivateAccountComponent },
-
+  { path: 'accommodation_create', component: AccommodationCreatinoComponent },
 ];
 
 @NgModule({

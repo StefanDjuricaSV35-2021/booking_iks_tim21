@@ -21,7 +21,6 @@ export class ActivateAccountComponent implements OnInit {
 
   ngOnInit(){
     let e = this.route.snapshot.paramMap.get('email');
-    console.log(e)
     if(e == null){
       alert("Error wrong page path!!!")
       this.router.navigate(['mainPage'])

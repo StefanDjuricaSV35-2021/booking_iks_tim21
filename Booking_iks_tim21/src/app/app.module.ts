@@ -32,6 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
+import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatRadioModule,
     RouterModule,
+    AccommodationRequestsModule,
   ],
   providers: [
     {

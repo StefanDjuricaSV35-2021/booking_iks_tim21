@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DatePipe, formatDate} from "@angular/common";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {SearchPageService} from "../../../features/search/components/search-results-page/service/search-page.service";
 import {AccommodationPreviewDTO} from "../../../accommodation-preview/model/accommodationPreviewDTO";
@@ -15,24 +15,41 @@ export class SearchBarComponent {
 
     accommodationPreviews:AccommodationPreviewDTO;
 
-   @Input() location:string;
-   @Input() noGuests:number;
-   @Input() dateFrom:string;
-   @Input() dateTo:string;
+   location:string;
+   noGuests:number;
+   dateFrom:string;
+   dateTo:string;
 
    searchForm:FormGroup;
    formBuilder=new FormBuilder();
    date:FormControl;
    date2:FormControl;
 
-   constructor(private router:Router) {}
+   constructor(
+     private router:Router,
+     private route: ActivatedRoute
+) {}
    ngOnInit(){
 
-      this.configureFormGroup()
+     this.initializeFields();
+     this.configureFormGroup();
 
    }
 
+   initializeFields(){
+
+     this.route.queryParams.subscribe(params => {
+
+       this.location = params['location'];
+       this.dateFrom = params['dateFrom'];
+       this.dateTo = params['dateTo'];
+       this.noGuests = params['noGuests'];
+
+     });
+   }
+
    configureFormGroup(){
+
        this.searchForm = this.formBuilder.group({
            location:[new Date(this.dateTo), Validators.required],
            noGuests:[Validators.pattern('^[0-9]*$'), Validators.required]

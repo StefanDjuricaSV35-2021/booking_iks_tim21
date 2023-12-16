@@ -13,15 +13,15 @@ export class AccommodationDetailsDTO {
    details:string;
 }
 
-enum AccommodationType {
+export enum AccommodationType {
   Room,
   House,
   Condo,
   Apartment
 }
 
-enum Amenity {
-  TV,
+export enum Amenity {
+  Tv,
   WiFi,
   Parking,
   SmokeAlarm

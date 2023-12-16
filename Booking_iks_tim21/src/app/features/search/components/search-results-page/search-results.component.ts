@@ -32,4 +32,8 @@ export class SearchResultsComponent {
   }
 
   protected readonly Date = Date;
+
+  addFilter($event: string) {
+
+  }
 }

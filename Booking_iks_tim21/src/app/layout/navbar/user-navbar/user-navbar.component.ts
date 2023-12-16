@@ -16,6 +16,12 @@ export class UserNavbarComponent {
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
+  role: string = '';
+
+  ngOnInit(): void {
+    this.role = this.authService.getRole();
+  }
+
   someMethod() {
     this.trigger.openMenu();
   }

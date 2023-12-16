@@ -12,6 +12,7 @@ import { OwnersAccommodationsPageComponent } from './owners-accommodations/owner
 import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 import { MainPageComponent } from './features/main-page/main-page.component';
 import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
     path: 'ownersAccommodation/:id',
     component: OwnersAccommodationDetailsComponent,
   },
+  { path: 'accommodation_create', component: AccommodationCreatinoComponent },
 ];
 
 @NgModule({

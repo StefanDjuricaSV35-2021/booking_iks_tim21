@@ -15,5 +15,12 @@
     >
       Your Accommodations
     </button>
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/accommodation_create"
+    >
+      Create Appartment
+    </button>
   </mat-menu>
 </div>

@@ -36,10 +36,10 @@ rect {
 }
 
 .navButtons {
-    width: 300px;
+    width: 100%;
     display: flex;
-    justify-content:space-between;
-
+    justify-content:right;
+    margin-right: 100px;
 }
 
 a {

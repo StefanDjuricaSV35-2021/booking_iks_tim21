@@ -26,6 +26,11 @@ import { NgOptimizedImage } from '@angular/common';
 import { SearchModule } from './features/search/search.module';
 import { FilterSidebarComponent } from './features/search/components/filter-sidebar/filter-sidebar.component';
 import { SharedModule } from './shared/shared.module';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,7 @@ import { SharedModule } from './shared/shared.module';
     AccommodationDetailsComponent,
     MainPageComponent,
     AccommodationPreviewComponent,
+    AccommodationCreatinoComponent,
   ],
   imports: [
     SearchModule,
@@ -49,6 +55,10 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule,
     NgOptimizedImage,
     SharedModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   providers: [
     {

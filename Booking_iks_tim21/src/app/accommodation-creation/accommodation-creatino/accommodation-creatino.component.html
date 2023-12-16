@@ -1,0 +1,238 @@
+<div class="form-container">
+  <form [formGroup]="pricingForm" (ngSubmit)="createAccommodation()" >
+
+    <label class="h6">Address</label>
+    <div class="row g-3">
+      <mat-form-field class="col-md-4">
+        <mat-label>Street</mat-label>
+        <input
+        matInput
+        type="text"
+        name="street"
+        formControlName="street"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            type="text"
+            name="city"
+            formControlName="city"
+          />
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+          <mat-label>Country</mat-label>
+          <input
+            matInput
+            type="text"
+            name="country"
+            formControlName="country"
+          />
+      </mat-form-field>
+    </div>
+
+    <label class="h6">Property details</label>
+    <div class="row g-2">
+      <mat-form-field class="col-md-6">
+        <mat-label>Name</mat-label>
+        <input
+        matInput
+        type="text"
+        name="name"
+        formControlName="name"
+        />
+      </mat-form-field>
+
+      <div class="col-md-6">
+        <label for="accommodationType" class="form-label">Accommodation Type:</label>
+        <mat-select id="accommodationType" formControlName="accommodationType" required>
+          <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+
+    <div class="row g-2">
+      <mat-form-field class="col-md-4">
+        <mat-label>Minimum number of guests</mat-label>
+        <input
+        matInput
+        type="number"
+        name="minGuests"
+        formControlName="minGuests"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+        <mat-label>Maximum number of guests</mat-label>
+        <input
+        matInput
+        type="number"
+        name="maxGuests"
+        formControlName="maxGuests"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+        <mat-label>Days for cancelation</mat-label>
+        <input
+        matInput
+        type="number"
+        name="daysForCancellation"
+        formControlName="daysForCancellation"
+        />
+      </mat-form-field>
+    </div>
+
+
+    <div class="row g-2">
+      <div class="col-md-6">
+        <label>Available Amenities</label>
+        <table>
+          <thead>
+            <tr>
+              <th>Amenity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let amenity of availableAmenities">
+              <td>{{ amenity }}</td>
+              <td>
+                <button (click)="addAmenity(amenity)">Add</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="col-md-6">
+        <label>Selected Amenities</label>
+        <table>
+          <thead>
+            <tr>
+              <th>Amenity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let amenity of selectedAmenities">
+              <td>{{ amenity }}</td>
+              <td>
+                <button (click)="removeAmenity(amenity)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+
+    <mat-form-field class="col-md-12 mt-3">
+      <mat-label>Description</mat-label>
+      <textarea
+      matInput
+      rows="4"
+      type="text"
+      name="description"
+      formControlName="description"
+      ></textarea>
+    </mat-form-field>
+
+    <label class="h6">Pricing and Availability</label>
+    
+    <div class="row g-3">
+      <div class="col-12 mt-3">
+        <label>Price:</label>
+        <mat-radio-group formControlName="priceType">
+          <mat-radio-button value="night" checked="true">Per Night</mat-radio-button>
+          <mat-radio-button value="guest">Per Guest</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <form [formGroup]="dateForm" (ngSubmit)="addTimeSlot()"> 
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="startDate" class="form-label">Start Date:</label>
+          <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
+        </div>
+    
+        <div class="col-md-4">
+          <label for="endDate" class="form-label">End Date:</label>
+          <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
+        </div>
+    
+        <div class="col-md-4">
+          <label for="price" class="form-label">Price:</label>
+          <input type="number" id="price" formControlName="price" class="form-control" required>
+        </div>
+    
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-primary">Add to Table</button>
+        </div>
+      </div>
+  
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pricingList; let i = index">
+            <td>{{ item.timeSlot.startDate | date: 'shortDate' }}</td>
+            <td>{{ item.timeSlot.endDate | date: 'shortDate' }}</td>
+            <td>{{ item.price }}</td>
+            <td><button (click)="removeItem(i)" class="btn btn-danger">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+    <form [formGroup]="imageForm" (ngSubmit)="addImage()">
+      <div class="form-group">
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*">
+      </div>
+  
+      <div class="image-preview" *ngIf="selectedImage">
+        <img [src]="selectedImage" alt="Selected Image" class="preview-image">
+      </div>
+  
+      <button type="submit" [disabled]="!selectedImage">Add Image</button>
+    </form>
+  
+    <div class="image-list">
+      <label>Image List</label>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let image of imageList; let i = index">
+            <td>{{ selectedFiles[i] }}</td>
+            <td>
+              <button (click)="removeImage(image)" class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Create Accommodation</button>
+    </div>
+  </form>
+
+  
+</div>

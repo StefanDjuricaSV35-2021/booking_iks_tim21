@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageComponent } from './features/main-page/main-page.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AccommodationPreviewComponent } from './accommodation-preview/accommodation-preview.component';
 import { ProfileModule } from './profile/profile.module';
@@ -23,6 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
+import { MatIconModule } from '@angular/material/icon';
+import { SearchPreviewCardComponent } from './features/search/components/search-preview-card/search-preview-card.component'
+import {NgOptimizedImage} from "@angular/common";
+import {SearchModule} from "./features/search/search.module";
+import {FilterSidebarComponent} from "./features/search/components/filter-sidebar/filter-sidebar.component";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -33,6 +40,7 @@ import { MatRadioModule } from '@angular/material/radio';
     AccommodationCreatinoComponent,
   ],
   imports: [
+    SearchModule,
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
@@ -46,6 +54,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
+    MatIconModule,
+    NgOptimizedImage,
+    SharedModule
   ],
   providers: [
     {

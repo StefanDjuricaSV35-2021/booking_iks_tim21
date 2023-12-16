@@ -8,5 +8,19 @@
   />
   <mat-menu #menu="matMenu" [xPosition]="'before'">
     <button mat-menu-item routerLink="/profile">Profile</button>
+    <button
+      mat-menu-item
+      routerLink="/ownersAccommodations"
+      *ngIf="role == 'OWNER'"
+    >
+      Your Accommodations
+    </button>
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/accommodation_create"
+    >
+      Create Appartment
+    </button>
   </mat-menu>
 </div>

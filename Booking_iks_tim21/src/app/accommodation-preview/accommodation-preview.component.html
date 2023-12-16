@@ -1,20 +1,19 @@
-
-  <mat-card style="margin: 20px" class="example-card">
-
-    <img  mat-card-image src="{{'data:image/png;base64,' + accommodationPreview.image}}">
-    <mat-card-content>
-      <p>
-        Name: {{accommodationPreview.name}}
-      </p>
-      <p>
-        Location: {{accommodationPreview.location}}
-      </p>
-      <p>
-        Price: {{accommodationPreview.price}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button [routerLink]="['/accommodation', accommodationPreview.id]">See details</button>
-    </mat-card-actions>
-  </mat-card>
-
+<mat-card style="margin: 20px" class="example-card">
+  <img
+    mat-card-image
+    src="{{ 'data:image/png;base64,' + accommodationPreview.image }}"
+  />
+  <mat-card-content>
+    <p>Name: {{ accommodationPreview.name }}</p>
+    <p>Location: {{ accommodationPreview.location }}</p>
+    <p>Price: {{ accommodationPreview.price }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-button
+      [routerLink]="['/accommodation', accommodationPreview.id]"
+    >
+      See details
+    </button>
+  </mat-card-actions>
+</mat-card>

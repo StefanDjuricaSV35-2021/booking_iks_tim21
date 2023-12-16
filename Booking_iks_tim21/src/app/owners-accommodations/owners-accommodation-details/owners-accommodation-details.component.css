@@ -1,0 +1,120 @@
+.apartmentinfouser-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+
+
+}
+.apartment-info {
+  padding: 30px;
+  width: 850px;
+  gap: 30px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.info-and-picture {
+  width: 90%;
+  height: auto;
+  display: flex;
+  gap: 20px;
+  align-self: center;
+  justify-content: center;
+}
+.basic-info {
+  width: auto;
+  height: 300px;
+  display: flex;
+  padding: 10px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.apartmentinfouser-aptimage {
+  width: 400px;
+  height: 300px;
+  border-radius: 15px;
+}
+.location-and-review {
+
+  width: 60%;
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+}
+.text1 {
+  color: rgba(67, 67, 67, 1);
+  width: auto;
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  line-height: normal;
+  align-content: center;
+}
+
+.additional-info {
+  width: 70%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: row;
+}
+.amenities {
+  gap: 10px;
+  padding: 20px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+
+}
+.cal-and-desc {
+  padding: 0 10px 0 10px;
+  gap: 20px;
+  width: 70%;
+  align-self:flex-start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.calendar {
+  height: auto;
+  border-width: 2px;
+  border-radius: 15px;
+
+}
+
+.description {
+  gap: 20px;
+  height: auto;
+  display: flex;
+  padding: 20px;
+  align-self: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.container {
+  border-radius: 15px;
+  background-color: rgba(219, 223, 226, 1);
+}
+  
+  .button {
+    display: inline-block;
+  
+    padding: 0.5rem 1rem;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 4px;
+
+    width: fit-content; 
+    align-self: flex-end;
+  }
+  

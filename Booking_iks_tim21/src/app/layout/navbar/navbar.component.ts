@@ -15,7 +15,6 @@ export class NavbarComponent {
     // this.role = this.authService.isLoggedIn();
     // console.log('User state changed:', this.role);
     this.authService.userState.subscribe((result) => {
-      console.log('User state changed:', result);
       this.role = result;
     });
   }

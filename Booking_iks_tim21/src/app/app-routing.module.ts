@@ -8,8 +8,12 @@ import { SignupComponent } from './infrastructure/auth/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
+import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
+import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 import { MainPageComponent } from './features/main-page/main-page.component';
-import {SearchResultsComponent} from "./features/search/components/search-results-page/search-results.component";
+import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
+import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -22,7 +26,17 @@ const routes: Routes = [
   { path: 'mainPage', component: MainPageComponent },
   { path: 'activate', component: ActivateAccountComponent },
   { path: 'activate/:email', component: ActivateAccountComponent },
+  {
+    path: 'ownersAccommodations',
+    component: OwnersAccommodationsPageComponent,
+  },
+  {
+    path: 'ownersAccommodation/:id',
+    component: OwnersAccommodationDetailsComponent,
+  },
+  { path: 'changeAccommodation/:id', component: ChangeAccommodationComponent },
 
+  { path: 'accommodation_create', component: AccommodationCreatinoComponent },
 ];
 
 @NgModule({

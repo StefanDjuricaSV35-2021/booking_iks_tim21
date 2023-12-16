@@ -78,8 +78,11 @@
     />
   </head>
   <body>
-    <div>
-      <link href="./accommodation-details.component.css" rel="stylesheet" />
+    <div *ngIf="acc">
+      <link
+        href="./owners-accommodation-details.component.css"
+        rel="stylesheet"
+      />
 
       <div class="apartmentinfouser-container">
         <div class="apartment-info">
@@ -139,11 +142,11 @@
             </div>
           </div>
           <button
-            style="width: fit-content; align-self: flex-end"
-            type="button"
-            class="text1 button"
+            class="button"
+            [routerLink]="['/changeAccommodation', this.acc.id]"
+            mat-button
           >
-            Make Reservation
+            Change Accommodation
           </button>
         </div>
       </div>

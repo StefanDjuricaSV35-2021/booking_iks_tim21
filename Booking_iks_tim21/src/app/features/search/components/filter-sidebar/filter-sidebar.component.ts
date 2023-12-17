@@ -12,23 +12,17 @@ import {AccommodationType, Amenity} from "../../../../accommodation-details/mode
 })
 export class FilterSidebarComponent {
 
-
+  amenities: Array<string> = Object.keys(Amenity).filter(key => isNaN(+key));
+  propertyTypes:Array<string> = Object.keys(AccommodationType).filter(key => isNaN(+key));
+  amenitiesSelected:Map<string,boolean>=new Map([]);
+  propertySelected:Map<string,boolean>=new Map([]);
   constructor(
     private route: ActivatedRoute,
     private router:Router,
 
 ) {}
 
-  amenities: Array<string> = Object.keys(Amenity).filter(key => isNaN(+key));
-  propertyTypes:Array<string> = Object.keys(AccommodationType).filter(key => isNaN(+key));
-
-
-  amenitiesSelected:Map<string,boolean>=new Map([
-
-  ]);
-
-  propertySelected:Map<string,boolean>=new Map([
-  ]);
+  @Output() filterSelectionEvent = new EventEmitter<string>();
 
   ngOnInit(){
     this.initializeFields()
@@ -81,8 +75,6 @@ export class FilterSidebarComponent {
     this.applyFilters();
   }
 
-
-
   applyFilters(){
 
     let combinedFilterOptions:string|null=this.generateFilterParam();
@@ -101,7 +93,6 @@ export class FilterSidebarComponent {
     });
 
   }
-
 
   generateFilterParam() {
 
@@ -125,6 +116,7 @@ export class FilterSidebarComponent {
     }
 
     return combinedFilterOptions;
+
   }
 
   protected readonly Amenity = Amenity;

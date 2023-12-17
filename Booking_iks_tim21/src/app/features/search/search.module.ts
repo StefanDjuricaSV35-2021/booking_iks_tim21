@@ -10,6 +10,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {SearchPreviewCardComponent} from "./components/search-preview-card/search-preview-card.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -26,7 +27,8 @@ import {MatCardModule} from "@angular/material/card";
     MatListModule,
     FormsModule,
     SharedModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   exports:[SearchResultsComponent]
 })

@@ -18,13 +18,19 @@ export class SearchResultsComponent {
   ) {}
 
   ngOnInit() {
-    this.params = this.route.snapshot.queryParams;
-    console.log(this.params);
 
-    this.service.search(this.params).subscribe(data => {
-      this.accommodationPreviews = data;
-      console.log(this.accommodationPreviews)
-    });
+    this.route.queryParams
+      .subscribe(params => {
+
+        this.service.search(params).subscribe(data => {
+          this.accommodationPreviews = data;
+          console.log(data);
+        });
+
+        }
+      );
+
+
 
   }
   setSearchBar(){
@@ -36,4 +42,6 @@ export class SearchResultsComponent {
   addFilter($event: string) {
 
   }
+
+
 }

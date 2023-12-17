@@ -1,0 +1,9 @@
+<mat-selection-list class="filter-section"  >
+  <span>Amenities</span>
+  <mat-checkbox style="height: 30px"
+                [checked]="amenitiesSelected.get(amenity)!"
+                *ngFor="let amenity of amenities "
+                (click)="amenityOptionSelect(amenity)">
+    {{amenity}}
+  </mat-checkbox>
+</mat-selection-list>

@@ -1,0 +1,13 @@
+.filter-bar{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+}
+
+* {
+  font-size:medium;
+  font-family: Arial, serif;
+}

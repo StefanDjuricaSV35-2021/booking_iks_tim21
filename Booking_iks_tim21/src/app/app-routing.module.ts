@@ -15,6 +15,7 @@ import { SearchResultsComponent } from './features/search/components/search-resu
 import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
 import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
 import { AccommodationCreationRequestsComponent } from './accommodation-requests/accommodation-creation-requests/accommodation-creation-requests.component';
+import { AccommodationCreationRequestDetailsComponent } from './accommodation-requests/accommodation-creation-request-details/accommodation-creation-request-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'accommodationCreationRequests',
     component: AccommodationCreationRequestsComponent,
+  },
+  {
+    path: 'accommodationCreationRequest/:id',
+    component: AccommodationCreationRequestDetailsComponent,
   },
 ];
 

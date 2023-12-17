@@ -12,6 +12,7 @@
     <button
       mat-button
       [routerLink]="['/accommodationCreationRequest', accommodationPreview.id]"
+      [queryParams]="{ accommodationCreationRequests: 'true' }"
     >
       See details
     </button>

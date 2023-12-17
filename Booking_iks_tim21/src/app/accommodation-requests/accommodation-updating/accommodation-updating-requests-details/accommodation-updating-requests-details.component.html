@@ -77,10 +77,10 @@
       data-tag="font"
     />
   </head>
-  <body *ngIf="acc">
+  <body *ngIf="accommodationChangeRequest">
     <div>
       <link
-        href="./accommodation-creation-request-details.component.css"
+        href="./accommodation-updating-requests-details.component.css"
         rel="stylesheet"
       />
 
@@ -88,12 +88,16 @@
         <div class="apartment-info">
           <div class="info-and-picture">
             <div class="basic-info container">
-              <h3>{{ acc.name }}</h3>
-              <span style="font-size: medium">{{ acc.type }}</span>
+              <h3>{{ accommodationChangeRequest.name }}</h3>
+              <span style="font-size: medium">{{
+                accommodationChangeRequest.type
+              }}</span>
               <div style="display: flex; align-items: center">
                 <img alt="Frame2403" src="../../assets/images/guest.svg" />
                 <span style="font-size: medium"
-                  >{{ acc.minGuests }}-{{ acc.maxGuests }}</span
+                  >{{ accommodationChangeRequest.minGuests }}-{{
+                    accommodationChangeRequest.maxGuests
+                  }}</span
                 >
               </div>
               <div style="display: flex; flex-direction: column">
@@ -107,12 +111,12 @@
             </div>
             <app-image-slider
               class="apartmentinfouser-aptimage"
-              [slides]="Array.from(acc.photos.values())"
+              [slides]="Array.from(accommodationChangeRequest.photos.values())"
             />
           </div>
           <div class="location-and-review">
             <span class="text1 container">
-              {{ acc.location }}
+              {{ accommodationChangeRequest.location }}
             </span>
             <button type="button" class="text1 button">See on map</button>
             <span class="text1 container">★ 6.11</span>
@@ -125,14 +129,14 @@
               <div class="amenities container">
                 <span
                   style="font-size: medium"
-                  *ngFor="let amenity of acc.amenities"
+                  *ngFor="let amenity of accommodationChangeRequest.amenities"
                   >{{ amenity }}</span
                 >
               </div>
               <div class="cal-and-desc">
                 <div class="description container">
                   <span style="font-size: medium">
-                    {{ acc.description }}
+                    {{ accommodationChangeRequest.description }}
                   </span>
                 </div>
                 <div class="calendar container">

@@ -13,6 +13,7 @@ import { AccommodationDetailsService } from 'src/app/accommodation-details/servi
   styleUrls: ['./accommodation-creation-request-details.component.css'],
 })
 export class AccommodationCreationRequestDetailsComponent {
+  showButtons: boolean = false;
   selected: null | undefined;
   id: number;
   acc: AccommodationDetailsDTO;
@@ -25,6 +26,10 @@ export class AccommodationCreationRequestDetailsComponent {
     private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.showButtons = params['accommodationCreationRequests'] === 'true';
+    });
+
     this.id = +this.route.snapshot.paramMap.get('id')!;
 
     this.service.findById(this.id).subscribe((data) => {

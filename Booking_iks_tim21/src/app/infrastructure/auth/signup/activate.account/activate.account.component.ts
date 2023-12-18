@@ -23,7 +23,7 @@ export class ActivateAccountComponent implements OnInit {
     let e = this.route.snapshot.paramMap.get('email');
     if(e == null){
       alert("Error wrong page path!!!")
-      this.router.navigate(['mainPage'])
+      this.router.navigate(['homePage'])
     }else{
       this.userService.getActivationRequest(e).subscribe({
         next: (data: ActivationRequest) => {
@@ -34,7 +34,7 @@ export class ActivateAccountComponent implements OnInit {
   
           const errorMessage = error?.error?.message || 'Failed to load page duo to invalid or expired request.';
           alert(errorMessage);
-          this.router.navigate(['mainPage'])
+          this.router.navigate(['homePage'])
         }
       });
     }
@@ -51,7 +51,7 @@ export class ActivateAccountComponent implements OnInit {
 
         const errorMessage = error?.error?.message || 'Something went wrong upon account activation.';
         alert(errorMessage);
-        this.router.navigate(['mainPage'])
+        this.router.navigate(['homePage'])
       }
     });
   }

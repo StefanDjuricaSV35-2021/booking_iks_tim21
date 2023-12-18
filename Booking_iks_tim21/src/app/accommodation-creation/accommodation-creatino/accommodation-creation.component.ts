@@ -21,6 +21,8 @@ import {
 import {
   AccommodationDetailsDTO
 } from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+import { Photo } from './model/photo.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 enum Amenity {
   TV,
@@ -37,11 +39,11 @@ enum AccommodationType {
 }
 
 @Component({
-  selector: 'app-accommodation-creatino',
-  templateUrl: './accommodation-creatino.component.html',
-  styleUrls: ['./accommodation-creatino.component.css'],
+  selector: 'app-accommodation-creation',
+  templateUrl: './accommodation-creation.component.html',
+  styleUrls: ['./accommodation-creation.component.css'],
 })
-export class AccommodationCreatinoComponent implements OnInit {
+export class AccommodationCreationComponent implements OnInit {
   pricingForm: FormGroup;
   dateForm: FormGroup;
   user: User;
@@ -54,9 +56,10 @@ export class AccommodationCreatinoComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private accommodationService: AccommodationDetailsService,
-    private accommodationPricingService: AccommodationPricingService
+    private accommodationPricingService: AccommodationPricingService,
+    private sanitizer: DomSanitizer
   ) {
-    this.pricingForm = new FormGroup({
+    this.pricingForm = this.fb.group({
       street: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       country: new FormControl(null, [Validators.required]),
@@ -78,7 +81,7 @@ export class AccommodationCreatinoComponent implements OnInit {
       priceType: new FormControl(null, [Validators.required]),
     });
 
-    this.dateForm = new FormGroup({
+    this.dateForm =  this.fb.group({
       startDate: new FormControl(null, [Validators.required]),
       endDate: new FormControl(null, [Validators.required]),
       price: new FormControl(null, [Validators.required]),
@@ -98,7 +101,7 @@ export class AccommodationCreatinoComponent implements OnInit {
 
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/mainPage']);
+      this.router.navigate(['/homePage']);
       return;
     }
 
@@ -117,21 +120,28 @@ export class AccommodationCreatinoComponent implements OnInit {
     });
   }
 
-  imageList: string[] = [];
+  imageList: Photo[] = [];
   selectedFiles: string[] = [];
   selectedImage: string | null = null;
   selectedImageName: string | null = null;
+  selectedFile: File | null = null;
 
   addImage(): void {
-    if (this.selectedImage && this.selectedImageName) {
-      this.imageList.push(this.selectedImage);
+    if (this.selectedFile!=null && this.selectedImageName) {
+      const photo: Photo = {
+        id: 0,
+        accommodationId: 0,
+        file: this.selectedFile,
+        url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.selectedFile)),
+      }
+      this.imageList.push(photo);
       this.selectedFiles.push(this.selectedImageName);
       this.resetSelectedImage();
     }
   }
 
-  removeImage(image: string): void {
-    const index = this.imageList.indexOf(image);
+  removeImage(imageName: string): void {
+    const index = this.selectedFiles.findIndex((image) => image === imageName);
     if (index !== -1) {
       this.imageList.splice(index, 1);
       this.selectedFiles.splice(index, 1);
@@ -141,37 +151,29 @@ export class AccommodationCreatinoComponent implements OnInit {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.selectedImageName = file.name;
+      const isImage = this.isImageFile(file);
+      if (isImage) {
+        this.selectedFile = file;
+        this.selectedImage = URL.createObjectURL(file);
+        this.selectedImageName = file.name;
 
-      this.convertImageToBase64(file)
-        .then((base64Image: string) => {
-          this.selectedImage = base64Image;
-        })
-        .catch((error) => {
-          console.error('Error converting image to base64:', error);
-        });
+      } else {
+        alert('Selected file is not an image.');
+        this.resetSelectedImage();
+      }
     }
-  }
-
-  convertImageToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        resolve(e.target.result);
-      };
-
-      reader.onerror = (error) => {
-        reject(error);
-      };
-
-      reader.readAsDataURL(file);
-    });
   }
 
   resetSelectedImage(): void {
     this.selectedImage = null;
     this.selectedImageName = null;
+    this.selectedFile = null;
+  }
+
+  isImageFile(file: File): boolean {
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+    return allowedExtensions.includes(fileExtension || '');
   }
 
   addAmenity(amenity: string): void {
@@ -269,6 +271,7 @@ export class AccommodationCreatinoComponent implements OnInit {
   }
 
   createAccommodation() {
+    console.log(this.imageList[0]);
     if (this.pricingForm.valid) {
       const formData = this.pricingForm.value;
 
@@ -289,6 +292,7 @@ export class AccommodationCreatinoComponent implements OnInit {
         return;
       }
 
+
       const accommodation: AccommodationDetailsDTO = {
         id: 0,
         ownerId: this.user.id,
@@ -303,7 +307,6 @@ export class AccommodationCreatinoComponent implements OnInit {
         maxGuests: formData.maxGuests,
         description: formData.description,
         amenities: this.getEnumFromKeys(this.selectedAmenities, Amenity),
-        // photos: this.imageList,
         photos: [],
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
@@ -327,16 +330,16 @@ export class AccommodationCreatinoComponent implements OnInit {
 
                   const errorMessage =
                     error?.error?.message ||
-                    'Failed to create accommodation pricing';
+                    'Failed to create accommodation pricing.';
                   alert(errorMessage);
                   return;
                 },
               });
-
-            alert(
-              'Successfuly added your accommodation. You will be notified once the admin approves your accommodation.'
-            );
           });
+          alert(
+            'Successfuly added your accommodation. You will be notified once the admin approves your accommodation.'
+          );
+          this.router.navigate(['/homePage']);
         },
         error: (error) => {
           console.log(accommodation);
@@ -348,7 +351,7 @@ export class AccommodationCreatinoComponent implements OnInit {
       });
     } else {
       alert(
-        'Before creating a new pricing time slot you must fill out all of the form parameters'
+        'Before creating a new accommodation you must fill out all of the form parameters'
       );
     }
   }

@@ -1,36 +1,21 @@
 <div class="form-container">
-  <form [formGroup]="pricingForm" (ngSubmit)="createAccommodation()" >
+  <form [formGroup]="pricingForm" (ngSubmit)="createAccommodation()">
 
     <label class="h6">Address</label>
     <div class="row g-3">
       <mat-form-field class="col-md-4">
         <mat-label>Street</mat-label>
-        <input
-        matInput
-        type="text"
-        name="street"
-        formControlName="street"
-        />
+        <input matInput type="text" name="street" formControlName="street" />
       </mat-form-field>
 
       <mat-form-field class="col-md-4">
-          <mat-label>City</mat-label>
-          <input
-            matInput
-            type="text"
-            name="city"
-            formControlName="city"
-          />
+        <mat-label>City</mat-label>
+        <input matInput type="text" name="city" formControlName="city" />
       </mat-form-field>
 
       <mat-form-field class="col-md-4">
-          <mat-label>Country</mat-label>
-          <input
-            matInput
-            type="text"
-            name="country"
-            formControlName="country"
-          />
+        <mat-label>Country</mat-label>
+        <input matInput type="text" name="country" formControlName="country" />
       </mat-form-field>
     </div>
 
@@ -38,12 +23,7 @@
     <div class="row g-2">
       <mat-form-field class="col-md-6">
         <mat-label>Name</mat-label>
-        <input
-        matInput
-        type="text"
-        name="name"
-        formControlName="name"
-        />
+        <input matInput type="text" name="name" formControlName="name" />
       </mat-form-field>
 
       <div class="col-md-6">
@@ -57,35 +37,19 @@
     <div class="row g-2">
       <mat-form-field class="col-md-4">
         <mat-label>Minimum number of guests</mat-label>
-        <input
-        matInput
-        type="number"
-        name="minGuests"
-        formControlName="minGuests"
-        />
+        <input matInput type="number" name="minGuests" formControlName="minGuests" />
       </mat-form-field>
 
       <mat-form-field class="col-md-4">
         <mat-label>Maximum number of guests</mat-label>
-        <input
-        matInput
-        type="number"
-        name="maxGuests"
-        formControlName="maxGuests"
-        />
+        <input matInput type="number" name="maxGuests" formControlName="maxGuests" />
       </mat-form-field>
 
       <mat-form-field class="col-md-4">
-        <mat-label>Days for cancelation</mat-label>
-        <input
-        matInput
-        type="number"
-        name="daysForCancellation"
-        formControlName="daysForCancellation"
-        />
+        <mat-label>Days for cancellation</mat-label>
+        <input matInput type="number" name="daysForCancellation" formControlName="daysForCancellation" />
       </mat-form-field>
     </div>
-
 
     <div class="row g-2">
       <div class="col-md-6">
@@ -101,13 +65,13 @@
             <tr *ngFor="let amenity of availableAmenities">
               <td>{{ amenity }}</td>
               <td>
-                <button (click)="addAmenity(amenity)">Add</button>
+                <button type="button" (click)="addAmenity(amenity)">Add</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      
+
       <div class="col-md-6">
         <label>Selected Amenities</label>
         <table>
@@ -121,28 +85,21 @@
             <tr *ngFor="let amenity of selectedAmenities">
               <td>{{ amenity }}</td>
               <td>
-                <button (click)="removeAmenity(amenity)">Remove</button>
+                <button type="button" (click)="removeAmenity(amenity)">Remove</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      
     </div>
 
     <mat-form-field class="col-md-12 mt-3">
       <mat-label>Description</mat-label>
-      <textarea
-      matInput
-      rows="4"
-      type="text"
-      name="description"
-      formControlName="description"
-      ></textarea>
+      <textarea matInput rows="4" type="text" name="description" formControlName="description"></textarea>
     </mat-form-field>
 
     <label class="h6">Pricing and Availability</label>
-    
+
     <div class="row g-3">
       <div class="col-12 mt-3">
         <label>Price:</label>
@@ -153,23 +110,23 @@
       </div>
     </div>
 
-    <form [formGroup]="dateForm" (ngSubmit)="addTimeSlot()"> 
+    <form [formGroup]="dateForm" (ngSubmit)="addTimeSlot()">
       <div class="row g-3">
         <div class="col-md-4">
           <label for="startDate" class="form-label">Start Date:</label>
           <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
         </div>
-    
+  
         <div class="col-md-4">
           <label for="endDate" class="form-label">End Date:</label>
           <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
         </div>
-    
+  
         <div class="col-md-4">
           <label for="price" class="form-label">Price:</label>
           <input type="number" id="price" formControlName="price" class="form-control" required>
         </div>
-    
+  
         <div class="col-12 mt-3">
           <button type="submit" class="btn btn-primary">Add to Table</button>
         </div>
@@ -189,12 +146,12 @@
             <td>{{ item.timeSlot.startDate | date: 'shortDate' }}</td>
             <td>{{ item.timeSlot.endDate | date: 'shortDate' }}</td>
             <td>{{ item.price }}</td>
-            <td><button (click)="removeItem(i)" class="btn btn-danger">Remove</button></td>
+            <td><button type="button" (click)="removeItem(i)" class="btn btn-danger">Remove</button></td>
           </tr>
         </tbody>
       </table>
     </form>
-
+  
     <form [formGroup]="imageForm" (ngSubmit)="addImage()">
       <div class="form-group">
         <label for="image">Upload Image:</label>
@@ -205,7 +162,7 @@
         <img [src]="selectedImage" alt="Selected Image" class="preview-image">
       </div>
   
-      <button type="submit" [disabled]="!selectedImage">Add Image</button>
+      <button type="submit" [disabled]="!selectedImage" class="btn btn-primary">Add Image</button>
     </form>
   
     <div class="image-list">
@@ -218,21 +175,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let image of imageList; let i = index">
+          <tr *ngFor="let image of selectedFiles; let i = index">
             <td>{{ selectedFiles[i] }}</td>
             <td>
-              <button (click)="removeImage(image)" class="btn btn-danger">Remove</button>
+              <button type="button" (click)="removeImage(image)" class="btn btn-danger">Remove</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    
-
+  
     <div class="col-12 mt-3">
       <button type="submit" class="btn btn-primary">Create Accommodation</button>
     </div>
   </form>
-
-  
 </div>

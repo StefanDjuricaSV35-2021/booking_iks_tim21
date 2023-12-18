@@ -9,8 +9,6 @@
       <input [(ngModel)]="location" matInput formControlName="location" >
     </mat-form-field>
 
-
-
       <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
         <mat-label>Arrival</mat-label>
         <input (dateChange)="arrivalChanged(arrivalVal)"  [formControl]="date" matInput [matDatepicker]="pickerArrival" #arrivalVal>

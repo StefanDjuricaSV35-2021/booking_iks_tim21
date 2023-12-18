@@ -1,5 +1,16 @@
 <div class="filter-bar">
+
   <span style="padding: 5px">Filter by:</span>
-  <app-amenity-form (filterChange)="applyFilters()" />
-  <app-accommodation-type-form (filterChange)="applyFilters()" />
+
+  <app-price-range-form (addPrice)="addParam($event);setUrlParams()"
+                        (removePrice)="delParam($event);setUrlParams()"
+                        (editPrice)="editParam($event);setUrlParams()"/>
+
+  <app-amenity-form (addedAmenity)="addParam($event);setUrlParams()"
+                    (removedAmenity)="delParam($event);setUrlParams()" />
+
+  <app-accommodation-type-form (addType)="addParam($event);setUrlParams()"
+                               (deleteType)="delParam($event);setUrlParams()"
+                               (editType)="editParam($event);setUrlParams()"  />
+
 </div>

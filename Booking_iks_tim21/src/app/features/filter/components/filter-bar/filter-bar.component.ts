@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AmenityFormComponent} from "../amenity-form/amenity-form.component";
 import {AccommodationTypeFormComponent} from "../accommodation-type-form/accommodation-type-form.component";
 import {AccommodationType, Amenity} from "../../../../accommodation-details/model/AccommodationDetailsDTO";
+import {PriceRangeFormComponent} from "../price-range-form/price-range-form.component";
 
 @Component({
   selector: 'app-filter-bar',
@@ -11,8 +12,10 @@ import {AccommodationType, Amenity} from "../../../../accommodation-details/mode
 })
 export class FilterBarComponent {
 
+  @ViewChild(PriceRangeFormComponent) priceForm;
   @ViewChild(AmenityFormComponent) amenityForm;
   @ViewChild(AccommodationTypeFormComponent) typeForm;
+  params:string[]=[];
 
   constructor(
     private route: ActivatedRoute,
@@ -20,49 +23,68 @@ export class FilterBarComponent {
 
   ) {}
 
-  ngOnInit(){
-  }
-
   ngAfterViewInit() {
-    this.setParamObserver()
+    this.setFilterFormUpdater();
   }
 
 
-  setParamObserver(){
+  setFilterFormUpdater(){
 
     this.route.queryParams.subscribe(params => {
+
+      if(params['filters']==null){
+        return
+      }
 
       let selectedFilters: string[] = params['filters'].split(';');
       selectedFilters.pop();
 
-      this.setSelectionMaps(selectedFilters);
+      this.params=selectedFilters;
+
+      this.setFilterSelections(this.params)
 
     })
   }
 
-  setSelectionMaps(selectedFilters:string[]){
-
+  setFilterSelections(selectedFilters:string[]){
+    console.log("a")
     for ( let filterOption of selectedFilters) {
 
-      console.log(filterOption)
       let typeAndValue:string[]=filterOption.split("=")
+
       let type:string=typeAndValue[0];
       let value:string=typeAndValue[1];
 
-      if(type=='Amenity'){
-        this.amenityForm.amenitiesSelected.set(Amenity[+value],true);
-      }
-      else if(type=='AccommodationType'){
-        console.log(AccommodationType[+value])
-        this.typeForm.typeSelected=AccommodationType[+value];
+      switch(type) {
+        case "Amenity": {
+          this.amenityForm.amenitiesSelected.set(Amenity[+value],true);
+          break;
+        }
+        case "AccommodationType": {
+          this.typeForm.typeSelected=AccommodationType[+value];
+          break;
+        }
+        case "MinPrice": {
+          this.priceForm.minVal=value;
+          break;
+        }
+        case "MaxPrice": {
+          this.priceForm.maxVal=value;
+          break;
+        }
+        default: {
+          //statements;
+          break;
+        }
       }
 
     }
   }
 
-  applyFilters(){
+  setUrlParams(){
 
-    let combinedFilterOptions:string|null=this.generateFilterParamString();
+    let combinedFilterOptions:string|null=this.generateUrlParamString();
+
 
     if (combinedFilterOptions==""){
       combinedFilterOptions=null;
@@ -78,45 +100,38 @@ export class FilterBarComponent {
     });
 
   }
-
-  generateFilterParamString() {
+  generateUrlParamString() {
 
     let combinedFilterOptions:string="";
 
-    combinedFilterOptions+=this.generateTypeParamString();
-    combinedFilterOptions+=this.generateAmenityParamString();
+    for (const filter of this.params) {
+
+      combinedFilterOptions+=filter+";";
+
+    }
 
     return combinedFilterOptions;
 
   }
+  addParam(newParam:string){
 
-  generateAmenityParamString(){
-
-    let amenityFilterOptions:string="";
-
-    for ( let amenity of this.amenityForm.amenitiesSelected.keys()) {
-
-      if (this.amenityForm.amenitiesSelected.get(amenity)){
-        amenityFilterOptions+=('Amenity='+Amenity[amenity as keyof typeof Amenity]+";");
-      }
-
-    }
-
-    return amenityFilterOptions
+    this.params.push(newParam);
 
   }
 
-  generateTypeParamString(){
+  delParam(oldParam:string){
 
-    let typeFilterOptions="";
+    this.params.forEach( (item, index) => {
+      if(item === oldParam) this.params.splice(index,1);
+    });
 
-    if(this.typeForm.typeSelected!=null){
-      console.log(this.typeForm.typeSelected)
-      typeFilterOptions+="AccommodationType="+AccommodationType[this.typeForm.typeSelected as keyof typeof AccommodationType]+";";
-    }
+  }
 
+  editParam(params:{oldParam:string,newParam:string}){
 
-    return typeFilterOptions;
+    this.delParam(params.oldParam);
+    this.addParam(params.newParam)
+
   }
 
 }

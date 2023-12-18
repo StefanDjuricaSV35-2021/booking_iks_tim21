@@ -11,13 +11,22 @@ export class AmenityFormComponent {
   amenities: Array<string> = Object.keys(Amenity).filter(key => isNaN(+key));
   amenitiesSelected:Map<string,boolean>=new Map([]);
 
-  @Output() filterChange = new EventEmitter<string>();
-
+  @Output() removedAmenity = new EventEmitter<string>();
+  @Output() addedAmenity = new EventEmitter<string>();
 
 
   amenityOptionSelect(amenity: string){
     this.amenitiesSelected.set(amenity,!(this.amenitiesSelected.get(amenity)));
-    this.filterChange.emit()
+
+    let param="Amenity="+Amenity[amenity as keyof typeof Amenity].toString()
+
+    if(this.amenitiesSelected.get(amenity)){
+      this.addedAmenity.emit(param)
+    }else {
+      this.removedAmenity.emit(param)
+    }
   }
+
+
 
 }

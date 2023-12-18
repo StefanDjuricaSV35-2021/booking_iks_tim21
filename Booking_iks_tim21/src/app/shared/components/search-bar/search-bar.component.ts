@@ -1,9 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {DatePipe, formatDate} from "@angular/common";
+import {formatDate} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDatepickerInputEvent} from "@angular/material/datepicker";
-import {SearchPageService} from "../../../features/search/components/search-results-page/service/search-page.service";
 import {AccommodationPreviewDTO} from "../../../accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({
@@ -16,7 +14,7 @@ export class SearchBarComponent {
     accommodationPreviews:AccommodationPreviewDTO;
 
    location:string;
-   noGuests:number;
+     noGuests:number;
    dateFrom:string;
    dateTo:string;
 

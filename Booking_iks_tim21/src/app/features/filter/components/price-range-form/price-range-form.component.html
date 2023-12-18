@@ -1,1 +1,14 @@
-<p>price-range-form works!</p>
+
+<div class="filter-section">
+
+    <span>Price range</span>
+    <mat-form-field  [subscriptSizing]="'dynamic'" >
+      <mat-label>Min value</mat-label>
+      <input #min matInput [ngModel]="minVal" (change)="minChange(min.value)"  type="number">
+    </mat-form-field>
+
+    <mat-form-field  [subscriptSizing]="'dynamic'" >
+      <mat-label>Max value</mat-label>
+      <input #max matInput [ngModel]="maxVal" (change)="maxChange(max.value)" type="number">
+    </mat-form-field>
+</div>

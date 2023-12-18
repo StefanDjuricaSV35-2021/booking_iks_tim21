@@ -7,7 +7,9 @@ import { PriceRangeFormComponent } from './components/price-range-form/price-ran
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatListModule} from "@angular/material/list";
 import {MatRadioModule} from "@angular/material/radio";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 
@@ -18,13 +20,16 @@ import {FormsModule} from "@angular/forms";
     AccommodationTypeFormComponent,
     PriceRangeFormComponent
   ],
-  imports: [
-    CommonModule,
-    MatCheckboxModule,
-    MatListModule,
-    MatRadioModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        MatCheckboxModule,
+        MatListModule,
+        MatRadioModule,
+        FormsModule,
+        MatInputModule,
+        ReactiveFormsModule
+
+    ],
   exports:[FilterBarComponent]
 })
 export class FilterModule { }

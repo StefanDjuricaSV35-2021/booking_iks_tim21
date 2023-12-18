@@ -24,7 +24,6 @@ export class SearchResultsComponent {
 
         this.service.search(params).subscribe(data => {
           this.accommodationPreviews = data;
-          console.log(data);
         });
 
         }
@@ -33,15 +32,7 @@ export class SearchResultsComponent {
 
 
   }
-  setSearchBar(){
 
-  }
-
-  protected readonly Date = Date;
-
-  addFilter($event: string) {
-
-  }
 
 
 }

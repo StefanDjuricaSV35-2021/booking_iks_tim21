@@ -14,6 +14,10 @@ import { MainPageComponent } from './features/main-page/main-page.component';
 import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
 import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
 import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
+import { AccommodationCreationRequestsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-requests/accommodation-creation-requests.component';
+import { AccommodationCreationRequestDetailsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
+import { AccommodationUpdatingRequestsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests/accommodation-updating-requests.component';
+import { AccommodationUpdatingRequestsDetailsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests-details/accommodation-updating-requests-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/mainPage', pathMatch: 'full' },
@@ -37,6 +41,22 @@ const routes: Routes = [
   { path: 'changeAccommodation/:id', component: ChangeAccommodationComponent },
 
   { path: 'accommodation_create', component: AccommodationCreatinoComponent },
+  {
+    path: 'accommodationCreationRequests',
+    component: AccommodationCreationRequestsComponent,
+  },
+  {
+    path: 'accommodationCreationRequest/:id',
+    component: AccommodationCreationRequestDetailsComponent,
+  },
+  {
+    path: 'accommodationUpdatingRequests',
+    component: AccommodationUpdatingRequestsComponent,
+  },
+  {
+    path: 'accommodationUpdatingRequest/:id',
+    component: AccommodationUpdatingRequestsDetailsComponent,
+  },
 ];
 
 @NgModule({

@@ -14,4 +14,10 @@ export class AccommodationPreviewService {
       environment.apiHost + 'accommodations/previews'
     );
   }
+
+  public findAllNotEnabled(): Observable<AccommodationPreviewDTO[]> {
+    return this.http.get<AccommodationPreviewDTO[]>(
+      environment.apiHost + 'accommodations/previews/notEnabled'
+    );
+  }
 }

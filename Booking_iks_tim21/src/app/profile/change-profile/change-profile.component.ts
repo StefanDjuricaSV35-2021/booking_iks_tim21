@@ -108,7 +108,22 @@ export class ChangeProfileComponent implements OnInit {
 
       this.service.update(updatedUser).subscribe({
         next: (updatedUser: User) => {
-          this.router.navigate(['/profile']);
+          if (updatedUser.email == this.user.email) {
+            this.router.navigate(['/profile']);
+          } else {
+            this.snackBar.open(
+              'Yous successfully changed your profile, please log in again',
+              'Close',
+              {
+                verticalPosition: 'top',
+                horizontalPosition: 'center',
+              }
+            );
+
+            localStorage.removeItem('user');
+            this.router.navigate(['/mainPage']);
+            window.location.reload();
+          }
         },
         error: (error) => {
           this.snackBar.open(

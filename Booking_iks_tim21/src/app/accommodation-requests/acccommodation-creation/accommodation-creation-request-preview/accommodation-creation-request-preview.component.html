@@ -11,7 +11,8 @@
   <mat-card-actions>
     <button
       mat-button
-      [routerLink]="['/ownersAccommodation', accommodationPreview.id]"
+      [routerLink]="['/accommodationCreationRequest', accommodationPreview.id]"
+      [queryParams]="{ accommodationCreationRequests: 'true' }"
     >
       See details
     </button>

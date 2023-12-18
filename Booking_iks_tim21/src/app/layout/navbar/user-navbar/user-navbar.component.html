@@ -22,5 +22,19 @@
     >
       Create Appartment
     </button>
+    <button
+      *ngIf="role == 'ADMIN'"
+      mat-menu-item
+      routerLink="/accommodationCreationRequests"
+    >
+      Accommodation Creation Requests
+    </button>
+    <button
+      *ngIf="role == 'ADMIN'"
+      mat-menu-item
+      routerLink="/accommodationUpdatingRequests"
+    >
+      Accommodation Updating Requests
+    </button>
   </mat-menu>
 </div>

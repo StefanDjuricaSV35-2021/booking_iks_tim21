@@ -23,4 +23,57 @@ export class AccommodationPricingChangeRequestService {
       { headers: this.headers }
     );
   }
+
+  public findAllPricingChangeRequests(): Observable<
+    AccommodationPricingChangeRequestDTO[]
+  > {
+    return this.http.get<AccommodationPricingChangeRequestDTO[]>(
+      environment.apiHost + 'accommodationPricingChangeRequests'
+    );
+  }
+
+  getPricingChangeRequestsForAccommodationChangeRequest(
+    id: number
+  ): Observable<AccommodationPricingChangeRequestDTO[]> {
+    return this.http.get<AccommodationPricingChangeRequestDTO[]>(
+      `${environment.apiHost}accommodationPricingChangeRequests/all/${id}`
+    );
+  }
+
+  public updatePricingChangeRequest(
+    pricingChangeRequest: AccommodationPricingChangeRequestDTO
+  ): Observable<AccommodationPricingChangeRequestDTO> {
+    return this.http.put<AccommodationPricingChangeRequestDTO>(
+      environment.apiHost + 'accommodationPricingChangeRequests',
+      pricingChangeRequest,
+      { headers: this.headers }
+    );
+  }
+
+  deletePricingChangeRequest(id: number): Observable<void> {
+    return this.http.delete<void>(
+      environment.apiHost + 'accommodationPricingChangeRequests/' + id
+    );
+  }
+
+  public findById(
+    id: number
+  ): Observable<AccommodationPricingChangeRequestDTO> {
+    return this.http.get<AccommodationPricingChangeRequestDTO>(
+      environment.apiHost + 'accommodationPricingChangeRequests/' + id
+    );
+  }
+
+  public updateAccommodationPricings(
+    accommodationId: number,
+    accommodationPricingChangeRequestDTOS: AccommodationPricingChangeRequestDTO[]
+  ): Observable<void> {
+    return this.http.delete<void>(
+      `${environment.apiHost}accommodationPricingChangeRequests/update/${accommodationId}`,
+      {
+        headers: this.headers,
+        body: accommodationPricingChangeRequestDTOS,
+      }
+    );
+  }
 }

@@ -22,10 +22,10 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.title {
+  }
+  
+  .title {
   font-size: 32px;
   font-weight: 500;
   margin-top: 30px;
-}
+  }

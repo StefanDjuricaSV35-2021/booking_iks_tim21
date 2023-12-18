@@ -23,4 +23,32 @@ export class AccommodationChangeRequestService {
       { headers: this.headers }
     );
   }
+
+  public findAllChangeRequests(): Observable<AccommodationChangeRequestDTO[]> {
+    return this.http.get<AccommodationChangeRequestDTO[]>(
+      environment.apiHost + 'accommodationChangeRequests'
+    );
+  }
+
+  public updateAccommodationChangeRequest(
+    changeRequest: AccommodationChangeRequestDTO
+  ): Observable<AccommodationChangeRequestDTO> {
+    return this.http.put<AccommodationChangeRequestDTO>(
+      environment.apiHost + 'accommodationChangeRequests',
+      changeRequest,
+      { headers: this.headers }
+    );
+  }
+
+  deleteAccommodationChangeRequest(id: number): Observable<void> {
+    return this.http.delete<void>(
+      environment.apiHost + 'accommodationChangeRequests/' + id
+    );
+  }
+
+  public findById(id: number): Observable<AccommodationChangeRequestDTO> {
+    return this.http.get<AccommodationChangeRequestDTO>(
+      environment.apiHost + 'accommodationChangeRequests/' + id
+    );
+  }
 }

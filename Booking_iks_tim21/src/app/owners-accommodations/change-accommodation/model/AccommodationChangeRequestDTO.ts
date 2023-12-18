@@ -1,3 +1,7 @@
+import {
+  Amenity
+} from "../../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+
 export interface AccommodationChangeRequestDTO {
   id: number;
   requestCreationDate: number;
@@ -30,9 +34,4 @@ enum AccommodationType {
   Apartment,
 }
 
-enum Amenity {
-  TV,
-  WiFi,
-  Parking,
-  SmokeAlarm,
-}
+

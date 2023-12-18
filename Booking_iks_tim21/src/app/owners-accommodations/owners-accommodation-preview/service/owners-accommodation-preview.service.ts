@@ -1,13 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { AccommodationPreviewDTO } from 'src/app/accommodation-preview/model/accommodationPreviewDTO';
-import { AuthService } from 'src/app/infrastructure/auth/auth.service';
-import { User } from 'src/app/profile/model/user.model';
-import { UserService } from 'src/app/profile/user.service';
 import { environment } from 'src/env/env';
+import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Injectable({
   providedIn: 'root',

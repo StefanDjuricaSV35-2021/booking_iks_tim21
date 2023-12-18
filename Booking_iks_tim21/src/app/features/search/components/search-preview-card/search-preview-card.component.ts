@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {AccommodationPreviewDTO} from "../../../../accommodation-preview/model/accommodationPreviewDTO";
+import {AccommodationPreviewDTO} from "../../../home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({
   selector: 'app-search-preview-card',

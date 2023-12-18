@@ -9,14 +9,18 @@ import {
 } from '@angular/forms';
 import { AccommodationPricingDTO } from './model/accommodationPricing.model';
 import { AppModule } from 'src/app/app.module';
-import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/profile/user.service';
 import { User } from 'src/app/profile/model/user.model';
-import { AccommodationDetailsService } from 'src/app/accommodation-details/service/accommodation-details.service';
 import { AccommodationPricingService } from './service/accommodationPricing.service';
+import {
+  AccommodationDetailsService
+} from "../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+import {
+  AccommodationDetailsDTO
+} from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 enum Amenity {
   TV,

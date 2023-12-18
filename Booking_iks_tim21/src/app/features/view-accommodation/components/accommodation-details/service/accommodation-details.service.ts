@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AccommodationPreviewDTO } from '../../accommodation-preview/model/accommodationPreviewDTO';
-import { environment } from '../../../env/env';
 import { AccommodationDetailsDTO } from '../model/AccommodationDetailsDTO';
+import {environment} from "../../../../../../env/env";
 
 @Injectable({
   providedIn: 'root',

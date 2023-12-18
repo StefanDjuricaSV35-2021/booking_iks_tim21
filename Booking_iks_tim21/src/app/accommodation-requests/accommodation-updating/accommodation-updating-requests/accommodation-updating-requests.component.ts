@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccommodationPreviewDTO } from 'src/app/accommodation-preview/model/accommodationPreviewDTO';
-import { AccommodationPreviewService } from 'src/app/accommodation-preview/service/accommodation-preview.service';
 import { AccommodationChangeRequestDTO } from 'src/app/owners-accommodations/change-accommodation/model/AccommodationChangeRequestDTO';
 import { AccommodationChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-change-request.service';
+import {
+  AccommodationPreviewService
+} from "../../../features/home/components/accommodation-preview/service/accommodation-preview.service";
 
 @Component({
   selector: 'app-accommodation-updating-requests',

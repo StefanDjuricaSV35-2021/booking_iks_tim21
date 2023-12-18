@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {AccommodationPreviewDTO} from "../../../../accommodation-preview/model/accommodationPreviewDTO";
 import {SearchPageService} from "./service/search-page.service";
+import {AccommodationPreviewDTO} from "../../../home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({
   selector: 'app-search-results',
@@ -28,11 +28,5 @@ export class SearchResultsComponent {
 
         }
       );
-
-
-
   }
-
-
-
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AccommodationDetailsDTO} from "../../../../../accommodation-details/model/AccommodationDetailsDTO";
 import {environment} from "../../../../../../env/env";
-import {AccommodationPreviewDTO} from "../../../../../accommodation-preview/model/accommodationPreviewDTO";
 import {Params} from "@angular/router";
+import {AccommodationPreviewDTO} from "../../../../home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Injectable({
   providedIn: 'root'

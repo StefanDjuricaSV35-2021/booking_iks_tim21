@@ -11,8 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creatino/model/accommodationPricing.model';
 import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creatino/service/accommodationPricing.service';
-import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
-import { AccommodationDetailsService } from 'src/app/accommodation-details/service/accommodation-details.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { User } from 'src/app/profile/model/user.model';
 import { UserService } from 'src/app/profile/user.service';
@@ -23,6 +21,12 @@ import {
 import { AccommodationChangeRequestService } from './service/accommodation-change-request.service';
 import { AccommodationPricingChangeRequestService } from './service/accommodation-pricing-change-request.service';
 import { AccommodationPricingChangeRequestDTO } from './model/AccommodationPricingChangeRequestDTO';
+import {
+  AccommodationDetailsDTO
+} from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+import {
+  AccommodationDetailsService
+} from "../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
 
 enum Amenity {
   TV,

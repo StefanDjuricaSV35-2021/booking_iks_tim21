@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccommodationPreviewDTO } from 'src/app/accommodation-preview/model/accommodationPreviewDTO';
 import { OwnersAccommodationPreviewService } from '../owners-accommodation-preview/service/owners-accommodation-preview.service';
 import { UserService } from 'src/app/profile/user.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { User } from 'src/app/profile/model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {AccommodationPreviewDTO} from "../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({
   selector: 'app-owners-accommodations-page',

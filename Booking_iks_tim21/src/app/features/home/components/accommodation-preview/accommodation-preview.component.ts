@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {User} from "../profile/model/user.model";
 import {AccommodationPreviewDTO} from "./model/accommodationPreviewDTO";
 
 @Component({
@@ -8,7 +7,6 @@ import {AccommodationPreviewDTO} from "./model/accommodationPreviewDTO";
   styleUrls: ['./accommodation-preview.component.css']
 })
 export class AccommodationPreviewComponent {
-
   @Input() accommodationPreview: AccommodationPreviewDTO;
 
 }

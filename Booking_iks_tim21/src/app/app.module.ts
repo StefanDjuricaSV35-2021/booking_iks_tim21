@@ -9,12 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccommodationDetailsComponent } from './accommodation-details/accommodation-details.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MainPageComponent } from './features/main-page/main-page.component';
 import { MatButtonModule } from '@angular/material/button';
-import { AccommodationPreviewComponent } from './accommodation-preview/accommodation-preview.component';
 import { ProfileModule } from './profile/profile.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './infrastructure/auth/interceptor';
@@ -30,16 +27,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
+import {HomeModule} from "./features/home/home.module";
+import {ViewAccommodationModule} from "./features/view-accommodation/view-accommodation.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccommodationDetailsComponent,
-    MainPageComponent,
-    AccommodationPreviewComponent,
     AccommodationCreatinoComponent,
   ],
   imports: [
+    ViewAccommodationModule,
+    HomeModule,
     SearchModule,
     BrowserModule,
     AppRoutingModule,

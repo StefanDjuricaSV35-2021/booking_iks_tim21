@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {AccommodationType} from "../../../../accommodation-details/model/AccommodationDetailsDTO";
 import {MatRadioButton} from "@angular/material/radio";
+import {
+  AccommodationType
+} from "../../../view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-accommodation-type-form',

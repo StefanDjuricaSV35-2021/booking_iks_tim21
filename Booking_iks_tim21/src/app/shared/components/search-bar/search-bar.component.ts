@@ -1,8 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component,} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {formatDate} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccommodationPreviewDTO} from "../../../accommodation-preview/model/accommodationPreviewDTO";
+import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({
   selector: 'app-search-bar',

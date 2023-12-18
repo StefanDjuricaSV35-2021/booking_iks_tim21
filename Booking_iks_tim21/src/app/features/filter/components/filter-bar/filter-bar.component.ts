@@ -2,8 +2,11 @@ import {Component, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AmenityFormComponent} from "../amenity-form/amenity-form.component";
 import {AccommodationTypeFormComponent} from "../accommodation-type-form/accommodation-type-form.component";
-import {AccommodationType, Amenity} from "../../../../accommodation-details/model/AccommodationDetailsDTO";
 import {PriceRangeFormComponent} from "../price-range-form/price-range-form.component";
+import {
+  AccommodationType,
+  Amenity
+} from "../../../view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-filter-bar',

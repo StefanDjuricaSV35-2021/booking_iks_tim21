@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creatino/model/accommodationPricing.model';
-import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creatino/service/accommodationPricing.service';
-import { AccommodationDetailsDTO } from 'src/app/accommodation-details/model/AccommodationDetailsDTO';
-import { AccommodationDetailsService } from 'src/app/accommodation-details/service/accommodation-details.service';
 import {
   AccommodationChangeRequestDTO,
   RequestStatus,
@@ -12,6 +8,12 @@ import {
 import { AccommodationPricingChangeRequestDTO } from 'src/app/owners-accommodations/change-accommodation/model/AccommodationPricingChangeRequestDTO';
 import { AccommodationChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-change-request.service';
 import { AccommodationPricingChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-pricing-change-request.service';
+import {
+  AccommodationDetailsService
+} from "../../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+import {
+  AccommodationDetailsDTO
+} from "../../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-accommodation-updating-requests-details',

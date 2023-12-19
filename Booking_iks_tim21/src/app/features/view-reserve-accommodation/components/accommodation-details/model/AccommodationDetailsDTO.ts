@@ -12,6 +12,7 @@ export class AccommodationDetailsDTO {
   daysForCancellation: number;
   perNight: boolean;
   enabled: boolean;
+  dates?:string[];
 }
 
 export enum AccommodationType {

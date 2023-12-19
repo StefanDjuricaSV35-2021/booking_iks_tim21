@@ -6,7 +6,7 @@ import {PriceRangeFormComponent} from "../price-range-form/price-range-form.comp
 import {
   AccommodationType,
   Amenity
-} from "../../../view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-filter-bar',

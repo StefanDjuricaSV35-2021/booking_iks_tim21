@@ -1,3 +1,4 @@
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -17,7 +18,7 @@ input::-webkit-inner-spin-button {
   flex-direction: row;
   align-items: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
-  align-self: center;
+  justify-self: center;
   background-color: #092D3C;
 }
 
@@ -26,6 +27,7 @@ mat-form-field{
   font-size: 15px;
   width: 200px;
   border-radius: 8px;
+  min-width: 100px;
 
 }
 
@@ -35,8 +37,10 @@ mat-form-field{
 }
 
 .lightBlue {
+  height: 56px;
+  width: 110px;
   background-color: #1d74ab;
-  margin-left: 10px;
-  margin-right: 10px;
+  color: white;
+  font-size: 20px;
 
 }

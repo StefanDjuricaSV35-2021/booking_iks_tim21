@@ -21,12 +21,10 @@ import { AccommodationPricingChangeRequestService } from './service/accommodatio
 import { AccommodationPricingChangeRequestDTO } from './model/AccommodationPricingChangeRequestDTO';
 import {
   AccommodationDetailsDTO
-} from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 import {
   AccommodationDetailsService
-} from "../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
-import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creation/service/accommodationPricing.service';
-import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creation/model/accommodationPricing.model';
+} from "../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
 
 enum Amenity {
   TV,

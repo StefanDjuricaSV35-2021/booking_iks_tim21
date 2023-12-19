@@ -26,9 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import {HomeModule} from "./features/home/home.module";
-import {ViewAccommodationModule} from "./features/view-accommodation/view-accommodation.module";
-import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
-import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
+import {ViewReserveAccommodationModule} from "./features/view-reserve-accommodation/view-reserve-accommodation.module";
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { AccommodationRequestsModule } from './accommodation-requests/accommodat
     AccommodationCreationComponent,
   ],
   imports: [
-    ViewAccommodationModule,
+
+  ViewReserveAccommodationModule,
+    MatDialogModule,
     HomeModule,
     SearchModule,
     BrowserModule,

@@ -95,7 +95,8 @@
           </div>
           <div style="display: flex; flex-direction: column">
             <span style="font-size: medium">Price: 15.000 RSD</span>
-            <span style="font-size: medium">Per Night</span>
+            <span style="font-size: medium"*ngIf="acc.perNight">Per Night</span>
+            <span style="font-size: medium"*ngIf="!acc.perNight">Per Guest</span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px">
             <span style="font-size: medium">Landlord Name</span>
@@ -108,10 +109,10 @@
         />
       </div>
       <div class="location-and-review">
-            <span class="text1 container">
+            <span style="margin-left: 0" class="text1 container">
               {{ acc.location }}
             </span>
-        <button type="button" class="text1 button">See on map</button>
+        <button (click)="openMap()" type="button" class="text1 button">See on map</button>
         <span class="text1 container">★ 6.11</span>
         <button type="button" class="text1 button">
           <span>See reviews</span>
@@ -133,19 +134,13 @@
           </div>
           <div class="calendar container">
             <mat-card style="border-radius: inherit">
-              <mat-calendar></mat-calendar>
+              <mat-calendar  [dateClass]="dateClass()" ></mat-calendar>
             </mat-card>
           </div>
         </div>
       </div>
-      <button
-        style="width: fit-content; align-self: flex-end"
-        type="button"
-        class="text1 button"
-      >
-        Make Reservation
-      </button>
     </div>
+    <app-make-reservation-bar [acc]="acc"/>
   </div>
 </div>
 </body>

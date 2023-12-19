@@ -10,10 +10,10 @@ import { AccommodationChangeRequestService } from 'src/app/owners-accommodations
 import { AccommodationPricingChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-pricing-change-request.service';
 import {
   AccommodationDetailsService
-} from "../../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+} from "../../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
 import {
   AccommodationDetailsDTO
-} from "../../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-accommodation-updating-requests-details',

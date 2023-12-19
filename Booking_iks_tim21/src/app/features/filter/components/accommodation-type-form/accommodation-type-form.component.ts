@@ -2,7 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {MatRadioButton} from "@angular/material/radio";
 import {
   AccommodationType
-} from "../../../view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-accommodation-type-form',

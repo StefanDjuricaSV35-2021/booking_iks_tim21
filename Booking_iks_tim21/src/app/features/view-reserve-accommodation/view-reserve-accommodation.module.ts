@@ -8,11 +8,13 @@ import {AccommodationDetailsComponent} from "./components/accommodation-details/
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import { MakeReservationBarComponent } from './components/make-reservation-bar/make-reservation-bar.component';
+import { MakeReservationBarComponent } from './components/reservation-request-bar/make-reservation-bar.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { ConfirmationPageComponent } from './components/confirmation-page/confirmation-page.component';
+import {RouterLink} from "@angular/router";
 
 
 
@@ -22,7 +24,8 @@ import {MatIconModule} from "@angular/material/icon";
   declarations: [
     AccommodationDetailsComponent,
     MapComponent,
-    MakeReservationBarComponent
+    MakeReservationBarComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     LeafletModule,
@@ -38,11 +41,13 @@ import {MatIconModule} from "@angular/material/icon";
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
 
   exports: [
+    ConfirmationPageComponent,
     MapComponent,
     AccommodationDetailsComponent
   ]
 })
-export class ViewAccommodationModule { }
+export class ViewReserveAccommodationModule { }

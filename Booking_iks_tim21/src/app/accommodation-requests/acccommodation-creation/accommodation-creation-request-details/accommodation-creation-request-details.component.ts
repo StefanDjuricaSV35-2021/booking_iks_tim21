@@ -6,10 +6,10 @@ import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommod
 import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creatino/service/accommodationPricing.service';
 import {
   AccommodationDetailsDTO
-} from "../../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 import {
   AccommodationDetailsService
-} from "../../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+} from "../../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
 
 @Component({
   selector: 'app-accommodation-creation-request-details',

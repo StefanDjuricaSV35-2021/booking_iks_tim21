@@ -13,7 +13,7 @@ export class LocationService {
 
   public findByLocation(location:string): Observable<object> {
     return this.http.get<object>(
-      '//nominatim.openstreetmap.org/search?format=json&q='+encodeURI('Vladike Cirica 2, Novi Sad, Serbia')
+      '//nominatim.openstreetmap.org/search?format=json&q='+encodeURI(location)
     );
   }
 

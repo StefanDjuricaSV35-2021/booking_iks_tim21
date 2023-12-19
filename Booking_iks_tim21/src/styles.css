@@ -57,9 +57,7 @@ mat-calendar-body-cell-container.Disabled{
   }
 }
 
-.mat-calendar-body-active>.mat-calendar-body-cell-content.mat-focus-indicator{
-  background:transparent !important;
-}
+
 
 .mat-calendar-body-active.Disabled>.mat-calendar-body-cell-content.mat-focus-indicator{
   border: none;
@@ -70,6 +68,10 @@ mat-calendar-body-cell-container.Disabled{
 .mat-calendar-body-cell.highlight > .mat-calendar-body-cell-content:hover {
   background-color: #1d74ab !important;
   color: white !important;
+}
+
+.mat-calendar-body-active:not(.mat-calendar-body-cell.highlight)>.mat-calendar-body-cell-content.mat-focus-indicator:not(.mat-calendar-body-selected){
+  background:transparent !important
 }
 
 

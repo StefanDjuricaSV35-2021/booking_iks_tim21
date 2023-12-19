@@ -16,7 +16,10 @@ import { AccommodationCreationRequestDetailsComponent } from './accommodation-re
 import { AccommodationUpdatingRequestsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests/accommodation-updating-requests.component';
 import { AccommodationUpdatingRequestsDetailsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests-details/accommodation-updating-requests-details.component';
 import {HomePageComponent} from "./features/home/components/home-page/home-page.component";
-import {AccommodationDetailsComponent} from "./features/view-accommodation/components/accommodation-details/accommodation-details.component";
+import {AccommodationDetailsComponent} from "./features/view-reserve-accommodation/components/accommodation-details/accommodation-details.component";
+import {
+  ConfirmationPageComponent
+} from "./features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -29,6 +32,7 @@ const routes: Routes = [
   { path: 'homePage', component: HomePageComponent },
   { path: 'activate', component: ActivateAccountComponent },
   { path: 'activate/:email', component: ActivateAccountComponent },
+  { path: 'reservation-confirmation', component: ConfirmationPageComponent },
   {
     path: 'ownersAccommodations',
     component: OwnersAccommodationsPageComponent,

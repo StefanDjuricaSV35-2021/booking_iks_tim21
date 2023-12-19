@@ -13,7 +13,7 @@ $('#elemId').width();
 })
 export class MapComponent {
 
-  location:string=encodeURI('Vladike Cirica 2, Novi Sad, Serbia')
+  location:string;//=encodeURI('Vladike Cirica 2, Novi Sad, Serbia')
   lat:number;
   long:number;
   private map;
@@ -44,7 +44,7 @@ export class MapComponent {
   }
   ngAfterViewInit(): void {
 
-    this.service.findByLocation("a").subscribe(data => {
+    this.service.findByLocation(this.location).subscribe(data => {
       console.log(data)
       this.lat=data[0].lat;
       this.long=data[0].lon;

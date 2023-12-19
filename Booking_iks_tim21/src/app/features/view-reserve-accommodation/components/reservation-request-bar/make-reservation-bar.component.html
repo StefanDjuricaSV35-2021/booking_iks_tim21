@@ -2,18 +2,18 @@
 
 <div class="bar">
 
-  <form [formGroup]="reservationForm" style="display:inherit;gap:inherit;">
+  <form #fg [formGroup]="reservationForm" style="display:inherit;gap:inherit;">
 
     <mat-form-field class="custom-form-field" hideRequiredMarker [subscriptSizing]="'dynamic'" >
       <mat-label>Arrival</mat-label>
-      <input formControlName="dateFrom" matInput [matDatepicker]="pickerArrival" #arrivalVal>
+      <input (dateChange)="dateChange(arrivalVal,departureVal)" formControlName="dateFrom" matInput [matDatepicker]="pickerArrival" #arrivalVal>
       <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
       <mat-datepicker  #pickerArrival></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field  hideRequiredMarker  [subscriptSizing]="'dynamic'" >
       <mat-label>Departure</mat-label>
-      <input formControlName="dateTo" matInput [matDatepicker]="pickerDeparture" #departureVal>
+      <input (dateChange)="dateChange(arrivalVal,departureVal)" formControlName="dateTo" matInput [matDatepicker]="pickerDeparture" #departureVal>
       <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
       <mat-datepicker #pickerDeparture></mat-datepicker>
     </mat-form-field>
@@ -26,12 +26,12 @@
 
   </form>
 
-    <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
+    <mat-form-field  hideRequiredMarker [subscriptSizing]="'dynamic'" >
       <mat-label>Price</mat-label>
-      <input [(ngModel)]="price" matInput type="number"  disabled>
+      <input [(ngModel)]="price" matInput type="number"  readonly>
     </mat-form-field>
 
-    <button color="primary" mat-button class="lightBlue" (click)="validateForm() " [disabled]="!reservationForm.valid">
+    <button color="primary" mat-button class="lightBlue"  (click)="createRequest()" [disabled]="!reservationForm.valid">
     Reserve
     </button>
 </div>

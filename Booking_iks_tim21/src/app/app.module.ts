@@ -28,7 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 import {HomeModule} from "./features/home/home.module";
-import {ViewAccommodationModule} from "./features/view-accommodation/view-accommodation.module";
+import {ViewReserveAccommodationModule} from "./features/view-reserve-accommodation/view-reserve-accommodation.module";
 import {MatDialogModule} from "@angular/material/dialog";
 
 
@@ -39,7 +39,7 @@ import {MatDialogModule} from "@angular/material/dialog";
   ],
   imports: [
 
-  ViewAccommodationModule,
+  ViewReserveAccommodationModule,
     MatDialogModule,
     HomeModule,
     SearchModule,

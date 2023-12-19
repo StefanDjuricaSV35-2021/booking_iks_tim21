@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccommodationDetailsDTO } from '../model/AccommodationDetailsDTO';
 import {environment} from "../../../../../../env/env";
+import {Params} from "@angular/router";
+import {AccommodationPreviewDTO} from "../../../../home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +44,9 @@ export class AccommodationDetailsService {
     return this.http.get<AccommodationDetailsDTO>(
       environment.apiHost + 'accommodations/' + id
     );
+  }
+
+  public getPrice(params:Params): Observable<number[]> {
+    return this.http.get<number[]>(environment.apiHost+"accommodations/price" ,{ params: params });
   }
 }

@@ -17,10 +17,10 @@ import { User } from 'src/app/profile/model/user.model';
 import { AccommodationPricingService } from './service/accommodationPricing.service';
 import {
   AccommodationDetailsService
-} from "../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+} from "../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
 import {
   AccommodationDetailsDTO
-} from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 
 enum Amenity {
   TV,

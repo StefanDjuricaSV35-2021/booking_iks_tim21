@@ -95,7 +95,8 @@
           </div>
           <div style="display: flex; flex-direction: column">
             <span style="font-size: medium">Price: 15.000 RSD</span>
-            <span style="font-size: medium">Per Night</span>
+            <span style="font-size: medium"*ngIf="acc.perNight">Per Night</span>
+            <span style="font-size: medium"*ngIf="!acc.perNight">Per Guest</span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 10px">
             <span style="font-size: medium">Landlord Name</span>
@@ -139,7 +140,7 @@
         </div>
       </div>
     </div>
-    <app-make-reservation-bar />
+    <app-make-reservation-bar [acc]="acc"/>
   </div>
 </div>
 </body>

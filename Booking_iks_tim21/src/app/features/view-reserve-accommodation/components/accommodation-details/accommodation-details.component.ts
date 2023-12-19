@@ -35,8 +35,11 @@ export class AccommodationDetailsComponent {
         let date2=new Date(Number(dates[1])*1000);
 
         if(view=='year'){
-          date1.setDate(0);
-          date2.setDate(0);
+
+          date1.setDate(1);
+          date2.setDate(1);
+
+
           if(date>=date1&&date<=date2){
             return 'highlight';
           }
@@ -60,7 +63,11 @@ export class AccommodationDetailsComponent {
   }
 
   openMap() {
-    this.dialog.open(MapComponent);
+    this.dialog.open(MapComponent,{
+      data:{
+        location:this.acc.location
+      }
+    });
   }
 
   protected readonly Array = Array;

@@ -14,6 +14,6 @@
     <span id="price">
       {{accommodationPreview.price}}$
     </span>
-    <button id="button" mat-button [routerLink]="['/accommodation', accommodationPreview.id]" >See details</button>
+    <button id="button" mat-button (click)="navigate()" >See details</button>
   </mat-card-content>
 </mat-card>

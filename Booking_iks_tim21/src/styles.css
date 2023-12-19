@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"); /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -8,8 +9,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * https://materialtheme.arcsine.dev
 * Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzA5MmQzYyIsIj9lcjwjYjVjMGM1IiwiO2VyPCMwNTFjMjd$LCIlPmBePCMxZDc0YWIiLCI~ZXI8I2JiZDVlNiIsIjtlcjwjMTE1Nzkxfiwid2Fybj5gXjwjZGJkZmUyIiwiP2VyPCNmNGY1ZjYiLCI7ZXI8I2NkZDJkNn4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz5mYWxzZSwidmVyc2lvbj4xMX0=
 */
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 .mat-badge-content {
   font-weight: 600;
   font-size: 12px; }
@@ -34,6 +33,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font: 400 16px/28px Roboto;
   letter-spacing: 0.0094em;
   margin: 0 0 16px; }
+
+.Disabled{
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+span.Disabled{
+  border: none;
+}
+
+mat-calendar-body-cell-container.Disabled{
+  background-color: #0a58ca;
+}
+
+@media (hover: hover) {
+  .mat-calendar-body-cell.highlight:not(.mat-calendar-body-disabled):hover > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color:#ab4545 ;
+  }
+}
+
+.mat-calendar-body-active>.mat-calendar-body-cell-content.mat-focus-indicator{
+  background:transparent !important;
+}
+
+.mat-calendar-body-active.Disabled>.mat-calendar-body-cell-content.mat-focus-indicator{
+  border: none;
+}
+
+.mat-calendar-body-cell.highlight > .mat-calendar-body-cell-content,
+.mat-calendar-body-cell.highlight:hover > .mat-calendar-body-cell-content,
+.mat-calendar-body-cell.highlight > .mat-calendar-body-cell-content:hover {
+  background-color: #1d74ab !important;
+  color: white !important;
+}
+
 
 .mat-h4, .mat-subheading-1, .mat-typography h4 {
   font: 500 15px/24px Roboto;
@@ -137,7 +175,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   letter-spacing: 0.0075em; }
 
 .mat-expansion-panel-header {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 15px;
   font-weight: 500; }
 

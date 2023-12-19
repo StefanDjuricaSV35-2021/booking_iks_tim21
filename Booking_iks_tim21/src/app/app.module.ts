@@ -29,6 +29,8 @@ import { RouterModule } from '@angular/router';
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 import {HomeModule} from "./features/home/home.module";
 import {ViewAccommodationModule} from "./features/view-accommodation/view-accommodation.module";
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {ViewAccommodationModule} from "./features/view-accommodation/view-accomm
     AccommodationCreatinoComponent,
   ],
   imports: [
-    ViewAccommodationModule,
+
+  ViewAccommodationModule,
+    MatDialogModule,
     HomeModule,
     SearchModule,
     BrowserModule,

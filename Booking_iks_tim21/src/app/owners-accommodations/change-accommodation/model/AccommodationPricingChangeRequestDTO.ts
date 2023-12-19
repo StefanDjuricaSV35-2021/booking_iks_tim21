@@ -1,4 +1,4 @@
-import { TimeSlot } from "../../../accommodation-creation/accommodation-creatino/model/timeSlot.model";
+import { TimeSlot } from "src/app/accommodation-creation/accommodation-creation/model/timeSlot.model";
 
 export interface AccommodationPricingChangeRequestDTO {
   id?: number;

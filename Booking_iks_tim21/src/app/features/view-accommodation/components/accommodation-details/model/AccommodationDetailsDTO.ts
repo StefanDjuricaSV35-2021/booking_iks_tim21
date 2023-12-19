@@ -1,5 +1,3 @@
-import { Photo } from "src/app/accommodation-creation/accommodation-creatino/model/photo.model";
-
 export class AccommodationDetailsDTO {
   id: number;
   ownerId: number;

@@ -10,7 +10,6 @@ import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.
 import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
 import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
-import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creatino/accommodation-creation.component';
 import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
 import { AccommodationCreationRequestsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-requests/accommodation-creation-requests.component';
 import { AccommodationCreationRequestDetailsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
@@ -20,6 +19,7 @@ import {HomePageComponent} from "./features/home/components/home-page/home-page.
 import {
   AccommodationDetailsComponent
 } from "./features/view-accommodation/components/accommodation-details/accommodation-details.component";
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },

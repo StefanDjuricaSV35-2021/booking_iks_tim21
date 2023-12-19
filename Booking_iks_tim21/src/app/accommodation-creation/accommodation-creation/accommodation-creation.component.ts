@@ -8,7 +8,6 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { AccommodationPricingDTO } from './model/accommodationPricing.model';
-import { AppModule } from 'src/app/app.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -21,8 +20,9 @@ import {
 import {
   AccommodationDetailsDTO
 } from "../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
-import { Photo } from './model/photo.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileUploadService } from './service/fileUpload.service';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 
 enum Amenity {
   TV,
@@ -57,8 +57,8 @@ export class AccommodationCreationComponent implements OnInit {
     private route: ActivatedRoute,
     private accommodationService: AccommodationDetailsService,
     private accommodationPricingService: AccommodationPricingService,
-    private sanitizer: DomSanitizer
-  ) {
+    private fileUploadService: FileUploadService,
+    ) {
     this.pricingForm = this.fb.group({
       street: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
@@ -95,7 +95,6 @@ export class AccommodationCreationComponent implements OnInit {
   pricingList: AccommodationPricingDTO[] = [];
 
   accommodationTypes = this.getKeysFromEnum(AccommodationType);
-
   availableAmenities: string[] = this.getKeysFromEnum(Amenity);
   selectedAmenities: string[] = [];
 
@@ -120,54 +119,37 @@ export class AccommodationCreationComponent implements OnInit {
     });
   }
 
-  imageList: Photo[] = [];
-  selectedFiles: string[] = [];
-  selectedImage: string | null = null;
-  selectedImageName: string | null = null;
+  selectedFileNames: string[] = [];
+  selectedFiles: File[] = [];
   selectedFile: File | null = null;
-
-  addImage(): void {
-    if (this.selectedFile!=null && this.selectedImageName) {
-      const photo: Photo = {
-        id: 0,
-        accommodationId: 0,
-        file: this.selectedFile,
-        url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.selectedFile)),
-      }
-      this.imageList.push(photo);
-      this.selectedFiles.push(this.selectedImageName);
-      this.resetSelectedImage();
-    }
-  }
-
-  removeImage(imageName: string): void {
-    const index = this.selectedFiles.findIndex((image) => image === imageName);
-    if (index !== -1) {
-      this.imageList.splice(index, 1);
-      this.selectedFiles.splice(index, 1);
-    }
-  }
+  imagePreview: string | null = null;
 
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      const isImage = this.isImageFile(file);
-      if (isImage) {
-        this.selectedFile = file;
-        this.selectedImage = URL.createObjectURL(file);
-        this.selectedImageName = file.name;
-
-      } else {
-        alert('Selected file is not an image.');
-        this.resetSelectedImage();
-      }
+    const file = event.target.files[0] as File;
+    if (file && this.isImageFile(file)) {
+      this.selectedFile = file;
+      this.imagePreview = URL.createObjectURL(file);
+    } else {
+      alert("Selected file must be an image.")
     }
   }
 
-  resetSelectedImage(): void {
-    this.selectedImage = null;
-    this.selectedImageName = null;
-    this.selectedFile = null;
+  addImage(): void {
+    if (this.selectedFile) {
+      this.selectedFileNames.push(this.selectedFile.name);
+      this.selectedFiles.push(this.selectedFile);
+      this.selectedFile = null;
+      this.imagePreview = null;
+    }
+  }
+
+  removeImage(image: string): void {
+    const index = this.selectedFileNames.indexOf(image);
+
+    if (index !== -1) {
+      this.selectedFileNames.splice(index, 1);
+      this.selectedFiles.splice(index, 1);
+    }
   }
 
   isImageFile(file: File): boolean {
@@ -271,11 +253,10 @@ export class AccommodationCreationComponent implements OnInit {
   }
 
   createAccommodation() {
-    console.log(this.imageList[0]);
     if (this.pricingForm.valid) {
       const formData = this.pricingForm.value;
 
-      if (this.imageList.length <= 0) {
+      if (this.selectedFileNames.length <= 0) {
         alert('Your accommodation needs at least 1 photo.');
         return;
       }
@@ -292,6 +273,29 @@ export class AccommodationCreationComponent implements OnInit {
         return;
       }
 
+      console.log(this.selectedFileNames);
+
+      const form:FormData = new FormData();
+
+      this.selectedFiles.forEach(file => {
+        form.append('images',file,file.name);
+      });
+
+      this.fileUploadService.upload(form).subscribe({
+        next: (data: HttpEvent<string[]>) => {
+          if (data.type === HttpEventType.UploadProgress) {
+
+            const percentDone = Math.round((100 * data.loaded) / data.total!);
+            console.log(`File is ${percentDone}% uploaded.`);
+          } else if (data instanceof HttpResponse) {
+            console.log('File is completely uploaded!');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error uploading file:', error);
+          return;
+        }
+      });
 
       const accommodation: AccommodationDetailsDTO = {
         id: 0,
@@ -307,7 +311,7 @@ export class AccommodationCreationComponent implements OnInit {
         maxGuests: formData.maxGuests,
         description: formData.description,
         amenities: this.getEnumFromKeys(this.selectedAmenities, Amenity),
-        photos: [],
+        photos: this.selectedFileNames,
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
         enabled: false,
@@ -362,7 +366,7 @@ export function doubleValidator(): ValidatorFn {
     const value = control.value;
 
     if (Validators.required(control) || Validators.nullValidator(control)) {
-      return null; // Don't validate if the control is empty
+      return null; 
     }
 
     if (isNaN(value) || !isFinite(value)) {

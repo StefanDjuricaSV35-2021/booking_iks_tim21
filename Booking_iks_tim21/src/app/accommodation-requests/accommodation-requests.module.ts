@@ -17,12 +17,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-import { AccommodationCreationRequestDetailsComponent } from './acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
 import { AccommodationCreationRequestPreviewComponent } from './acccommodation-creation/accommodation-creation-request-preview/accommodation-creation-request-preview.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccommodationUpdatingRequestsComponent } from './accommodation-updating/accommodation-updating-requests/accommodation-updating-requests.component';
 import { AccommodationUpdatingRequestsPreviewComponent } from './accommodation-updating/accommodation-updating-requests-preview/accommodation-updating-requests-preview.component';
 import { AccommodationUpdatingRequestsDetailsComponent } from './accommodation-updating/accommodation-updating-requests-details/accommodation-updating-requests-details.component';
+import { AccommodationCreationRequestDetailsComponent } from './acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
 
 @NgModule({
   declarations: [

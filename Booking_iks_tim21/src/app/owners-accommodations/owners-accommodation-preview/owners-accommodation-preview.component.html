@@ -1,8 +1,8 @@
 <mat-card style="margin: 20px" class="example-card">
   <img
     mat-card-image
-    src="{{ 'data:image/png;base64,' + accommodationPreview.image }}"
-  />
+    [src]="accommodationPreview.image ? 'http://localhost:8080/images/' + accommodationPreview.image : 'http://localhost:8080/images/missing-image.jpg'" 
+    />
   <mat-card-content>
     <p>Name: {{ accommodationPreview.name }}</p>
     <p>Location: {{ accommodationPreview.location }}</p>

@@ -20,15 +20,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgOptimizedImage } from '@angular/common';
 import { SearchModule } from './features/search/search.module';
 import { SharedModule } from './shared/shared.module';
-import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creatino/accommodation-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
-import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 import {HomeModule} from "./features/home/home.module";
 import {ViewAccommodationModule} from "./features/view-accommodation/view-accommodation.module";
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
+import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 
 @NgModule({
   declarations: [

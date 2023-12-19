@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creatino/model/accommodationPricing.model';
-import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creatino/service/accommodationPricing.service';
 import {
   AccommodationDetailsDTO
 } from "../../../features/view-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
 import {
   AccommodationDetailsService
 } from "../../../features/view-accommodation/components/accommodation-details/service/accommodation-details.service";
+import { AccommodationPricingDTO } from 'src/app/accommodation-creation/accommodation-creation/model/accommodationPricing.model';
+import { AccommodationPricingService } from 'src/app/accommodation-creation/accommodation-creation/service/accommodationPricing.service';
 
 @Component({
   selector: 'app-accommodation-creation-request-details',

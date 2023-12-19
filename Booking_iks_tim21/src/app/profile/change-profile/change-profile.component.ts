@@ -48,7 +48,7 @@ export class ChangeProfileComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/mainPage']);
+      this.router.navigate(['/homePage']);
       return;
     }
 
@@ -121,7 +121,7 @@ export class ChangeProfileComponent implements OnInit {
             );
 
             localStorage.removeItem('user');
-            this.router.navigate(['/mainPage']);
+            this.router.navigate(['/homePage']);
             window.location.reload();
           }
         },
@@ -148,7 +148,7 @@ export class ChangeProfileComponent implements OnInit {
     this.service.delete(this.user.id).subscribe({
       next: (_) => {
         localStorage.removeItem('user');
-        this.router.navigate(['/mainPage']);
+        this.router.navigate(['/homePage']);
         window.location.reload();
       },
       error: (error) => {

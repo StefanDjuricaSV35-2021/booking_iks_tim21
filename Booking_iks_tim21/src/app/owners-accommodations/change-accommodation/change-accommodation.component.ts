@@ -109,7 +109,7 @@ export class ChangeAccommodationComponent {
 
   ngOnInit() {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/mainPage']);
+      this.router.navigate(['/homePage']);
       return;
     }
 

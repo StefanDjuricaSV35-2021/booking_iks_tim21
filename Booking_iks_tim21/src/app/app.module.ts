@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgOptimizedImage } from '@angular/common';
 import { SearchModule } from './features/search/search.module';
 import { SharedModule } from './shared/shared.module';
-import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creatino/accommodation-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -33,7 +33,7 @@ import {ViewAccommodationModule} from "./features/view-accommodation/view-accomm
 @NgModule({
   declarations: [
     AppComponent,
-    AccommodationCreatinoComponent,
+    AccommodationCreationComponent,
   ],
   imports: [
     ViewAccommodationModule,

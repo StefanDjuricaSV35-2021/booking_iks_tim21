@@ -32,7 +32,7 @@ export class UserNavbarComponent {
       next: (_) => {
         localStorage.removeItem('user');
         this.authService.setUser();
-        this.router.navigate(['/mainPage']);
+        this.router.navigate(['/homePage']);
       },
     });
   }

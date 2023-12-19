@@ -10,7 +10,7 @@ import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.
 import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
 import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
-import { AccommodationCreatinoComponent } from './accommodation-creation/accommodation-creatino/accommodation-creatino.component';
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creatino/accommodation-creation.component';
 import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
 import { AccommodationCreationRequestsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-requests/accommodation-creation-requests.component';
 import { AccommodationCreationRequestDetailsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   { path: 'changeAccommodation/:id', component: ChangeAccommodationComponent },
 
-  { path: 'accommodation_create', component: AccommodationCreatinoComponent },
+  { path: 'accommodation_create', component: AccommodationCreationComponent },
   {
     path: 'accommodationCreationRequests',
     component: AccommodationCreationRequestsComponent,

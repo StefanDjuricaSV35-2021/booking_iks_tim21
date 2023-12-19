@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccommodationCreatinoComponent } from './accommodation-creatino.component';
+import { AccommodationCreationComponent } from './accommodation-creation.component';
 
 describe('AccommodationCreatinoComponent', () => {
-  let component: AccommodationCreatinoComponent;
-  let fixture: ComponentFixture<AccommodationCreatinoComponent>;
+  let component: AccommodationCreationComponent;
+  let fixture: ComponentFixture<AccommodationCreationComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AccommodationCreatinoComponent]
+      declarations: [AccommodationCreationComponent]
     });
-    fixture = TestBed.createComponent(AccommodationCreatinoComponent);
+    fixture = TestBed.createComponent(AccommodationCreationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

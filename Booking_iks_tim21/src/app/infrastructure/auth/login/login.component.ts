@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         next: (response: AuthResponse) => {
           localStorage.setItem('user', response.token);
           this.authService.setUser()
-          this.router.navigate(['mainPage'])
+          this.router.navigate(['homePage'])
         },
         error: (error) => {
           console.error('Login failed:', error);

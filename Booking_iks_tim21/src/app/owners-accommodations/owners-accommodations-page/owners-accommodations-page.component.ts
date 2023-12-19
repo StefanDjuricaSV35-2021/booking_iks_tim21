@@ -27,7 +27,7 @@ export class OwnersAccommodationsPageComponent {
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/mainPage']);
+      this.router.navigate(['/homePage']);
       return;
     }
 

@@ -40,6 +40,7 @@ export class MakeReservationBarComponent {
   ngOnInit(): void {
     this.initializeFields();
     this.initializeFormGroup();
+    console.log(this.acc.dates);
   }
 
   initializeFields() {

@@ -30,6 +30,7 @@ export class AvailabilityCalendarComponent {
         }
       }
     };
+    
   }
 
   getYearView(date: Date) {
@@ -61,6 +62,7 @@ export class AvailabilityCalendarComponent {
       console.log(dateTo);
 
       if (date >= dateFrom && date <= dateTo) {
+        
         return 'highlight';
       }
     }
@@ -70,12 +72,14 @@ export class AvailabilityCalendarComponent {
 
   getDayView(date: Date) {
     for (const ts of this.dates) {
-      let dateFrom = new Date(ts.startDate * 1000);
-      let dateTo = new Date(ts.endDate * 1000);
+
+      let dateFrom = new Date(ts.startDate);
+      let dateTo = new Date(ts.endDate);
 
       if (date >= dateFrom && date <= dateTo) {
         return 'highlight Disabled';
       }
+
     }
 
     return 'Disabled';

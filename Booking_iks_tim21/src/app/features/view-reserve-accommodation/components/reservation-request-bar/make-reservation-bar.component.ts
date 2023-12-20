@@ -17,6 +17,9 @@ import { ReservationRequestDTO } from '../../../../core/models/ReservationReques
 import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
 import { TimeSlot } from '../../../../core/models/timeSlot.model';
 import {AppSettings} from "../../../../shared/AppSettings";
+import {User} from "../../../../core/models/user.model";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {UserService} from "../../../../core/services/user/user.service";
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -36,7 +39,8 @@ export class MakeReservationBarComponent {
     private route: ActivatedRoute,
     private accService: AccommodationDetailsService,
     private router: Router,
-    private serviceReq: ReservationRequestService
+    private serviceReq: ReservationRequestService,
+    private service:UserService
   ) {}
   ngOnInit(): void {
     this.initializeFields();
@@ -114,20 +118,36 @@ export class MakeReservationBarComponent {
     ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier);
 
     this.route.params.subscribe((params) => {
-      const id = +params['userId'];
+      this.route.params.subscribe((params) => {
+        const id = +params['userId'];
 
-      let req = new ReservationRequestDTO(
-        id,
-        this.acc.id,
-        this.reservationForm.get('noGuests')?.value,
-        this.price,
-        ts,
-        3
-      );
+        const jwtHelperService = new JwtHelperService();
+        const userFromLocalStorage: any = localStorage.getItem('user');
+        const userEmail: string =
+          jwtHelperService.decodeToken(userFromLocalStorage).sub;
+        this.service.getUserByEmail(userEmail).subscribe({
+          next: (data: User) => {
+            let user = data;
 
-      this.serviceReq.createReservationReq(req).subscribe((data) => {
-        console.log(data);
+
+            let req = new ReservationRequestDTO(
+              user.id,
+              this.acc.id,
+              this.reservationForm.get('noGuests')?.value,
+              this.price,
+              ts,
+              3
+            );
+
+            this.serviceReq.createReservationReq(req).subscribe((data) => {
+              console.log(data);
+            });
+
+          },
+        });
       });
+
+
     })
 
   }

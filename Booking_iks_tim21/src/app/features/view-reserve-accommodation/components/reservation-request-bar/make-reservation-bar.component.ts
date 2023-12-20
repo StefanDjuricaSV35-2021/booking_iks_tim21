@@ -101,12 +101,7 @@ export class MakeReservationBarComponent {
     }
   }
   submitRequest() {
-    let req = this.extractFormData();
-
-    this.serviceReq.createReservationReq(req).subscribe((data) => {
-      console.log(data);
-    });
-
+    this.extractFormData();
     this.router.navigate(['/', 'reservation-confirmation']);
   }
 
@@ -118,16 +113,23 @@ export class MakeReservationBarComponent {
     ts.startDate = Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier);
     ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier);
 
-    let req = new ReservationRequestDTO(
-      7,
-      this.acc.id,
-      this.reservationForm.get('noGuests')?.value,
-      this.price,
-      ts,
-      3
-    );
+    this.route.params.subscribe((params) => {
+      const id = +params['userId'];
 
-    return req;
+      let req = new ReservationRequestDTO(
+        id,
+        this.acc.id,
+        this.reservationForm.get('noGuests')?.value,
+        this.price,
+        ts,
+        3
+      );
+
+      this.serviceReq.createReservationReq(req).subscribe((data) => {
+        console.log(data);
+      });
+    })
+
   }
 }
 

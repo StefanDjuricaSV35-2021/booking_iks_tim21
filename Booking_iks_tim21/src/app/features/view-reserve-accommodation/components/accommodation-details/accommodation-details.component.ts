@@ -11,6 +11,7 @@ import { AccommodationDetailsService } from '../../../../core/services/accommoda
 import { SharedModule } from '../../../../shared/shared.module';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '../../../../shared/components/map/map.component';
+import {AuthService} from "../../../../infrastructure/auth/auth.service";
 
 @Component({
   selector: 'app-accommodation-details-page',
@@ -27,7 +28,8 @@ export class AccommodationDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private service: AccommodationDetailsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService:AuthService
   ) {}
   ngOnInit(): void {
     this.setUpNgIf();
@@ -35,6 +37,13 @@ export class AccommodationDetailsComponent {
     this.service.findById(this.id).subscribe((data) => {
       this.acc = data;
     });
+
+    this.authService.userState.subscribe((result) => {
+      if(result=="GUEST"){
+        this.showForAnybody=true;
+      }
+    });
+
   }
 
   openMap() {

@@ -28,7 +28,7 @@ export class ImageSliderComponent {
 
   getCurrentSlideString() {
     return (
-      'url(' + 'data:image/jpg;base64,' + this.slides[this.currentIndex] + ')'
+      'url(' + "http://localhost:8080/images/" + this.slides[this.currentIndex] + ')'
     );
   }
 }

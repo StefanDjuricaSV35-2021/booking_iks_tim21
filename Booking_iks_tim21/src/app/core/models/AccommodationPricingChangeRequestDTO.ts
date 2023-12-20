@@ -1,4 +1,4 @@
-import { TimeSlot } from "src/app/accommodation-creation/accommodation-creation/model/timeSlot.model";
+import { TimeSlot } from "src/app/core/models/timeSlot.model";
 
 export interface AccommodationPricingChangeRequestDTO {
   id?: number;

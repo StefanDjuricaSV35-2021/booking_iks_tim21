@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
-import { TimeSlot } from '../../../../accommodation-creation/accommodation-creation/model/timeSlot.model';
+import { TimeSlot } from '../../../../core/models/timeSlot.model';
 
 @Component({
   selector: 'app-availability-calendar',

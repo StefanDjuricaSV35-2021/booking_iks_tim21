@@ -15,7 +15,7 @@ import { AccommodationDetailsService } from '../../../../core/services/accommoda
 import { ConfirmationPageComponent } from '../confirmation-page/confirmation-page.component';
 import { ReservationRequestDTO } from '../../../../core/models/ReservationRequestDTO';
 import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
-import { TimeSlot } from '../../../../accommodation-creation/accommodation-creation/model/timeSlot.model';
+import { TimeSlot } from '../../../../core/models/timeSlot.model';
 
 @Component({
   selector: 'app-make-reservation-bar',

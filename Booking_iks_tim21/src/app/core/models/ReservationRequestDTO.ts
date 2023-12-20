@@ -1,4 +1,4 @@
-import {TimeSlot} from "../../accommodation-creation/accommodation-creation/model/timeSlot.model";
+import {TimeSlot} from "./timeSlot.model";
 
 export class ReservationRequestDTO {
   private id?: number;

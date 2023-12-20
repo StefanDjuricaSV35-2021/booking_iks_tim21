@@ -21,10 +21,10 @@ import { AccommodationPricingChangeRequestService } from '../../core/services/ac
 import { AccommodationPricingChangeRequestDTO } from '../../core/models/AccommodationPricingChangeRequestDTO';
 import { AccommodationDetailsDTO } from '../../core/models/AccommodationDetailsDTO';
 import { AccommodationDetailsService } from '../../core/services/accommodation-details/accommodation-details.service';
-import { AccommodationPricingDTO } from '../../accommodation-creation/accommodation-creation/model/accommodationPricing.model';
-import { AccommodationPricingService } from '../../accommodation-creation/accommodation-creation/service/accommodationPricing.service';
-import { FileUploadService } from 'src/app/accommodation-creation/accommodation-creation/service/fileUpload.service';
+import { AccommodationPricingDTO } from '../../core/models/accommodationPricing.model';
+import { FileUploadService } from 'src/app/core/services/file-upload/fileUpload.service';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
 
 enum Amenity {
   TV,

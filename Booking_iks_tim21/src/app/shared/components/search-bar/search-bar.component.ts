@@ -44,12 +44,12 @@ export class SearchBarComponent {
 
   configureFormGroup() {
     this.searchForm = this.formBuilder.group({
-      location: [new Date(this.dateTo), Validators.required],
+      location: [new Date(new Date(this.dateTo).setHours(0,0,0,0)), Validators.required],
       noGuests: [Validators.pattern('^[0-9]*$'), Validators.required],
     });
 
-    this.date = new FormControl(new Date(this.dateFrom), Validators.required);
-    this.date2 = new FormControl(new Date(this.dateTo), Validators.required);
+    this.date = new FormControl(new Date(new Date(this.dateFrom)).setHours(0,0,0,0), Validators.required);
+    this.date2 = new FormControl(new Date(new Date(this.dateTo).setHours(0,0,0,0)), Validators.required);
     this.searchForm.addControl('arrival', this.date);
     this.searchForm.addControl('departure', this.date2);
   }
@@ -74,9 +74,9 @@ export class SearchBarComponent {
   }
 
   arrivalChanged($event: HTMLInputElement) {
-    this.dateFrom = formatDate(new Date($event.value), 'yyyy-MM-dd', 'en_US');
+    this.dateFrom = formatDate(new Date(new Date($event.value).setHours(0,0,0,0)), 'yyyy-MM-dd', 'en_US');
   }
   departureChanged($event: HTMLInputElement) {
-    this.dateTo = formatDate(new Date($event.value), 'yyyy-MM-dd', 'en_US');
+    this.dateTo = formatDate(new Date(new Date($event.value).setHours(0,0,0,0)), 'yyyy-MM-dd', 'en_US');
   }
 }

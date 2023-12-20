@@ -30,13 +30,13 @@ export class AvailabilityCalendarComponent {
         }
       }
     };
-    
+
   }
 
   getYearView(date: Date) {
     for (const ts of this.dates) {
-      let dateFrom = new Date(ts.startDate * 1000);
-      let dateTo = new Date(ts.endDate * 1000);
+      let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
 
       if (
         date.getFullYear() >= dateFrom.getFullYear() &&
@@ -51,8 +51,8 @@ export class AvailabilityCalendarComponent {
 
   getMonthView(date: Date) {
     for (const ts of this.dates) {
-      let dateFrom = new Date(ts.startDate * 1000);
-      let dateTo = new Date(ts.endDate * 1000);
+      let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
 
       dateFrom.setDate(0);
       dateTo.setDate(1);
@@ -62,7 +62,7 @@ export class AvailabilityCalendarComponent {
       console.log(dateTo);
 
       if (date >= dateFrom && date <= dateTo) {
-        
+
         return 'highlight';
       }
     }
@@ -73,8 +73,8 @@ export class AvailabilityCalendarComponent {
   getDayView(date: Date) {
     for (const ts of this.dates) {
 
-      let dateFrom = new Date(ts.startDate);
-      let dateTo = new Date(ts.endDate);
+      let dateFrom = new Date(new Date(ts.startDate).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate).setHours(0,0,0,0));
 
       if (date >= dateFrom && date <= dateTo) {
         return 'highlight Disabled';

@@ -179,8 +179,8 @@ export class AccommodationCreationComponent implements OnInit {
     }
 
     for (const item of pricingList) {
-      const existingStartDate = new Date(item.timeSlot.startDate);
-      const existingEndDate = new Date(item.timeSlot.endDate);
+      const existingStartDate = new Date(new Date(item.timeSlot.startDate).setHours(0,0,0,0));
+      const existingEndDate = new Date(new Date(item.timeSlot.endDate).setHours(0,0,0,0));
 
       if (
         (startDate >= existingStartDate && startDate <= existingEndDate) ||
@@ -206,8 +206,8 @@ export class AccommodationCreationComponent implements OnInit {
       formData.endDate != undefined &&
       formData.endDate != null
     ) {
-      const startDate: Date = new Date(formData.startDate);
-      const endDate: Date = new Date(formData.endDate);
+      const startDate: Date = new Date(new Date(formData.startDate).setHours(0,0,0,0));
+      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0);
       const price: number = parseFloat(formData.price);
 
       if (this.validateDates(startDate, endDate, this.pricingList)) {

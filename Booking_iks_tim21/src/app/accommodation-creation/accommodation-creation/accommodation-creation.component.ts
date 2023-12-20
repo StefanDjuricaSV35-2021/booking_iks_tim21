@@ -8,7 +8,6 @@ import {
   AbstractControl,
   FormBuilder,
 } from '@angular/forms';
-import { AccommodationPricingDTO } from '../../core/models/accommodationPricing.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -19,6 +18,7 @@ import { AccommodationDetailsDTO } from '../../core/models/AccommodationDetailsD
 import { FileUploadService } from '../../core/services/file-upload/fileUpload.service';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
+import {AccommodationPricingDTO} from "../../core/models/accommodationPricing.model";
 
 enum Amenity {
   TV,
@@ -207,7 +207,7 @@ export class AccommodationCreationComponent implements OnInit {
       formData.endDate != null
     ) {
       const startDate: Date = new Date(new Date(formData.startDate).setHours(0,0,0,0));
-      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0);
+      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0));
       const price: number = parseFloat(formData.price);
 
       if (this.validateDates(startDate, endDate, this.pricingList)) {

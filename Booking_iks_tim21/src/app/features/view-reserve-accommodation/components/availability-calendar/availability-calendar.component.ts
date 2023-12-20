@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { TimeSlot } from '../../../../core/models/timeSlot.model';
+import {AppSettings} from "../../../../shared/AppSettings";
 
 @Component({
   selector: 'app-availability-calendar',
@@ -35,8 +36,8 @@ export class AvailabilityCalendarComponent {
 
   getYearView(date: Date) {
     for (const ts of this.dates) {
-      let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
-      let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
+      let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
 
       if (
         date.getFullYear() >= dateFrom.getFullYear() &&
@@ -51,8 +52,8 @@ export class AvailabilityCalendarComponent {
 
   getMonthView(date: Date) {
     for (const ts of this.dates) {
-      let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
-      let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
+      let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
 
       dateFrom.setDate(0);
       dateTo.setDate(1);
@@ -73,8 +74,15 @@ export class AvailabilityCalendarComponent {
   getDayView(date: Date) {
     for (const ts of this.dates) {
 
-      let dateFrom = new Date(new Date(ts.startDate).setHours(0,0,0,0));
-      let dateTo = new Date(new Date(ts.endDate).setHours(0,0,0,0));
+      console.log(date)
+
+      let dateFrom = new Date(new Date(ts.startDate*AppSettings.unixMultiplier).setHours(0,0,0,0));
+      let dateTo = new Date(new Date(ts.endDate*AppSettings.unixMultiplier).setHours(0,0,0,0));
+
+      console.log(dateFrom);
+      console.log(dateTo);
+      console.log("\n")
+
 
       if (date >= dateFrom && date <= dateTo) {
         return 'highlight Disabled';

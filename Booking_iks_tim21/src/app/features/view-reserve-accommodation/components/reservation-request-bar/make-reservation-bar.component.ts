@@ -16,6 +16,7 @@ import { ConfirmationPageComponent } from '../confirmation-page/confirmation-pag
 import { ReservationRequestDTO } from '../../../../core/models/ReservationRequestDTO';
 import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
 import { TimeSlot } from '../../../../core/models/timeSlot.model';
+import {AppSettings} from "../../../../shared/AppSettings";
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -40,7 +41,7 @@ export class MakeReservationBarComponent {
   ngOnInit(): void {
     this.initializeFields();
     this.initializeFormGroup();
-    console.log(this.acc.dates);
+    console.log("ovde sam");
   }
 
   initializeFields() {
@@ -114,8 +115,8 @@ export class MakeReservationBarComponent {
     let dateTo = new Date(new Date(this.reservationForm.get('dateTo')?.value).setHours(0,0,0,0));
 
     let ts = new TimeSlot();
-    ts.startDate = Math.floor(dateFrom.getTime() / 1000);
-    ts.endDate = Math.floor(dateTo.getTime() / 1000);
+    ts.startDate = Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier);
+    ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier);
 
     let req = new ReservationRequestDTO(
       7,
@@ -179,8 +180,8 @@ export function checkIfDateRangeInTimeSlots(
 
 export function checkIfDateInTimeSlots(date: Date, timeSlots: TimeSlot[]) {
   for (const ts of timeSlots) {
-    let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
-    let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
+    let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
+    let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
 
     if (date >= dateFrom && date < dateTo) {
       return true;

@@ -1,4 +1,5 @@
-import { TimeSlot } from "src/app/accommodation-creation/accommodation-creation/model/timeSlot.model";
+import { TimeSlot } from 'src/app/accommodation-creation/accommodation-creation/model/timeSlot.model';
+import { RequestStatus } from './AccommodationChangeRequestDTO';
 
 export interface AccommodationPricingChangeRequestDTO {
   id?: number;
@@ -7,10 +8,4 @@ export interface AccommodationPricingChangeRequestDTO {
   accommodationId: number;
   timeSlot: TimeSlot;
   price: number;
-}
-
-export enum RequestStatus {
-  PENDING,
-  ACCEPTED,
-  DECLINED,
 }

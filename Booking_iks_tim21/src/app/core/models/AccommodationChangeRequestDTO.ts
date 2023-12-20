@@ -1,4 +1,4 @@
-import { Amenity } from './AccommodationDetailsDTO';
+import { AccommodationType, Amenity } from './AccommodationDetailsDTO';
 
 export interface AccommodationChangeRequestDTO {
   id: number;
@@ -23,11 +23,4 @@ export enum RequestStatus {
   PENDING,
   ACCEPTED,
   DECLINED,
-}
-
-enum AccommodationType {
-  Room,
-  House,
-  Condo,
-  Apartment,
 }

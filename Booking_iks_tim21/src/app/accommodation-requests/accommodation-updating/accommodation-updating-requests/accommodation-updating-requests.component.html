@@ -1,0 +1,10 @@
+<div class="pageContainer">
+  <h2 class="title">Accommodation Updating Requests</h2>
+  <div class="accommodation-list">
+    <app-accommodation-updating-requests-preview
+      [accommodationChangeRequest]="accommodation"
+      style="margin: 20px"
+      *ngFor="let accommodation of accommodationChangeRequests"
+    />
+  </div>
+</div>

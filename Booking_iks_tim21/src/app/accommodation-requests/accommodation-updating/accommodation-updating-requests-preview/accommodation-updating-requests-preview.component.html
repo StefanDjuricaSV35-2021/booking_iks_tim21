@@ -1,0 +1,34 @@
+<mat-card style="margin: 20px" class="example-card">
+  <img
+    mat-card-image
+    src="{{
+      'http://localhost:8080/images/' + accommodationChangeRequest.photos[0]
+    }}"
+  />
+  <mat-card-content>
+    <p>Name: {{ accommodationChangeRequest.name }}</p>
+    <p>Location: {{ accommodationChangeRequest.location }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="updatingRequestButtons">
+      <button
+        mat-button
+        [routerLink]="[
+          '/accommodationCreationRequest',
+          accommodationChangeRequest.accommodationId
+        ]"
+      >
+        See original
+      </button>
+      <button
+        mat-button
+        [routerLink]="[
+          '/accommodationUpdatingRequest',
+          accommodationChangeRequest.id
+        ]"
+      >
+        See changes
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

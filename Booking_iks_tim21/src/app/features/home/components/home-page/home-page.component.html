@@ -1,0 +1,10 @@
+<app-search-bar></app-search-bar>
+<div class="accommodation-list">
+  <app-accommodation-preview
+    [accommodationPreview]="accommodation"
+    style="margin: 20px"
+    *ngFor="let accommodation of acc"
+    [showRegularButtons]="true"
+    queryParamsHandling="merge"
+  />
+</div>

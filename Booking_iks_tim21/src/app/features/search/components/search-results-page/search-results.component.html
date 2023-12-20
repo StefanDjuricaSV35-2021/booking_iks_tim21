@@ -1,0 +1,7 @@
+<app-search-bar/>
+<div class="content">
+  <app-filter-bar style="align-self: flex-start"/>
+  <div style="width: 800px">
+  <app-search-preview-card [accommodationPreview]="accommodation" style="margin: 20px" *ngFor="let accommodation of accommodationPreviews"/>
+  </div>
+</div>

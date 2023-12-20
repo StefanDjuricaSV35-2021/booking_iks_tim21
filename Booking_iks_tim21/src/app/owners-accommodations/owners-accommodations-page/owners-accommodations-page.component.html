@@ -1,0 +1,13 @@
+<div class="pageContainer">
+  <h1 class="title">Your Accommodations</h1>
+  <div class="accommodation-list">
+    <app-accommodation-preview
+      [accommodationPreview]="accommodation"
+      style="margin: 20px"
+      *ngFor="let accommodation of accommodations"
+      [showOwnersButtons]="true"
+      queryParamsHandling="merge"
+    >
+    </app-accommodation-preview>
+  </div>
+</div>

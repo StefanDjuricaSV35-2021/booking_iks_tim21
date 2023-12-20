@@ -1,0 +1,10 @@
+<mat-radio-group [ngModel]="typeSelected"  class="filter-section"  >
+  <span>Property type</span>
+  <mat-radio-button #button style="height: 30px"
+                (click)="typeOptionSelect($event, button)"
+                [value]="propertyType"
+                *ngFor="let propertyType of accommodationTypes">
+    {{propertyType}}
+  </mat-radio-button>
+</mat-radio-group>
+

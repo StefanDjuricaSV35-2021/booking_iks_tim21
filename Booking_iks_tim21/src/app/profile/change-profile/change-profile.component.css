@@ -1,0 +1,55 @@
+.coordinatingDiv {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    color: black;
+}
+
+.profileInfoFrame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 75px 0 40px 0;
+    height: auto;
+    width: 500px;
+    background-color: white;
+    box-shadow: 0 2px 32px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    border-radius: 4px;
+}
+
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.inputField {
+    height: 40px;
+    width: 400px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
+.inputLabel {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+    margin-top: 7px;
+    font-weight: 500;
+}
+
+.buttonFrame {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}

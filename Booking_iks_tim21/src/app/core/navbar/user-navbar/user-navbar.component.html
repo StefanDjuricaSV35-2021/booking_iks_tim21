@@ -1,0 +1,40 @@
+<div class="buttonDiv">
+  <button (click)="logOut()" mat-raised-button>Log out</button>
+  <img
+    class="profileImg"
+    src="../../assets/images/profileImage.png"
+    mat-button
+    [matMenuTriggerFor]="menu"
+  />
+  <mat-menu #menu="matMenu" [xPosition]="'before'">
+    <button mat-menu-item routerLink="/profile">Profile</button>
+    <button
+      mat-menu-item
+      routerLink="/ownersAccommodations"
+      *ngIf="role == 'OWNER'"
+    >
+      Your Accommodations
+    </button>
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/accommodation_create"
+    >
+      Create Appartment
+    </button>
+    <button
+      *ngIf="role == 'ADMIN'"
+      mat-menu-item
+      routerLink="/accommodationCreationRequests"
+    >
+      Accommodation Creation Requests
+    </button>
+    <button
+      *ngIf="role == 'ADMIN'"
+      mat-menu-item
+      routerLink="/accommodationUpdatingRequests"
+    >
+      Accommodation Updating Requests
+    </button>
+  </mat-menu>
+</div>

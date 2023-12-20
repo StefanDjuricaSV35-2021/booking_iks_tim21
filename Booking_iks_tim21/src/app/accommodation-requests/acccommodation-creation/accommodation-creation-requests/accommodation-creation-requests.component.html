@@ -1,0 +1,12 @@
+<div class="pageContainer">
+  <h2 class="title">Accommodation Creation Requests</h2>
+  <div class="accommodation-list">
+    <app-accommodation-preview
+      [accommodationPreview]="accommodation"
+      style="margin: 20px"
+      *ngFor="let accommodation of acc"
+      [showCreationRequestButtons]="true"
+      queryParamsHandling="merge"
+    />
+  </div>
+</div>

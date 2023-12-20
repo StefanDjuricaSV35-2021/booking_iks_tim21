@@ -205,7 +205,7 @@ export function checkIfDateInTimeSlots(date: Date, timeSlots: TimeSlot[]) {
     let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
     let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
 
-    if (date >= dateFrom && date < dateTo) {
+    if (date >= dateFrom && date <= dateTo) {
       return true;
     }
   }

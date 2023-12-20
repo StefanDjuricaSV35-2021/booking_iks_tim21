@@ -133,9 +133,7 @@
                 </span>
           </div>
           <div class="calendar container">
-            <mat-card style="border-radius: inherit">
-              <mat-calendar  [dateClass]="dateClass()" ></mat-calendar>
-            </mat-card>
+            <app-availability-calendar style="border-radius: inherit" [dates]="acc.dates!" />
           </div>
         </div>
       </div>

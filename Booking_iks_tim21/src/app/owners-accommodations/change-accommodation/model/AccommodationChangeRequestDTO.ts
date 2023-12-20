@@ -1,6 +1,6 @@
 import {
   Amenity
-} from "../../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../core/models/AccommodationDetailsDTO";
 
 export interface AccommodationChangeRequestDTO {
   id: number;

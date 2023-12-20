@@ -2,15 +2,15 @@ import {Component} from '@angular/core';
 import {MatCalendarCellCssClasses, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
-import {AccommodationDetailsDTO} from "./model/AccommodationDetailsDTO";
+import {AccommodationDetailsDTO} from "../../../../core/models/AccommodationDetailsDTO";
 import {ActivatedRoute} from "@angular/router";
-import {AccommodationDetailsService} from "./service/accommodation-details.service";
+import {AccommodationDetailsService} from "../../../../core/services/accommodation-details/accommodation-details.service";
 import {SharedModule} from "../../../../shared/shared.module";
 import {MatDialog} from "@angular/material/dialog";
-import {MapComponent} from "../map/map.component";
+import {MapComponent} from "../../../../shared/components/map/map.component";
 
 @Component({
-  selector: 'app-accommodation-details',
+  selector: 'app-accommodation-details-page',
   templateUrl: './accommodation-details.component.html',
   styleUrls: ['./accommodation-details.component.css'],
 })
@@ -24,42 +24,6 @@ export class AccommodationDetailsComponent {
     this.service.findById(this.id).subscribe(data => {
       this.acc = data;
     });
-  }
-
-  dateClass() {
-    return (date: Date,view: string): MatCalendarCellCssClasses => {
-
-      for (const dateRange of this.acc.dates!) {
-        let dates=dateRange.split(";")
-        let date1=new Date(Number(dates[0])*1000);
-        let date2=new Date(Number(dates[1])*1000);
-
-        if(view=='year'){
-
-          date1.setDate(1);
-          date2.setDate(1);
-
-
-          if(date>=date1&&date<=date2){
-            return 'highlight';
-          }
-        }
-        else if(view=='multi-year'){
-          if(date.getFullYear()>=date1.getFullYear()&&date.getFullYear()<=date2.getFullYear()){
-            return 'highlight';
-          }
-
-        }else if(view=='month'){
-          if(date>=date1&&date<=date2){
-            return 'highlight Disabled';
-          }
-        }
-
-      }
-
-      return 'Disabled';
-
-    };
   }
 
   openMap() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  ReactiveFormsModule,
   FormGroup,
   FormControl,
   Validators,
@@ -16,10 +17,12 @@ import { User } from 'src/app/profile/model/user.model';
 import { AccommodationPricingService } from './service/accommodationPricing.service';
 import {
   AccommodationDetailsService
-} from "../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
+} from "../../core/services/accommodation-details/accommodation-details.service";
 import {
   AccommodationDetailsDTO
-} from "../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../core/models/AccommodationDetailsDTO";
+import {FileUploadService} from "./service/fileUpload.service";
+import {HttpEvent, HttpEventType, HttpResponse} from "@angular/common/http";
 
 enum Amenity {
   TV,
@@ -363,7 +366,7 @@ export function doubleValidator(): ValidatorFn {
     const value = control.value;
 
     if (Validators.required(control) || Validators.nullValidator(control)) {
-      return null; 
+      return null;
     }
 
     if (isNaN(value) || !isFinite(value)) {

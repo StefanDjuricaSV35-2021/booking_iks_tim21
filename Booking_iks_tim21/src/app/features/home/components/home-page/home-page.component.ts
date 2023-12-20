@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AccommodationPreviewDTO} from "../accommodation-preview/model/accommodationPreviewDTO";
-import {AccommodationPreviewService} from "../accommodation-preview/service/accommodation-preview.service";
+import {AccommodationPreviewService} from "../../../../core/services/accommodation-preview/accommodation-preview.service";
 
 @Component({
   selector: 'app-home-page',

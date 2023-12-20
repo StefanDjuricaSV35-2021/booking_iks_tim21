@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/env/env';
 import {
   AccommodationDetailsDTO
-} from "../../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../../core/models/AccommodationDetailsDTO";
 
 @Injectable({
   providedIn: 'root',

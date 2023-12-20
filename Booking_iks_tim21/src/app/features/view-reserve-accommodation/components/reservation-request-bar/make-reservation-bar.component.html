@@ -6,14 +6,14 @@
 
     <mat-form-field class="custom-form-field" hideRequiredMarker [subscriptSizing]="'dynamic'" >
       <mat-label>Arrival</mat-label>
-      <input (dateChange)="dateChange(arrivalVal,departureVal)" formControlName="dateFrom" matInput [matDatepicker]="pickerArrival" #arrivalVal>
+      <input (dateChange)="updatePrice(arrivalVal,departureVal,noGuests)" formControlName="dateFrom" matInput [matDatepicker]="pickerArrival" #arrivalVal>
       <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
       <mat-datepicker  #pickerArrival></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field  hideRequiredMarker  [subscriptSizing]="'dynamic'" >
       <mat-label>Departure</mat-label>
-      <input (dateChange)="dateChange(arrivalVal,departureVal)" formControlName="dateTo" matInput [matDatepicker]="pickerDeparture" #departureVal>
+      <input (dateChange)="updatePrice(arrivalVal,departureVal,noGuests)" formControlName="dateTo" matInput [matDatepicker]="pickerDeparture" #departureVal>
       <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
       <mat-datepicker #pickerDeparture></mat-datepicker>
     </mat-form-field>
@@ -21,7 +21,7 @@
 
     <mat-form-field hideRequiredMarker  [subscriptSizing]="'dynamic'" >
       <mat-label>Guests</mat-label>
-      <input matInput type="number" formControlName="noGuests" >
+      <input (change)="updatePrice(arrivalVal,departureVal,noGuests)" #noGuests matInput type="number" formControlName="noGuests" >
     </mat-form-field>
 
   </form>
@@ -31,7 +31,7 @@
       <input [(ngModel)]="price" matInput type="number"  readonly>
     </mat-form-field>
 
-    <button color="primary" mat-button class="lightBlue"  (click)="createRequest()" [disabled]="!reservationForm.valid">
+    <button color="primary" mat-button class="lightBlue" (click)="submitRequest()" [disabled]="!reservationForm.valid">
     Reserve
     </button>
 </div>

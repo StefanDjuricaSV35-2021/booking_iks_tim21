@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {SearchPageService} from "./service/search-page.service";
 import {AccommodationPreviewDTO} from "../../../home/components/accommodation-preview/model/accommodationPreviewDTO";
+import {
+  AccommodationPreviewService
+} from "../../../../core/services/accommodation-preview/accommodation-preview.service";
 
 @Component({
   selector: 'app-search-results',
@@ -14,7 +16,7 @@ export class SearchResultsComponent {
   accommodationPreviews:AccommodationPreviewDTO[];
   constructor(
     private route: ActivatedRoute,
-    private service:SearchPageService
+    private service:AccommodationPreviewService
   ) {}
 
   ngOnInit() {

@@ -1,3 +1,5 @@
+import {TimeSlot} from "../../accommodation-creation/accommodation-creation/model/timeSlot.model";
+
 export class AccommodationDetailsDTO {
   id: number;
   ownerId: number;
@@ -12,7 +14,7 @@ export class AccommodationDetailsDTO {
   daysForCancellation: number;
   perNight: boolean;
   enabled: boolean;
-  dates?:string[];
+  dates?:TimeSlot[];
 }
 
 export enum AccommodationType {

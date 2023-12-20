@@ -5,7 +5,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {SharedModule} from "../../shared/shared.module";
 import {MatNativeDateModule} from "@angular/material/core";
 import {AccommodationDetailsComponent} from "./components/accommodation-details/accommodation-details.component";
-import { MapComponent } from './components/map/map.component';
+import { MapComponent } from '../../shared/components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { MakeReservationBarComponent } from './components/reservation-request-bar/make-reservation-bar.component';
@@ -15,6 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { ConfirmationPageComponent } from './components/confirmation-page/confirmation-page.component';
 import {RouterLink} from "@angular/router";
+import { AvailabilityCalendarComponent } from './components/availability-calendar/availability-calendar.component';
 
 
 
@@ -22,10 +23,11 @@ import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
+    AvailabilityCalendarComponent,
     AccommodationDetailsComponent,
-    MapComponent,
     MakeReservationBarComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    AvailabilityCalendarComponent
   ],
   imports: [
     LeafletModule,
@@ -46,7 +48,6 @@ import {RouterLink} from "@angular/router";
 
   exports: [
     ConfirmationPageComponent,
-    MapComponent,
     AccommodationDetailsComponent
   ]
 })

@@ -7,7 +7,6 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -28,6 +27,11 @@ import { RouterModule } from '@angular/router';
 import {HomeModule} from "./features/home/home.module";
 import {ViewReserveAccommodationModule} from "./features/view-reserve-accommodation/view-reserve-accommodation.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {
+  AccommodationCreationComponent
+} from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
+import {AccommodationRequestsModule} from "./accommodation-requests/accommodation-requests.module";
+import {CoreModule} from "./core/core.module";
 
 
 @NgModule({
@@ -36,14 +40,14 @@ import {MatDialogModule} from "@angular/material/dialog";
     AccommodationCreationComponent,
   ],
   imports: [
-
-  ViewReserveAccommodationModule,
+    CoreModule,
+    ReactiveFormsModule,
+    ViewReserveAccommodationModule,
     MatDialogModule,
     HomeModule,
     SearchModule,
     BrowserModule,
     AppRoutingModule,
-    LayoutModule,
     ProfileModule,
     BrowserAnimationsModule,
     MatCardModule,

@@ -4,7 +4,7 @@ import { AccommodationChangeRequestDTO } from 'src/app/owners-accommodations/cha
 import { AccommodationChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-change-request.service';
 import {
   AccommodationPreviewService
-} from "../../../features/home/components/accommodation-preview/service/accommodation-preview.service";
+} from "../../../core/services/accommodation-preview/accommodation-preview.service";
 
 @Component({
   selector: 'app-accommodation-updating-requests',

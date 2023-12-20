@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccommodationDetailsDTO
-} from "../../features/view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+} from "../../core/models/AccommodationDetailsDTO";
 import {
   AccommodationDetailsService
-} from "../../features/view-reserve-accommodation/components/accommodation-details/service/accommodation-details.service";
+} from "../../core/services/accommodation-details/accommodation-details.service";
 
 @Component({
   selector: 'app-owners-accommodation-details',

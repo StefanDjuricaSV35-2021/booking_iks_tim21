@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   AccommodationPreviewService
-} from "../../../features/home/components/accommodation-preview/service/accommodation-preview.service";
+} from "../../../core/services/accommodation-preview/accommodation-preview.service";
 import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
 
 @Component({

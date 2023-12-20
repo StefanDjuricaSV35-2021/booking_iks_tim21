@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {Amenity} from "../../../view-reserve-accommodation/components/accommodation-details/model/AccommodationDetailsDTO";
+import {Amenity} from "../../../../core/models/AccommodationDetailsDTO";
 
 @Component({
   selector: 'app-amenity-form',

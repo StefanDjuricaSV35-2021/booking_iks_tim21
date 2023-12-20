@@ -19,6 +19,9 @@ import {AccommodationDetailsComponent} from "./features/view-reserve-accommodati
 import {
   ConfirmationPageComponent
 } from "./features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component";
+import {
+  AccommodationCreationComponent
+} from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },

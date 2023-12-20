@@ -1,14 +1,14 @@
 import {Component, Input, signal} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AccommodationDetailsDTO} from "../accommodation-details/model/AccommodationDetailsDTO";
+import {AccommodationDetailsDTO} from "../../../../core/models/AccommodationDetailsDTO";
 import {HttpParams} from "@angular/common/http";
-import {formatDate} from "@angular/common";
-import {AccommodationDetailsService} from "../accommodation-details/service/accommodation-details.service";
+import {formatDate, Time} from "@angular/common";
+import {AccommodationDetailsService} from "../../../../core/services/accommodation-details/accommodation-details.service";
 import {ConfirmationPageComponent} from "../confirmation-page/confirmation-page.component";
-import {ReservationRequestDTO} from "./model/ReservationRequestDTO";
-import {MakeReservationService} from "./service/make-reservation.service";
-import {TimeSlot} from "../../../../accommodation-creation/accommodation-creatino/model/timeSlot.model";
+import {ReservationRequestDTO} from "../../../../core/models/ReservationRequestDTO";
+import {ReservationRequestService} from "../../../../core/services/reservation-request/reservation-request-service";
+import {TimeSlot} from "../../../../accommodation-creation/accommodation-creation/model/timeSlot.model";
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -26,21 +26,13 @@ export class MakeReservationBarComponent {
   reservationForm: FormGroup;
   constructor(private fb: FormBuilder,
               private route:ActivatedRoute,
-              private service:AccommodationDetailsService,
+              private accService:AccommodationDetailsService,
               private router:Router,
-              private serviceReq:MakeReservationService) {}
+              private serviceReq:ReservationRequestService) {}
   ngOnInit(): void {
 
     this.initializeFields()
-
-
-    this.reservationForm = this.fb.group({
-      dateFrom: [this.dateFrom, [Validators.required]],
-      dateTo: [this.dateTo, [Validators.required]],
-      noGuests: [this.noGuests, [Validators.required]],
-
-    },);
-    this.reservationForm.setValidators([ValidateDates,ValidateAvailability(this.reservationForm,this.acc.dates!)])
+    this.initializeFormGroup()
 
   }
 
@@ -57,30 +49,27 @@ export class MakeReservationBarComponent {
     });
   }
 
-  saveForm(form: FormGroup) {
+  initializeFormGroup(){
+    this.reservationForm = this.fb.group({
+      dateFrom: [this.dateFrom, [Validators.required]],
+      dateTo: [this.dateTo, [Validators.required]],
+      noGuests: [this.noGuests, [Validators.required,Validators.min(this.acc.minGuests),Validators.max(this.acc.maxGuests)]],
 
-
+    },);
+    this.reservationForm.setValidators([ValidateDates,ValidateAvailability(this.reservationForm,this.acc.dates!)])
 
   }
 
-  protected readonly ValidateDates = ValidateDates;
-  protected readonly ValidateAvailability = ValidateAvailability;
-
-  dateChange(arrivalVal: HTMLInputElement, departureVal: HTMLInputElement) {
-
-    console.log("")
-    let date1=formatDate(new Date(arrivalVal.value),'yyyy-MM-dd','en_US');
-    let date2= formatDate(new Date(departureVal.value),'yyyy-MM-dd','en_US');
+  updatePrice(dateFromInput: HTMLInputElement, dateToInput: HTMLInputElement, noGuestsInput: HTMLInputElement) {
 
     if(this.reservationForm.valid){
 
-      let p=new HttpParams()
-        .set('dateFrom',date1)
-        .set('dateTo',date2)
-        .set('id',this.acc.id)
-        .set('noGuests',this.reservationForm.get('noGuests')?.value)
+      let dateFrom=formatDate(new Date(dateFromInput.value),'yyyy-MM-dd','en_US');
+      let dateTo= formatDate(new Date(dateToInput.value),'yyyy-MM-dd','en_US');
+      let id=this.acc.id;
+      let noGuests=noGuestsInput.value;
 
-      this.service.getPrice(p).subscribe(data => {
+      this.accService.getPrice(id,dateFrom,dateTo,noGuests).subscribe(data => {
         this.price = data;
       });
 
@@ -89,18 +78,26 @@ export class MakeReservationBarComponent {
     }
 
   }
+  submitRequest() {
 
-  protected readonly ConfirmationPageComponent = ConfirmationPageComponent;
+    let req=this.extractFormData();
 
-  createRequest() {
+    this.serviceReq.createReservationReq(req).subscribe(data => {
+      console.log(data);
+    });
 
-    let date1=new Date(this.reservationForm.get('dateFrom')?.value)
-    let date2= new Date(this.reservationForm.get('dateTo')?.value)
+    this.router.navigate([ '/', 'reservation-confirmation' ]);
+
+  }
+
+  extractFormData(){
+
+    let dateFrom=new Date(this.reservationForm.get('dateFrom')?.value)
+    let dateTo= new Date(this.reservationForm.get('dateTo')?.value)
 
     let ts=new TimeSlot()
-    ts.startDate=Math.floor(date1.getTime() / 1000)
-    ts.endDate=Math.floor(date2.getTime() / 1000)
-
+    ts.startDate=Math.floor(dateFrom.getTime() / 1000)
+    ts.endDate=Math.floor(dateTo.getTime() / 1000)
 
     let req=new ReservationRequestDTO(
       7,
@@ -111,64 +108,70 @@ export class MakeReservationBarComponent {
       3
     );
 
-    this.serviceReq.createReservationReq(req).subscribe(data => {
-      console.log(data);
-    });
-
-    this.router.navigate([ '/', 'reservation-confirmation' ]);
-
+    return req;
 
   }
+
 }
 
 export const ValidateDates: ValidatorFn = (fg: AbstractControl) => {
 
+  const dateFromInput:string = fg.get('dateFrom')!.value;
+  const dateToFormInput:string = fg.get('dateTo')!.value;
 
-  const start:string = fg.get('dateFrom')!.value;
-  const end:string = fg.get('dateTo')!.value;
+  let dateFrom=new Date(dateFromInput);
+  let dateTo=new Date(dateToFormInput);
 
-  let date1=new Date(start);
-  let date2=new Date(end);
-
-
-  return start != null && end != null && (date1 < date2)
+  return dateFromInput != null && dateToFormInput != null && (dateFrom < dateTo)
     ? null
     : { range: true };
 };
 
 
-export function ValidateAvailability(fg:FormGroup,dates: string[]): ValidatorFn {
+export function ValidateAvailability(fg:FormGroup,dates: TimeSlot[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
 
-    let dateFrom=fg.get('dateFrom')?.value
-    let dateTo=fg.get('dateTo')?.value
+    let dateFrom=new Date(fg.get('dateFrom')?.value)
+    let dateTo=new Date(fg.get('dateTo')?.value)
 
+    let inTimeSlots=checkIfDateRangeInTimeSlots(dateFrom,dateTo,dates)
 
-
-    let dateFromO=new Date(dateFrom)
-    let dateToO=new Date(dateTo)
-    let valid=false;
-
-    for (var d = dateFromO; d <= dateToO; d.setDate(d.getDate() + 1)) {
-      valid=false;
-      for (const dateRange of dates) {
-
-        let dates=dateRange.split(";")
-        let date1=new Date(Number(dates[0])*1000);
-        let date2=new Date(Number(dates[1])*1000);
-
-        if(d>=date1&&d<date2){
-          valid=true;
-          break;
-        }
-
-      }
-
-      if(!valid){
-        return { valid:false }
-      }
-
+    if(inTimeSlots){
+      return null;
+    }else{
+      return {valid:false};
     }
-    return null
+
     };
+}
+
+
+export function checkIfDateRangeInTimeSlots(dateFrom:Date,dateTo:Date,timeSlots:TimeSlot[]){
+
+  for (var d = dateFrom; d <= dateTo; d.setDate(d.getDate() + 1)) {
+
+    let inDates=checkIfDateInTimeSlots(d,timeSlots);
+
+    if(!inDates){
+      return false
+    }
+
+  }
+
+  return true;
+}
+
+export function checkIfDateInTimeSlots(date:Date,timeSlots:TimeSlot[]){
+  for (const ts of timeSlots) {
+
+    let dateFrom=new Date(ts.startDate*1000);
+    let dateTo=new Date(ts.endDate*1000);
+
+    if(date>=dateFrom&&date<dateTo){
+      return true;
+    }
+
+  }
+
+  return false;
 }

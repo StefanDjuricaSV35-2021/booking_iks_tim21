@@ -23,6 +23,7 @@ import { AccommodationUpdatingRequestsComponent } from './accommodation-updating
 import { AccommodationUpdatingRequestsPreviewComponent } from './accommodation-updating/accommodation-updating-requests-preview/accommodation-updating-requests-preview.component';
 import { AccommodationUpdatingRequestsDetailsComponent } from './accommodation-updating/accommodation-updating-requests-details/accommodation-updating-requests-details.component';
 import { AccommodationCreationRequestDetailsComponent } from './acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AccommodationCreationRequestDetailsComponent } from './acccommodation-c
     BrowserModule,
     AppRoutingModule,
     MatSnackBarModule,
+    MatDialogModule,
   ],
 })
 export class AccommodationRequestsModule {}

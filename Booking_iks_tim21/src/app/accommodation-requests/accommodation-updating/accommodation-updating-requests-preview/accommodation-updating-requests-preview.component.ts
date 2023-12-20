@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AccommodationChangeRequestDTO } from 'src/app/owners-accommodations/change-accommodation/model/AccommodationChangeRequestDTO';
+import { AccommodationChangeRequestDTO } from 'src/app/core/models/AccommodationChangeRequestDTO';
 
 @Component({
   selector: 'app-accommodation-updating-requests-preview',

@@ -10,27 +10,21 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
-import { User } from 'src/app/profile/model/user.model';
-import { UserService } from 'src/app/profile/user.service';
+import { User } from 'src/app/core/models/user.model';
+import { UserService } from 'src/app/core/services/user/user.service';
 import {
   AccommodationChangeRequestDTO,
   RequestStatus,
-} from './model/AccommodationChangeRequestDTO';
-import { AccommodationChangeRequestService } from './service/accommodation-change-request.service';
-import { AccommodationPricingChangeRequestService } from './service/accommodation-pricing-change-request.service';
-import { AccommodationPricingChangeRequestDTO } from './model/AccommodationPricingChangeRequestDTO';
-import {
-  AccommodationDetailsDTO
-} from "../../core/models/AccommodationDetailsDTO";
-import {
-  AccommodationDetailsService
-} from "../../core/services/accommodation-details/accommodation-details.service";
-import {
-  AccommodationPricingDTO
-} from "../../accommodation-creation/accommodation-creation/model/accommodationPricing.model";
-import {
-  AccommodationPricingService
-} from "../../accommodation-creation/accommodation-creation/service/accommodationPricing.service";
+} from '../../core/models/AccommodationChangeRequestDTO';
+import { AccommodationChangeRequestService } from '../../core/services/accommodation-request/accommodation-change-request.service';
+import { AccommodationPricingChangeRequestService } from '../../core/services/accommodation-request/accommodation-pricing-change-request.service';
+import { AccommodationPricingChangeRequestDTO } from '../../core/models/AccommodationPricingChangeRequestDTO';
+import { AccommodationDetailsDTO } from '../../core/models/AccommodationDetailsDTO';
+import { AccommodationDetailsService } from '../../core/services/accommodation-details/accommodation-details.service';
+import { AccommodationPricingDTO } from '../../accommodation-creation/accommodation-creation/model/accommodationPricing.model';
+import { AccommodationPricingService } from '../../accommodation-creation/accommodation-creation/service/accommodationPricing.service';
+import { FileUploadService } from 'src/app/accommodation-creation/accommodation-creation/service/fileUpload.service';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 
 enum Amenity {
   TV,
@@ -68,7 +62,8 @@ export class ChangeAccommodationComponent {
     private accommodationService: AccommodationDetailsService,
     private accommodationPricingService: AccommodationPricingService,
     private accommodationChangeRequestService: AccommodationChangeRequestService,
-    private accommodationPricingChangeRequestService: AccommodationPricingChangeRequestService
+    private accommodationPricingChangeRequestService: AccommodationPricingChangeRequestService,
+    private fileUploadService: FileUploadService
   ) {
     this.pricingForm = new FormGroup({
       street: new FormControl(null, [Validators.required]),
@@ -160,75 +155,52 @@ export class ChangeAccommodationComponent {
       description: this.accommodation.description,
       priceType: this.accommodation.perNight ? 'night' : 'guest',
     });
-
+    this.selectedFileNames = this.accommodation.photos;
     for (const amenity of this.accommodation.amenities as unknown as string[]) {
       this.addAmenity(amenity);
     }
     this.pricingForm.reset;
-
-    //this.imageList = this.accommodation.photos || [];
-
-    for (const photo of this.accommodation.photos) {
-      this.imageList.push(photo);
-    }
-    this.resetSelectedImage();
   }
 
-  imageList: string[] = [];
-  selectedFiles: string[] = [];
-  selectedImage: string | null = null;
-  selectedImageName: string | null = null;
+  selectedFileNames: string[] = [];
+  selectedFiles: File[] = [];
+  selectedFile: File | null = null;
+  imagePreview: string | null = null;
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0] as File;
+    if (file && this.isImageFile(file)) {
+      this.selectedFile = file;
+      this.imagePreview = URL.createObjectURL(file);
+    } else {
+      alert('Selected file must be an image.');
+    }
+  }
 
   addImage(): void {
-    if (this.selectedImage && this.selectedImageName) {
-      this.imageList.push(this.selectedImage);
-      this.selectedFiles.push(this.selectedImageName);
-      this.resetSelectedImage();
+    if (this.selectedFile) {
+      this.selectedFileNames.unshift(this.selectedFile.name);
+      this.selectedFiles.unshift(this.selectedFile);
+      this.selectedFile = null;
+      this.imagePreview = null;
     }
   }
 
   removeImage(image: string): void {
-    const index = this.imageList.indexOf(image);
+    const index = this.selectedFileNames.indexOf(image);
+
     if (index !== -1) {
-      this.imageList.splice(index, 1);
-      this.selectedFiles.splice(index, 1);
+      this.selectedFileNames.splice(index, 1);
+      if (index < this.selectedFiles.length) {
+        this.selectedFiles.splice(index, 1);
+      }
     }
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedImageName = file.name;
-
-      this.convertImageToBase64(file)
-        .then((base64Image: string) => {
-          this.selectedImage = base64Image;
-        })
-        .catch((error) => {
-          console.error('Error converting image to base64:', error);
-        });
-    }
-  }
-
-  convertImageToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        resolve(e.target.result);
-      };
-
-      reader.onerror = (error) => {
-        reject(error);
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  resetSelectedImage(): void {
-    this.selectedImage = null;
-    this.selectedImageName = null;
+  isImageFile(file: File): boolean {
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+    return allowedExtensions.includes(fileExtension || '');
   }
 
   addAmenity(amenity: string): void {
@@ -327,10 +299,26 @@ export class ChangeAccommodationComponent {
     if (this.pricingForm.valid) {
       const formData = this.pricingForm.value;
 
-      if (this.imageList.length <= 0) {
-        alert('Your accommodation needs at least 1 photo.');
-        return;
-      }
+      const form: FormData = new FormData();
+
+      this.selectedFiles.forEach((file) => {
+        form.append('images', file, file.name);
+      });
+
+      this.fileUploadService.upload(form).subscribe({
+        next: (data: HttpEvent<string[]>) => {
+          if (data.type === HttpEventType.UploadProgress) {
+            const percentDone = Math.round((100 * data.loaded) / data.total!);
+            console.log(`File is ${percentDone}% uploaded.`);
+          } else if (data instanceof HttpResponse) {
+            console.log('File is completely uploaded!');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error uploading file:', error);
+          return;
+        },
+      });
 
       if (this.selectedAmenities.length <= 0) {
         alert('Your accommodation needs at least 1 amenity.');
@@ -377,8 +365,7 @@ export class ChangeAccommodationComponent {
         maxGuests: formData.maxGuests,
         description: formData.description,
         amenities: this.getEnumFromKeys(this.selectedAmenities, Amenity),
-        // photos: this.imageList,
-        photos: [],
+        photos: this.selectedFileNames,
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
         enabled: true,

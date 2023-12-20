@@ -12,17 +12,13 @@ import { AccommodationPricingDTO } from './model/accommodationPricing.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserService } from 'src/app/profile/user.service';
-import { User } from 'src/app/profile/model/user.model';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { User } from 'src/app/core/models/user.model';
 import { AccommodationPricingService } from './service/accommodationPricing.service';
-import {
-  AccommodationDetailsService
-} from "../../core/services/accommodation-details/accommodation-details.service";
-import {
-  AccommodationDetailsDTO
-} from "../../core/models/AccommodationDetailsDTO";
-import {FileUploadService} from "./service/fileUpload.service";
-import {HttpEvent, HttpEventType, HttpResponse} from "@angular/common/http";
+import { AccommodationDetailsService } from '../../core/services/accommodation-details/accommodation-details.service';
+import { AccommodationDetailsDTO } from '../../core/models/AccommodationDetailsDTO';
+import { FileUploadService } from './service/fileUpload.service';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 
 enum Amenity {
   TV,
@@ -57,8 +53,8 @@ export class AccommodationCreationComponent implements OnInit {
     private route: ActivatedRoute,
     private accommodationService: AccommodationDetailsService,
     private accommodationPricingService: AccommodationPricingService,
-    private fileUploadService: FileUploadService,
-    ) {
+    private fileUploadService: FileUploadService
+  ) {
     this.pricingForm = this.fb.group({
       street: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
@@ -81,7 +77,7 @@ export class AccommodationCreationComponent implements OnInit {
       priceType: new FormControl(null, [Validators.required]),
     });
 
-    this.dateForm =  this.fb.group({
+    this.dateForm = this.fb.group({
       startDate: new FormControl(null, [Validators.required]),
       endDate: new FormControl(null, [Validators.required]),
       price: new FormControl(null, [Validators.required]),
@@ -130,7 +126,7 @@ export class AccommodationCreationComponent implements OnInit {
       this.selectedFile = file;
       this.imagePreview = URL.createObjectURL(file);
     } else {
-      alert("Selected file must be an image.")
+      alert('Selected file must be an image.');
     }
   }
 
@@ -275,16 +271,15 @@ export class AccommodationCreationComponent implements OnInit {
 
       console.log(this.selectedFileNames);
 
-      const form:FormData = new FormData();
+      const form: FormData = new FormData();
 
-      this.selectedFiles.forEach(file => {
-        form.append('images',file,file.name);
+      this.selectedFiles.forEach((file) => {
+        form.append('images', file, file.name);
       });
 
       this.fileUploadService.upload(form).subscribe({
         next: (data: HttpEvent<string[]>) => {
           if (data.type === HttpEventType.UploadProgress) {
-
             const percentDone = Math.round((100 * data.loaded) / data.total!);
             console.log(`File is ${percentDone}% uploaded.`);
           } else if (data instanceof HttpResponse) {
@@ -294,7 +289,7 @@ export class AccommodationCreationComponent implements OnInit {
         error: (error: any) => {
           console.error('Error uploading file:', error);
           return;
-        }
+        },
       });
 
       const accommodation: AccommodationDetailsDTO = {

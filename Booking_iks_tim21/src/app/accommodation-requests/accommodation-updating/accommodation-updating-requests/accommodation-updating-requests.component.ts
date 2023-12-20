@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccommodationChangeRequestDTO } from 'src/app/owners-accommodations/change-accommodation/model/AccommodationChangeRequestDTO';
-import { AccommodationChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-change-request.service';
-import {
-  AccommodationPreviewService
-} from "../../../core/services/accommodation-preview/accommodation-preview.service";
+import { AccommodationChangeRequestDTO } from 'src/app/core/models/AccommodationChangeRequestDTO';
+import { AccommodationChangeRequestService } from 'src/app/core/services/accommodation-request/accommodation-change-request.service';
+import { AccommodationPreviewService } from '../../../core/services/accommodation-preview/accommodation-preview.service';
 
 @Component({
   selector: 'app-accommodation-updating-requests',

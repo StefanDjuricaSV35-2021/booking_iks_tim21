@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OwnersAccommodationPreviewService } from '../owners-accommodation-preview/service/owners-accommodation-preview.service';
-import { UserService } from 'src/app/profile/user.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
-import { User } from 'src/app/profile/model/user.model';
+import { User } from 'src/app/core/models/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {AccommodationPreviewDTO} from "../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
+import { AccommodationPreviewDTO } from '../../core/models/accommodationPreviewDTO';
+import { AccommodationPreviewService } from 'src/app/core/services/accommodation-preview/accommodation-preview.service';
 
 @Component({
   selector: 'app-owners-accommodations-page',
@@ -22,7 +22,7 @@ export class OwnersAccommodationsPageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private accommodationService: OwnersAccommodationPreviewService
+    private accommodationService: AccommodationPreviewService
   ) {}
 
   ngOnInit(): void {

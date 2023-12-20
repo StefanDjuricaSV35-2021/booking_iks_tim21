@@ -4,16 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccommodationChangeRequestDTO,
   RequestStatus,
-} from 'src/app/owners-accommodations/change-accommodation/model/AccommodationChangeRequestDTO';
-import { AccommodationPricingChangeRequestDTO } from 'src/app/owners-accommodations/change-accommodation/model/AccommodationPricingChangeRequestDTO';
-import { AccommodationChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-change-request.service';
-import { AccommodationPricingChangeRequestService } from 'src/app/owners-accommodations/change-accommodation/service/accommodation-pricing-change-request.service';
-import {
-  AccommodationDetailsService
-} from "../../../core/services/accommodation-details/accommodation-details.service";
-import {
-  AccommodationDetailsDTO
-} from "../../../core/models/AccommodationDetailsDTO";
+} from 'src/app/core/models/AccommodationChangeRequestDTO';
+import { AccommodationPricingChangeRequestDTO } from 'src/app/core/models/AccommodationPricingChangeRequestDTO';
+import { AccommodationChangeRequestService } from 'src/app/core/services/accommodation-request/accommodation-change-request.service';
+import { AccommodationPricingChangeRequestService } from 'src/app/core/services/accommodation-request/accommodation-pricing-change-request.service';
+import { AccommodationDetailsService } from '../../../core/services/accommodation-details/accommodation-details.service';
+import { AccommodationDetailsDTO } from '../../../core/models/AccommodationDetailsDTO';
+import { MatDialog } from '@angular/material/dialog';
+import { MapComponent } from 'src/app/shared/components/map/map.component';
 
 @Component({
   selector: 'app-accommodation-updating-requests-details',
@@ -31,7 +29,8 @@ export class AccommodationUpdatingRequestsDetailsComponent {
     private service: AccommodationChangeRequestService,
     private pricingService: AccommodationPricingChangeRequestService,
     private accommodationService: AccommodationDetailsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
@@ -47,7 +46,18 @@ export class AccommodationUpdatingRequestsDetailsComponent {
         });
     });
   }
+
+  openMap() {
+    this.dialog.open(MapComponent, {
+      data: {
+        location: this.accommodationChangeRequest.location,
+      },
+    });
+  }
+
   protected readonly Array = Array;
+
+  protected readonly encodeURIComponent = encodeURIComponent;
 
   acceptRequest() {
     const accommodationDetails: AccommodationDetailsDTO = {

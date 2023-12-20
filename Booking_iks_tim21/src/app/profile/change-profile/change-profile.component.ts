@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { Role, User } from '../model/user.model';
+import { UserService } from '../../core/services/user/user.service';
+import { Role, User } from '../../core/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,

@@ -1,7 +1,9 @@
 <mat-card style="margin: 20px" class="example-card">
   <img
     mat-card-image
-    src="{{ 'data:image/png;base64,' + accommodationChangeRequest.photos[0] }}"
+    src="{{
+      'http://localhost:8080/images/' + accommodationChangeRequest.photos[0]
+    }}"
   />
   <mat-card-content>
     <p>Name: {{ accommodationChangeRequest.name }}</p>

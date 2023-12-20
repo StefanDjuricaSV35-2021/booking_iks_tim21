@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccommodationDetailsDTO } from '../../models/AccommodationDetailsDTO';
-import {environment} from "../../../../env/env";
-import {Params} from "@angular/router";
-import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
+import { environment } from '../../../../env/env';
+import { Params } from '@angular/router';
+import { AccommodationPreviewDTO } from '../../models/accommodationPreviewDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -46,14 +46,21 @@ export class AccommodationDetailsService {
     );
   }
 
-  public getPrice(id: number, dateFrom: string, dateTo: string, noGuests:string): Observable<number[]> {
+  public getPrice(
+    id: number,
+    dateFrom: string,
+    dateTo: string,
+    noGuests: string
+  ): Observable<number[]> {
+    let params = new HttpParams()
+      .set('dateFrom', dateFrom)
+      .set('dateTo', dateTo)
+      .set('id', id)
+      .set('noGuests', noGuests);
 
-    let params=new HttpParams()
-      .set('dateFrom',dateFrom)
-      .set('dateTo',dateTo)
-      .set('id',id)
-      .set('noGuests',noGuests)
-
-    return this.http.get<number[]>(environment.apiHost+"accommodations/price" ,{ params: params });
+    return this.http.get<number[]>(
+      environment.apiHost + 'accommodations/price',
+      { params: params }
+    );
   }
 }

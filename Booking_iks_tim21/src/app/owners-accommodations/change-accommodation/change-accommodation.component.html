@@ -218,11 +218,13 @@
         />
       </div>
 
-      <div class="image-preview" *ngIf="selectedImage">
-        <img [src]="selectedImage" alt="Selected Image" class="preview-image" />
+      <div class="image-preview" *ngIf="selectedFile">
+        <img [src]="imagePreview" alt="Selected Image" class="preview-image" />
       </div>
 
-      <button type="submit" [disabled]="!selectedImage">Add Image</button>
+      <button type="submit" [disabled]="!selectedFile" class="btn btn-primary">
+        Add Image
+      </button>
     </form>
 
     <div class="image-list">
@@ -235,10 +237,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let image of imageList; let i = index">
-            <td>{{ selectedFiles[i] }}</td>
+          <tr *ngFor="let image of selectedFileNames; let i = index">
+            <td>{{ image }}</td>
             <td>
-              <button (click)="removeImage(image)" class="btn btn-danger">
+              <button
+                type="button"
+                (click)="removeImage(image)"
+                class="btn btn-danger"
+              >
                 Remove
               </button>
             </td>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
+import { AccommodationPreviewDTO } from '../../../core/models/accommodationPreviewDTO';
 
 @Component({
   selector: 'app-accommodation-creation-request-preview',

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {
-  AccommodationPreviewService
-} from "../../../core/services/accommodation-preview/accommodation-preview.service";
-import {AccommodationPreviewDTO} from "../../../features/home/components/accommodation-preview/model/accommodationPreviewDTO";
+import { AccommodationPreviewService } from '../../../core/services/accommodation-preview/accommodation-preview.service';
+import { AccommodationPreviewDTO } from '../../../core/models/accommodationPreviewDTO';
 
 @Component({
   selector: 'app-accommodation-creation-requests',

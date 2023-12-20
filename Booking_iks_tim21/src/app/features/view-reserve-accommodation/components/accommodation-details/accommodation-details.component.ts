@@ -12,6 +12,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '../../../../shared/components/map/map.component';
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
+import {UserService} from "../../../../core/services/user/user.service";
 
 @Component({
   selector: 'app-accommodation-details-page',
@@ -25,17 +26,25 @@ export class AccommodationDetailsComponent {
   selected: null | undefined;
   id: number;
   acc: AccommodationDetailsDTO;
+  ownerName:string;
   constructor(
     private route: ActivatedRoute,
     private service: AccommodationDetailsService,
     public dialog: MatDialog,
-    public authService:AuthService
+    public authService:AuthService,
+    public userService:UserService
   ) {}
   ngOnInit(): void {
     this.setUpNgIf();
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.service.findById(this.id).subscribe((data) => {
       this.acc = data;
+
+      this.userService.getUser(this.acc.ownerId).subscribe((data) => {
+
+        this.ownerName=data.name!;
+      })
+
     });
 
     this.authService.userState.subscribe((result) => {

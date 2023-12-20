@@ -19,6 +19,7 @@ export class MapComponent {
       zoom: 17,
     });
 
+
     Leaflet.marker([lat, long]).addTo(this.map);
 
     const tiles = Leaflet.tileLayer(

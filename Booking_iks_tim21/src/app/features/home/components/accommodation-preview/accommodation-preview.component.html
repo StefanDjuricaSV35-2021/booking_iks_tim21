@@ -29,6 +29,7 @@
       mat-button
       [routerLink]="['/accommodationCreationRequest', accommodationPreview.id]"
       [queryParams]="{ accommodationCreationRequests: 'true' }"
+      *ngIf="showCreationRequestButtons"
     >
       See details
     </button>

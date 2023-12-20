@@ -207,7 +207,7 @@ export class AccommodationCreationComponent implements OnInit {
       formData.endDate != null
     ) {
       const startDate: Date = new Date(new Date(formData.startDate).setHours(0,0,0,0));
-      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0);
+      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0));
       const price: number = parseFloat(formData.price);
 
       if (this.validateDates(startDate, endDate, this.pricingList)) {

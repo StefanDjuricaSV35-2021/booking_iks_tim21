@@ -114,8 +114,8 @@ export class MakeReservationBarComponent {
     let dateTo = new Date(new Date(this.reservationForm.get('dateTo')?.value).setHours(0,0,0,0));
 
     let ts = new TimeSlot();
-    ts.startDate = Math.floor(dateFrom.getTime() / 1000);
-    ts.endDate = Math.floor(dateTo.getTime() / 1000);
+    ts.startDate = Math.floor(dateFrom.getTime());
+    ts.endDate = Math.floor(dateTo.getTime());
 
     let req = new ReservationRequestDTO(
       7,
@@ -179,8 +179,8 @@ export function checkIfDateRangeInTimeSlots(
 
 export function checkIfDateInTimeSlots(date: Date, timeSlots: TimeSlot[]) {
   for (const ts of timeSlots) {
-    let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
-    let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
+    let dateFrom = new Date(new Date(ts.startDate).setHours(0,0,0,0));
+    let dateTo = new Date(new Date(ts.endDate).setHours(0,0,0,0));
 
     if (date >= dateFrom && date < dateTo) {
       return true;

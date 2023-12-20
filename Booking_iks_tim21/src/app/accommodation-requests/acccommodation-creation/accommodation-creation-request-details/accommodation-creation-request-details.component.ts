@@ -2,18 +2,12 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import {
-  AccommodationDetailsDTO
-} from "../../../core/models/AccommodationDetailsDTO";
-import {
-  AccommodationDetailsService
-} from "../../../core/services/accommodation-details/accommodation-details.service";
-import {
-  AccommodationPricingService
-} from "../../../accommodation-creation/accommodation-creation/service/accommodationPricing.service";
-import {
-  AccommodationPricingDTO
-} from "../../../accommodation-creation/accommodation-creation/model/accommodationPricing.model";
+import { AccommodationDetailsDTO } from '../../../core/models/AccommodationDetailsDTO';
+import { AccommodationDetailsService } from '../../../core/services/accommodation-details/accommodation-details.service';
+import { AccommodationPricingService } from '../../../accommodation-creation/accommodation-creation/service/accommodationPricing.service';
+import { AccommodationPricingDTO } from '../../../accommodation-creation/accommodation-creation/model/accommodationPricing.model';
+import { MapComponent } from 'src/app/shared/components/map/map.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-accommodation-creation-request-details',
@@ -31,7 +25,8 @@ export class AccommodationCreationRequestDetailsComponent {
     private router: Router,
     private service: AccommodationDetailsService,
     private pricingService: AccommodationPricingService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -50,6 +45,14 @@ export class AccommodationCreationRequestDetailsComponent {
     });
   }
   protected readonly Array = Array;
+
+  openMap() {
+    this.dialog.open(MapComponent, {
+      data: {
+        location: this.acc.location,
+      },
+    });
+  }
 
   acceptRequest() {
     this.acc.enabled = true;

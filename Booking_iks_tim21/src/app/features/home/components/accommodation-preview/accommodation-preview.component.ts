@@ -11,7 +11,12 @@ export class AccommodationPreviewComponent {
   @Input() accommodationPreview: AccommodationPreviewDTO;
   constructor(private router: Router, private route: ActivatedRoute) {}
 
+  @Input() showRegularButtons: boolean = false;
+  @Input() showOwnersButtons: boolean = false;
+  @Input() showCreationRequestButtons: boolean = false;
+
   navigate() {
+    this.setUpButtons();
     let params = this.route.snapshot.queryParams;
 
     this.router.navigate(['/search', this.accommodationPreview.id], {
@@ -21,6 +26,15 @@ export class AccommodationPreviewComponent {
         dateTo: params['dateTo'],
         noGuests: params['noGuests'],
       },
+    });
+  }
+
+  setUpButtons() {
+    this.route.queryParams.subscribe((params) => {
+      this.showRegularButtons = params['showRegularButtons'] === 'true';
+      this.showOwnersButtons = params['showOwnersButtons'] === 'true';
+      this.showCreationRequestButtons =
+        params['showCreationRequestButtons'] === 'true';
     });
   }
 }

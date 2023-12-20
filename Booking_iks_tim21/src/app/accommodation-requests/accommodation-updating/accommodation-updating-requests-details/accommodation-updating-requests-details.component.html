@@ -150,6 +150,11 @@
                     {{ accommodationChangeRequest.description }}
                   </span>
                 </div>
+                <div class="calendar container">
+                  <mat-card style="border-radius: inherit">
+                    <mat-calendar [(selected)]="selected"></mat-calendar>
+                  </mat-card>
+                </div>
               </div>
             </div>
             <table class="table table-bordered mt-3">

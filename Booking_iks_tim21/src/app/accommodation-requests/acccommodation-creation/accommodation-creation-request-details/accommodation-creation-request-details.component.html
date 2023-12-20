@@ -111,10 +111,12 @@
             />
           </div>
           <div class="location-and-review">
-            <span class="text1 container">
+            <span style="margin-left: 0" class="text1 container">
               {{ acc.location }}
             </span>
-            <button type="button" class="text1 button">See on map</button>
+            <button (click)="openMap()" type="button" class="text1 button">
+              See on map
+            </button>
             <span class="text1 container">★ 6.11</span>
             <button type="button" class="text1 button">
               <span>See reviews</span>
@@ -142,39 +144,41 @@
                 </div>
               </div>
             </div>
-            <table class="table table-bordered mt-3">
-              <thead>
-                <tr>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of pricings; let i = index">
-                  <td>{{ item.timeSlot.startDate | date : "shortDate" }}</td>
-                  <td>{{ item.timeSlot.endDate | date : "shortDate" }}</td>
-                  <td>{{ item.price }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="buttons" *ngIf="showButtons">
-              <button
-                style="width: fit-content; align-self: flex-end"
-                type="button"
-                class="text1 button"
-                (click)="acceptRequest()"
-              >
-                Accept Request
-              </button>
-              <button
-                style="width: fit-content; align-self: flex-end"
-                type="button"
-                class="text1 button"
-                (click)="declineRequest()"
-              >
-                Decline Request
-              </button>
+            <div class="creationRequest">
+              <table class="table table-bordered mt-3">
+                <thead>
+                  <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of pricings; let i = index">
+                    <td>{{ item.timeSlot.startDate | date : "shortDate" }}</td>
+                    <td>{{ item.timeSlot.endDate | date : "shortDate" }}</td>
+                    <td>{{ item.price }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="buttons" *ngIf="showButtons">
+                <button
+                  style="width: fit-content; align-self: flex-end"
+                  type="button"
+                  class="text1 button"
+                  (click)="acceptRequest()"
+                >
+                  Accept Request
+                </button>
+                <button
+                  style="width: fit-content; align-self: flex-end"
+                  type="button"
+                  class="text1 button"
+                  (click)="declineRequest()"
+                >
+                  Decline Request
+                </button>
+              </div>
             </div>
           </div>
         </div>

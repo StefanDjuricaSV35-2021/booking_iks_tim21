@@ -146,8 +146,16 @@
               </div>
             </div>
           </div>
+          <button
+            class="button"
+            [routerLink]="['/changeAccommodation', this.acc.id]"
+            mat-button
+            *ngIf="showForOwner"
+          >
+            Change Accommodation
+          </button>
         </div>
-        <app-make-reservation-bar [acc]="acc" />
+        <app-make-reservation-bar *ngIf="showForAnybody" [acc]="acc" />
       </div>
     </div>
   </body>

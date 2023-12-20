@@ -7,21 +7,16 @@ import { SignupComponent } from './infrastructure/auth/signup/signup.component';
 import { ChangeProfileComponent } from './profile/change-profile/change-profile.component';
 import { ActivateAccountComponent } from './infrastructure/auth/signup/activate.account/activate.account.component';
 import { OwnersAccommodationsPageComponent } from './owners-accommodations/owners-accommodations-page/owners-accommodations-page.component';
-import { OwnersAccommodationDetailsComponent } from './owners-accommodations/owners-accommodation-details/owners-accommodation-details.component';
 import { SearchResultsComponent } from './features/search/components/search-results-page/search-results.component';
 import { ChangeAccommodationComponent } from './owners-accommodations/change-accommodation/change-accommodation.component';
 import { AccommodationCreationRequestsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-requests/accommodation-creation-requests.component';
 import { AccommodationCreationRequestDetailsComponent } from './accommodation-requests/acccommodation-creation/accommodation-creation-request-details/accommodation-creation-request-details.component';
 import { AccommodationUpdatingRequestsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests/accommodation-updating-requests.component';
 import { AccommodationUpdatingRequestsDetailsComponent } from './accommodation-requests/accommodation-updating/accommodation-updating-requests-details/accommodation-updating-requests-details.component';
-import {HomePageComponent} from "./features/home/components/home-page/home-page.component";
-import {AccommodationDetailsComponent} from "./features/view-reserve-accommodation/components/accommodation-details/accommodation-details.component";
-import {
-  ConfirmationPageComponent
-} from "./features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component";
-import {
-  AccommodationCreationComponent
-} from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
+import { HomePageComponent } from './features/home/components/home-page/home-page.component';
+import { AccommodationDetailsComponent } from './features/view-reserve-accommodation/components/accommodation-details/accommodation-details.component';
+import { ConfirmationPageComponent } from './features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component';
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -41,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'ownersAccommodation/:id',
-    component: OwnersAccommodationDetailsComponent,
+    component: AccommodationDetailsComponent,
   },
   { path: 'changeAccommodation/:id', component: ChangeAccommodationComponent },
 

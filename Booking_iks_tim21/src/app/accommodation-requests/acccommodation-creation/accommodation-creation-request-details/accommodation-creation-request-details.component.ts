@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { AccommodationDetailsDTO } from '../../../core/models/AccommodationDetailsDTO';
 import { AccommodationDetailsService } from '../../../core/services/accommodation-details/accommodation-details.service';
-import { AccommodationPricingService } from '../../../accommodation-creation/accommodation-creation/service/accommodationPricing.service';
-import { AccommodationPricingDTO } from '../../../accommodation-creation/accommodation-creation/model/accommodationPricing.model';
+import { AccommodationPricingDTO } from '../../../core/models/accommodationPricing.model';
 import { MapComponent } from 'src/app/shared/components/map/map.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
 
 @Component({
   selector: 'app-accommodation-creation-request-details',

@@ -8,17 +8,17 @@ import {
   AbstractControl,
   FormBuilder,
 } from '@angular/forms';
-import { AccommodationPricingDTO } from './model/accommodationPricing.model';
+import { AccommodationPricingDTO } from '../../core/models/accommodationPricing.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { User } from 'src/app/core/models/user.model';
-import { AccommodationPricingService } from './service/accommodationPricing.service';
 import { AccommodationDetailsService } from '../../core/services/accommodation-details/accommodation-details.service';
 import { AccommodationDetailsDTO } from '../../core/models/AccommodationDetailsDTO';
-import { FileUploadService } from './service/fileUpload.service';
+import { FileUploadService } from '../../core/services/file-upload/fileUpload.service';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
 
 enum Amenity {
   TV,
@@ -179,8 +179,8 @@ export class AccommodationCreationComponent implements OnInit {
     }
 
     for (const item of pricingList) {
-      const existingStartDate = new Date(item.timeSlot.startDate);
-      const existingEndDate = new Date(item.timeSlot.endDate);
+      const existingStartDate = new Date(new Date(item.timeSlot.startDate).setHours(0,0,0,0));
+      const existingEndDate = new Date(new Date(item.timeSlot.endDate).setHours(0,0,0,0));
 
       if (
         (startDate >= existingStartDate && startDate <= existingEndDate) ||
@@ -206,8 +206,8 @@ export class AccommodationCreationComponent implements OnInit {
       formData.endDate != undefined &&
       formData.endDate != null
     ) {
-      const startDate: Date = new Date(formData.startDate);
-      const endDate: Date = new Date(formData.endDate);
+      const startDate: Date = new Date(new Date(formData.startDate).setHours(0,0,0,0));
+      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0);
       const price: number = parseFloat(formData.price);
 
       if (this.validateDates(startDate, endDate, this.pricingList)) {
@@ -269,8 +269,6 @@ export class AccommodationCreationComponent implements OnInit {
         return;
       }
 
-      console.log(this.selectedFileNames);
-
       const form: FormData = new FormData();
 
       this.selectedFiles.forEach((file) => {
@@ -310,6 +308,7 @@ export class AccommodationCreationComponent implements OnInit {
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
         enabled: false,
+        dates:[]
       };
       this.accommodationService.createAccommodation(accommodation).subscribe({
         next: (data: AccommodationDetailsDTO) => {

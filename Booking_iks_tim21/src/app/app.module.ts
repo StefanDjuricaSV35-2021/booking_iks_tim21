@@ -30,8 +30,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {
   AccommodationCreationComponent
 } from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
-import {AccommodationRequestsModule} from "./accommodation-requests/accommodation-requests.module";
 import {CoreModule} from "./core/core.module";
+import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 
 
 @NgModule({

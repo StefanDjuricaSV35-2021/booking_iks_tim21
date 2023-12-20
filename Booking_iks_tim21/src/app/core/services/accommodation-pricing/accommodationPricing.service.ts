@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/env/env';
-import { AccommodationPricingDTO } from '../model/accommodationPricing.model';
+import { AccommodationPricingDTO } from '../../models/accommodationPricing.model';
 
 @Injectable({
   providedIn: 'root',

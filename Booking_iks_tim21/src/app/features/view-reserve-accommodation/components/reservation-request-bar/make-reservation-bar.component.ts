@@ -15,7 +15,7 @@ import { AccommodationDetailsService } from '../../../../core/services/accommoda
 import { ConfirmationPageComponent } from '../confirmation-page/confirmation-page.component';
 import { ReservationRequestDTO } from '../../../../core/models/ReservationRequestDTO';
 import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
-import { TimeSlot } from '../../../../accommodation-creation/accommodation-creation/model/timeSlot.model';
+import { TimeSlot } from '../../../../core/models/timeSlot.model';
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -40,6 +40,7 @@ export class MakeReservationBarComponent {
   ngOnInit(): void {
     this.initializeFields();
     this.initializeFormGroup();
+    console.log(this.acc.dates);
   }
 
   initializeFields() {
@@ -77,12 +78,12 @@ export class MakeReservationBarComponent {
   ) {
     if (this.reservationForm.valid) {
       let dateFrom = formatDate(
-        new Date(dateFromInput.value),
+        new Date(new Date(dateFromInput.value).setHours(0,0,0,0)),
         'yyyy-MM-dd',
         'en_US'
       );
       let dateTo = formatDate(
-        new Date(dateToInput.value),
+        new Date(new Date(dateToInput.value).setHours(0,0,0,0)),
         'yyyy-MM-dd',
         'en_US'
       );
@@ -109,8 +110,8 @@ export class MakeReservationBarComponent {
   }
 
   extractFormData() {
-    let dateFrom = new Date(this.reservationForm.get('dateFrom')?.value);
-    let dateTo = new Date(this.reservationForm.get('dateTo')?.value);
+    let dateFrom = new Date(new Date(this.reservationForm.get('dateFrom')?.value).setHours(0,0,0,0));
+    let dateTo = new Date(new Date(this.reservationForm.get('dateTo')?.value).setHours(0,0,0,0));
 
     let ts = new TimeSlot();
     ts.startDate = Math.floor(dateFrom.getTime() / 1000);
@@ -133,8 +134,8 @@ export const ValidateDates: ValidatorFn = (fg: AbstractControl) => {
   const dateFromInput: string = fg.get('dateFrom')!.value;
   const dateToFormInput: string = fg.get('dateTo')!.value;
 
-  let dateFrom = new Date(dateFromInput);
-  let dateTo = new Date(dateToFormInput);
+  let dateFrom = new Date(new Date(dateFromInput).setHours(0,0,0,0));
+  let dateTo = new Date(new Date(dateToFormInput).setHours(0,0,0,0));
 
   return dateFromInput != null && dateToFormInput != null && dateFrom < dateTo
     ? null
@@ -147,8 +148,8 @@ export function ValidateAvailability(
 ): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (dates == undefined) return { valid: false };
-    let dateFrom = new Date(fg.get('dateFrom')?.value);
-    let dateTo = new Date(fg.get('dateTo')?.value);
+    let dateFrom = new Date(new Date(fg.get('dateFrom')?.value).setHours(0,0,0,0));
+    let dateTo = new Date(new Date(fg.get('dateTo')?.value).setHours(0,0,0,0));
 
     let inTimeSlots = checkIfDateRangeInTimeSlots(dateFrom, dateTo, dates);
 
@@ -178,8 +179,8 @@ export function checkIfDateRangeInTimeSlots(
 
 export function checkIfDateInTimeSlots(date: Date, timeSlots: TimeSlot[]) {
   for (const ts of timeSlots) {
-    let dateFrom = new Date(ts.startDate * 1000);
-    let dateTo = new Date(ts.endDate * 1000);
+    let dateFrom = new Date(new Date(ts.startDate * 1000).setHours(0,0,0,0));
+    let dateTo = new Date(new Date(ts.endDate * 1000).setHours(0,0,0,0));
 
     if (date >= dateFrom && date < dateTo) {
       return true;

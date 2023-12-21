@@ -1,13 +1,13 @@
 import {TimeSlot} from "./timeSlot.model";
 
 export class ReservationRequestDTO {
-  private id?: number;
-  private userId: number;
-  private accommodationId: number;
-  private guestsNumber: number;
-  private price: number;
-  private timeSlot: TimeSlot;
-  private status: ReservationRequestStatus;
+  public id?: number;
+  public userId: number;
+  public accommodationId: number;
+  public guestsNumber: number;
+  public price: number;
+  public timeSlot: TimeSlot;
+  public status: ReservationRequestStatus;
 
   constructor( userId: number, accommodationId: number, guestsNumber: number, price: number, timeSlot: TimeSlot, status: ReservationRequestStatus) {
     this.userId = userId;

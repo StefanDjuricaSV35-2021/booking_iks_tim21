@@ -17,6 +17,9 @@ import { HomePageComponent } from './features/home/components/home-page/home-pag
 import { AccommodationDetailsComponent } from './features/view-reserve-accommodation/components/accommodation-details/accommodation-details.component';
 import { ConfirmationPageComponent } from './features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component';
 import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
+import {
+  ReservationsPageComponent
+} from "./features/reservation-requests/components/reservations-page/reservations-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -25,6 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'search', component: SearchResultsComponent },
+  { path: 'reservationRequests', component: ReservationsPageComponent },
   { path: 'accommodation/:id', component: AccommodationDetailsComponent },
   { path: 'homePage', component: HomePageComponent },
   { path: 'activate', component: ActivateAccountComponent },

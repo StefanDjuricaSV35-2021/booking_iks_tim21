@@ -34,4 +34,14 @@ export class AccommodationPricingService {
       `${environment.apiHost}pricings/${accommodationId}/activeAccommodationPricings`
     );
   }
+
+  public findByAccommodation(id: number): Observable<AccommodationPricingDTO[]> {
+    return this.http.get<AccommodationPricingDTO[]>(
+      environment.apiHost + 'pricings/' + id+"/accommodationPricings"
+    );
+  }
+
+  delete(id: number) {
+    return this.http.delete<AccommodationPricingDTO>(environment.apiHost + 'pricings/' + id);
+  }
 }

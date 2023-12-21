@@ -4,6 +4,8 @@ import {AccommodationDetailsDTO} from "../../models/AccommodationDetailsDTO";
 import {Observable} from "rxjs";
 import {environment} from "../../../../env/env";
 import {ReservationRequestDTO} from "../../models/ReservationRequestDTO";
+import {AccommodationPreviewDTO} from "../../models/accommodationPreviewDTO";
+import {AccommodationPricingDTO} from "../../models/accommodationPricing.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,29 @@ export class ReservationRequestService {
       environment.apiHost + 'reservationRequests',
       resReqDTO,
       { headers: this.headers }
+    );
+  }
+
+  public findAll(): Observable<ReservationRequestDTO[]> {
+    return this.http.get<ReservationRequestDTO[]>(
+      environment.apiHost + 'reservationRequests'
+    );
+  }
+
+  public update(res:ReservationRequestDTO): Observable<ReservationRequestDTO[]> {
+    return this.http.put<ReservationRequestDTO[]>(
+      environment.apiHost + 'reservationRequests',res
+    );
+  }
+
+  public getUserRequests(id:number): Observable<ReservationRequestDTO[]> {
+    return this.http.get<ReservationRequestDTO[]>(
+      environment.apiHost +"reservationRequests/"+ id +'/reservationRequests'
+    );
+  }
+  public getOwnerRequests(id:number): Observable<ReservationRequestDTO[]> {
+    return this.http.get<ReservationRequestDTO[]>(
+      environment.apiHost +"reservationRequests/"+ id +'/ownerReservationRequests'
     );
   }
 }

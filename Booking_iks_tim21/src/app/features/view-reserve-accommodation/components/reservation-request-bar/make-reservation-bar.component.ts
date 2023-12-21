@@ -114,8 +114,8 @@ export class MakeReservationBarComponent {
     let dateTo = new Date(new Date(this.reservationForm.get('dateTo')?.value).setHours(0,0,0,0));
 
     let ts = new TimeSlot();
-    ts.startDate = Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier);
-    ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier);
+    ts.startDate = Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier)+3600000/AppSettings.unixMultiplier;
+    ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier)+3600000/AppSettings.unixMultiplier;
 
     this.route.params.subscribe((params) => {
       this.route.params.subscribe((params) => {

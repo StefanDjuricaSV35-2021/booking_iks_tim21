@@ -84,7 +84,7 @@ export class AvailabilityCalendarComponent {
       console.log("\n")
 
 
-      if (date >= dateFrom && date <= dateTo) {
+      if (date >= dateFrom && date < dateTo) {
         return 'highlight Disabled';
       }
 

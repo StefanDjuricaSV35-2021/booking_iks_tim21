@@ -32,6 +32,7 @@ import {
 } from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
 import {CoreModule} from "./core/core.module";
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
+import {ReservationRequestsModule} from "./features/reservation-requests/reservation-requests.module";
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { AccommodationRequestsModule } from './accommodation-requests/accommodat
     MatRadioModule,
     RouterModule,
     AccommodationRequestsModule,
+    ReservationRequestsModule
   ],
   providers: [
     {

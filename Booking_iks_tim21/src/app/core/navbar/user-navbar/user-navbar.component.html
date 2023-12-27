@@ -36,5 +36,12 @@
     >
       Accommodation Updating Requests
     </button>
+
+    <button
+      *ngIf="role == 'GUEST'||role == 'OWNER'"
+      mat-menu-item
+      routerLink="/reservationRequests"
+    >
+View Res Requests    </button>
   </mat-menu>
 </div>

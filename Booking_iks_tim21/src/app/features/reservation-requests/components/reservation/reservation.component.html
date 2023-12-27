@@ -1,0 +1,37 @@
+<div class="bar">
+  <div class="tr">
+    <span>Accommodation Name</span>
+    <span>{{accName}}</span>
+  </div>
+  <div class="tr">
+    <span>User</span>
+    <span>{{userName}}</span>
+  </div>
+  <div class="tr">
+    <span>Date From</span>
+    <span>{{dateFrom}}</span>
+  </div>
+  <div class="tr">
+    <span>Date To</span>
+    <span>{{dateTo}}</span>
+  </div>
+  <div class="tr">
+    <span>Number of guests</span>
+    <span>{{res.guestsNumber}}</span>
+  </div>
+  <div class="tr">
+    <span>Price</span>
+    <span >{{res.price}}</span>
+  </div>
+  <div class="tr">
+    <span>Status</span>
+    <span [textContent]="this.status"></span>
+  </div>
+  <div class="tr" *ngIf="ReservationRequestStatus[ReservationRequestStatus[this.res.status]]=='Waiting'&& this.role=='OWNER'">
+    <button (click)="accept()">Accept</button>
+    <button (click)="decline()">Decline</button>
+  </div>
+  <div class="tr" *ngIf="ReservationRequestStatus[ReservationRequestStatus[this.res.status]]=='Waiting'&& this.role=='GUEST'">
+    <button (click)="cancel()">Cancel</button>
+  </div>
+</div>

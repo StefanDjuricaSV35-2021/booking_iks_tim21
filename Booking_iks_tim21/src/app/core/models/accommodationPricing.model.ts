@@ -1,7 +1,7 @@
 import { TimeSlot } from "./timeSlot.model";
 
 export class AccommodationPricingDTO {
-    id?: number | 0;
+    id?: number;
     accommodationId: number;
     timeSlot:TimeSlot;
     price: number;

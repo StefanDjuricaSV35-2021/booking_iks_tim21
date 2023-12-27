@@ -38,10 +38,18 @@
     </button>
 
     <button
-      *ngIf="role == 'GUEST'||role == 'OWNER'"
+      *ngIf="role == 'GUEST' || role == 'OWNER'"
       mat-menu-item
       routerLink="/reservationRequests"
     >
-View Res Requests    </button>
+      View Reservation Requests
+    </button>
+    <button
+      *ngIf="role == 'GUEST'"
+      mat-menu-item
+      routerLink="/favoriteAccommodations"
+    >
+      Favorite Accommodations
+    </button>
   </mat-menu>
 </div>

@@ -13,9 +13,12 @@
       mat-button
       [queryParams]="{ showForAnybody: 'false' }"
       [routerLink]="['/accommodation', accommodationPreview.id]"
-      *ngIf="showRegularButtons"
+      *ngIf="showRegularButtons || showFavoriteButtons"
     >
       See details
+    </button>
+    <button mat-button *ngIf="showFavoriteButtons" (click)="removeFavorite()">
+      Remove
     </button>
     <button
       mat-button

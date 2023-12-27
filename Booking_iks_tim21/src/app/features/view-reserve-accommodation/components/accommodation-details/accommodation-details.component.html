@@ -85,7 +85,9 @@
         <div class="apartment-info">
           <div class="info-and-picture">
             <div class="basic-info container">
+              <div class="buttons"></div>
               <h3>{{ acc.name }}</h3>
+
               <span style="font-size: medium">{{ acc.type }}</span>
               <div style="display: flex; align-items: center">
                 <img alt="Frame2403" src="../../assets/images/guest.svg" />
@@ -146,6 +148,18 @@
               </div>
             </div>
           </div>
+          <div class="buttons">
+            <button
+              mat-raised-button
+              class="button lightBlue"
+              color="primary"
+              *ngIf="showForAnybody"
+              (click)="addToFavorites()"
+            >
+              ♥ Save
+            </button>
+          </div>
+
           <button
             class="button"
             [routerLink]="['/changeAccommodation', this.acc.id]"
@@ -155,6 +169,7 @@
             Change Accommodation
           </button>
         </div>
+
         <app-make-reservation-bar *ngIf="showForAnybody" [acc]="acc" />
       </div>
     </div>

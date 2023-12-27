@@ -24,22 +24,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
-import {HomeModule} from "./features/home/home.module";
-import {ViewReserveAccommodationModule} from "./features/view-reserve-accommodation/view-reserve-accommodation.module";
-import {MatDialogModule} from "@angular/material/dialog";
-import {
-  AccommodationCreationComponent
-} from "./accommodation-creation/accommodation-creation/accommodation-creation.component";
-import {CoreModule} from "./core/core.module";
+import { HomeModule } from './features/home/home.module';
+import { ViewReserveAccommodationModule } from './features/view-reserve-accommodation/view-reserve-accommodation.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
+import { CoreModule } from './core/core.module';
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
-import {ReservationRequestsModule} from "./features/reservation-requests/reservation-requests.module";
-
+import { ReservationRequestsModule } from './features/reservation-requests/reservation-requests.module';
+import { FavoriteAccommodationModule } from './features/favorite-accommodation/favorite-accommodation.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AccommodationCreationComponent,
-  ],
+  declarations: [AppComponent, AccommodationCreationComponent],
   imports: [
     CoreModule,
     ReactiveFormsModule,
@@ -65,7 +60,8 @@ import {ReservationRequestsModule} from "./features/reservation-requests/reserva
     MatRadioModule,
     RouterModule,
     AccommodationRequestsModule,
-    ReservationRequestsModule
+    ReservationRequestsModule,
+    FavoriteAccommodationModule,
   ],
   providers: [
     {

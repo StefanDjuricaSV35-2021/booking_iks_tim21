@@ -1,0 +1,14 @@
+<div class="pageContainer">
+  <h1 class="title">Your Favorite Accommodations</h1>
+  <div class="accommodation-list">
+    <app-accommodation-preview
+      [accommodationPreview]="accommodation"
+      style="margin: 20px"
+      *ngFor="let accommodation of accommodations"
+      [showFavoriteButtons]="true"
+      queryParamsHandling="merge"
+      (notifyParent)="removeFavoriteAccommodaiton($event)"
+    >
+    </app-accommodation-preview>
+  </div>
+</div>

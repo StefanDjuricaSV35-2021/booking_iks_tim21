@@ -17,9 +17,8 @@ import { HomePageComponent } from './features/home/components/home-page/home-pag
 import { AccommodationDetailsComponent } from './features/view-reserve-accommodation/components/accommodation-details/accommodation-details.component';
 import { ConfirmationPageComponent } from './features/view-reserve-accommodation/components/confirmation-page/confirmation-page.component';
 import { AccommodationCreationComponent } from './accommodation-creation/accommodation-creation/accommodation-creation.component';
-import {
-  ReservationsPageComponent
-} from "./features/reservation-requests/components/reservations-page/reservations-page.component";
+import { ReservationsPageComponent } from './features/reservation-requests/components/reservations-page/reservations-page.component';
+import { FavoriteAccommodationsPageComponent } from './features/favorite-accommodation/components/favorite-accommodations-page/favorite-accommodations-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -60,6 +59,10 @@ const routes: Routes = [
   {
     path: 'accommodationUpdatingRequest/:id',
     component: AccommodationUpdatingRequestsDetailsComponent,
+  },
+  {
+    path: 'favoriteAccommodations',
+    component: FavoriteAccommodationsPageComponent,
   },
 ];
 

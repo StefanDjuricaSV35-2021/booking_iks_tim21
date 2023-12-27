@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AccommodationPreviewDTO } from '../../../../core/models/accommodationPreviewDTO';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,8 +12,10 @@ export class AccommodationPreviewComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   @Input() showRegularButtons: boolean = false;
+  @Input() showFavoriteButtons: boolean = false;
   @Input() showOwnersButtons: boolean = false;
   @Input() showCreationRequestButtons: boolean = false;
+  @Output() notifyParent: EventEmitter<number> = new EventEmitter();
 
   navigate() {
     this.setUpButtons();
@@ -35,6 +37,11 @@ export class AccommodationPreviewComponent {
       this.showOwnersButtons = params['showOwnersButtons'] === 'true';
       this.showCreationRequestButtons =
         params['showCreationRequestButtons'] === 'true';
+      this.showFavoriteButtons = params['showFavoriteButtons'] === 'true';
     });
+  }
+
+  removeFavorite() {
+    this.notifyParent.emit(this.accommodationPreview.id);
   }
 }

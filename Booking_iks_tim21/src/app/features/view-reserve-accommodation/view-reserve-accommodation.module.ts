@@ -1,25 +1,22 @@
-import { NgModule } from '@angular/core';
-import {MatCardModule} from "@angular/material/card";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {NgForOf, NgIf} from "@angular/common";
-import {SharedModule} from "../../shared/shared.module";
-import {MatNativeDateModule} from "@angular/material/core";
-import {AccommodationDetailsComponent} from "./components/accommodation-details/accommodation-details.component";
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NgForOf, NgIf } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { AccommodationDetailsComponent } from './components/accommodation-details/accommodation-details.component';
 import { MapComponent } from '../../shared/components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MakeReservationBarComponent } from './components/reservation-request-bar/make-reservation-bar.component';
-import {MatInputModule} from "@angular/material/input";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationPageComponent } from './components/confirmation-page/confirmation-page.component';
-import {RouterLink} from "@angular/router";
+import { RouterLink } from '@angular/router';
 import { AvailabilityCalendarComponent } from './components/availability-calendar/availability-calendar.component';
-
-
-
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +24,7 @@ import { AvailabilityCalendarComponent } from './components/availability-calenda
     AccommodationDetailsComponent,
     MakeReservationBarComponent,
     ConfirmationPageComponent,
-    AvailabilityCalendarComponent
+    AvailabilityCalendarComponent,
   ],
   imports: [
     LeafletModule,
@@ -44,11 +41,9 @@ import { AvailabilityCalendarComponent } from './components/availability-calenda
     MatIconModule,
     ReactiveFormsModule,
     RouterLink,
+    MatSnackBarModule,
   ],
 
-  exports: [
-    ConfirmationPageComponent,
-    AccommodationDetailsComponent
-  ]
+  exports: [ConfirmationPageComponent, AccommodationDetailsComponent],
 })
-export class ViewReserveAccommodationModule { }
+export class ViewReserveAccommodationModule {}

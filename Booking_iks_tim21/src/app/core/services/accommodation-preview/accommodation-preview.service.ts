@@ -37,4 +37,10 @@ export class AccommodationPreviewService {
       `${environment.apiHost}accommodations/${ownerId}/accommodations`
     );
   }
+
+  public findById(id: number): Observable<AccommodationPreviewDTO> {
+    return this.http.get<AccommodationPreviewDTO>(
+      environment.apiHost + 'accommodations/preview/' + id
+    );
+  }
 }

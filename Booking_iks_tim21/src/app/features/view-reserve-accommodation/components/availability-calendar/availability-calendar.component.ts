@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { TimeSlot } from '../../../../core/models/timeSlot.model';
 import {AppSettings} from "../../../../shared/AppSettings";
+import {ReservationDTO} from "../../../../core/models/ReservationDTO";
 
 @Component({
   selector: 'app-availability-calendar',
@@ -10,9 +11,13 @@ import {AppSettings} from "../../../../shared/AppSettings";
 })
 export class AvailabilityCalendarComponent {
   @Input() dates: TimeSlot[];
+  @Input() reservations:ReservationDTO[];
 
   dateClass() {
     return (date: Date, view: string): MatCalendarCellCssClasses => {
+
+
+
       if (this.dates == undefined) {
         return 'Disabled';
       }
@@ -34,15 +39,19 @@ export class AvailabilityCalendarComponent {
 
   }
 
+
   getYearView(date: Date) {
     for (const ts of this.dates) {
       let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
       let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
+      dateFrom.setMonth(0);
+      dateFrom.setDate(0);
+      console.log(dateFrom);
+      console.log(date);
+      console.log(dateTo);
 
-      if (
-        date.getFullYear() >= dateFrom.getFullYear() &&
-        date.getFullYear() <= dateTo.getFullYear()
-      ) {
+      if (date >= dateFrom && date < dateTo) {
+
         return 'highlight';
       }
     }
@@ -56,7 +65,6 @@ export class AvailabilityCalendarComponent {
       let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
 
       dateFrom.setDate(0);
-      dateTo.setDate(1);
 
       console.log(dateFrom);
       console.log(date);

@@ -73,18 +73,10 @@ export class ReservationComponent {
     })
     this.updateRequests()
 
-    this.pricingService.findByAccommodation(this.res.accommodationId).subscribe(data=>{
-
-      this.deleteDates(this.dateFrom,this.dateTo,data)
-
-    })
-
-
   }
 
   updateRequests(){
       this.reqService.update(this.res).subscribe(data=>{
-
       })
   }
 
@@ -179,9 +171,6 @@ export class ReservationComponent {
 
 
   }
-
-  protected readonly ReservationRequestStatus = ReservationRequestStatus;
-
   cancel() {
 
     this.status="Cancelled"
@@ -189,4 +178,6 @@ export class ReservationComponent {
     this.updateRequests()
 
   }
+
+  protected readonly ReservationRequestStatus = ReservationRequestStatus;
 }

@@ -8,5 +8,9 @@ export class ReservationDTO{
   public guestsNumber: number;
   public price: number;
   public timeSlot: TimeSlot;
-  public status: ReservationRequestStatus;
+  public status: ReservationStatus;
+}
+
+export enum ReservationStatus {
+  Active, Cancelled
 }

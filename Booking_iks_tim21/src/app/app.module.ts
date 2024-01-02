@@ -32,6 +32,7 @@ import { CoreModule } from './core/core.module';
 import { AccommodationRequestsModule } from './accommodation-requests/accommodation-requests.module';
 import { ReservationRequestsModule } from './features/reservation-requests/reservation-requests.module';
 import { FavoriteAccommodationModule } from './features/favorite-accommodation/favorite-accommodation.module';
+import { ReservationsModule } from './features/reservations/reservations.module';
 
 @NgModule({
   declarations: [AppComponent, AccommodationCreationComponent],
@@ -62,6 +63,7 @@ import { FavoriteAccommodationModule } from './features/favorite-accommodation/f
     AccommodationRequestsModule,
     ReservationRequestsModule,
     FavoriteAccommodationModule,
+    ReservationsModule,
   ],
   providers: [
     {

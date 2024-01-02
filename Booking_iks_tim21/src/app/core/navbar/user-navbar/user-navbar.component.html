@@ -47,6 +47,20 @@
     <button
       *ngIf="role == 'GUEST'"
       mat-menu-item
+      routerLink="/reservationsGuest"
+    >
+      View Reservations
+    </button>
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/reservationsOwner"
+    >
+      View Reservations
+    </button>
+    <button
+      *ngIf="role == 'GUEST'"
+      mat-menu-item
       routerLink="/favoriteAccommodations"
     >
       Favorite Accommodations

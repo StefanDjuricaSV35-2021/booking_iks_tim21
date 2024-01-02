@@ -1,0 +1,55 @@
+<div *ngIf="accommodation" class="bar">
+  <div class="tr">
+    <span class="column-name">Accommodation Name</span>
+    <a
+      [queryParams]="{ showForAnybody: 'false' }"
+      [routerLink]="['/accommodation', accommodation.id]"
+      >{{ accName }}</a
+    >
+  </div>
+  <div class="tr">
+    <span class="column-name">Guest</span>
+    <span>{{ userName }}</span>
+  </div>
+  <div class="tr">
+    <span class="column-name">Date From</span>
+    <span>{{ this.dateFrom }}</span>
+  </div>
+  <div class="tr">
+    <span class="column-name">Date To</span>
+    <span>{{ this.dateTo }}</span>
+  </div>
+  <div class="tr">
+    <span class="column-name">Number of guests</span>
+    <span>{{ reservation.guestsNumber }}</span>
+  </div>
+  <div class="tr">
+    <span class="column-name">Price</span>
+    <span>{{ reservation.price }}</span>
+  </div>
+  <div class="tr">
+    <span class="column-name">Status</span>
+    <span [textContent]="status"></span>
+  </div>
+  <div class="tr" *ngIf="status == 'Active' && this.canBeCancelled">
+    <span class="column-name">Days to cancel</span>
+    <span>{{ daysDifference - accommodation.daysForCancellation + 1 }}</span>
+  </div>
+  <div
+    class="tr"
+    *ngIf="status == 'Active' && this.role == 'OWNER' && this.canBeCancelled"
+  >
+    <button mat-button (click)="cancel()">Cancel</button>
+  </div>
+  <div
+    class="tr"
+    *ngIf="status == 'Active' && this.role == 'GUEST' && this.canBeCancelled"
+  >
+    <div class="buttonFrame">
+      <button mat-raised-button (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+  <div class="tr" *ngIf="status == 'Active' && !this.canBeCancelled">
+    <span>Can't be cancelled</span>
+  </div>
+</div>

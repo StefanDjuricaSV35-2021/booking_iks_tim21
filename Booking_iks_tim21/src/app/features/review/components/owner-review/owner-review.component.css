@@ -28,16 +28,16 @@
 }
 
 button {
-  background-color: #082c3c; /* Button background color */
-  color: #ffffff; /* Button text color */
-  padding: 8px 16px; /* Adjust padding as needed */
+  background-color: #082c3c;
+  color: #ffffff;
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px; /* Rounded corners */
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px; /* Adjust margin as needed */
+  margin-top: 10px;
 }
 
 button:hover {
-  background-color: #555; /* Change color on hover */
+  background-color: darkred;
 }
 

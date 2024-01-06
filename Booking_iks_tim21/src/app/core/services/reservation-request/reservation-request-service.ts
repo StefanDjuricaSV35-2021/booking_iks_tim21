@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AccommodationDetailsDTO} from "../../models/AccommodationDetailsDTO";
 import {Observable} from "rxjs";
 import {environment} from "../../../../env/env";
 import {ReservationRequestDTO} from "../../models/ReservationRequestDTO";
-import {AccommodationPreviewDTO} from "../../models/accommodationPreviewDTO";
-import {AccommodationPricingDTO} from "../../models/accommodationPricing.model";
 
 @Injectable({
   providedIn: 'root'

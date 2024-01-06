@@ -1,1 +1,15 @@
-<p>owner-owner-review-page works!</p>
+<div class="container">
+  <div class="average-grade-box">
+    {{email}}-s Average Grade: {{ averageGrade }}
+    <div [innerHTML]="getStarIcons(averageGrade)"></div>
+  </div>
+  <div class="container">
+    <app-owner-review
+      [revv]="review"
+      style="margin: 20px"
+      *ngFor="let review of ownerReviews"
+    />
+  </div>
+
+</div>
+

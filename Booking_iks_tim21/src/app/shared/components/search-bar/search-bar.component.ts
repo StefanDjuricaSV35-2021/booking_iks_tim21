@@ -40,7 +40,6 @@ export class SearchBarComponent {
       this.dateTo = params['dateTo'];
       this.noGuests = params['noGuests'];
 
-      console.log(this.dateFrom)
     });
   }
 
@@ -50,7 +49,6 @@ export class SearchBarComponent {
       noGuests: [Validators.pattern('^[0-9]*$'), Validators.required],
     });
 
-    console.log(this.dateFrom)
 
     this.date = new FormControl(new Date(new Date(this.dateFrom).setHours(0,0,0,0)), Validators.required);
     this.date2 = new FormControl(new Date(new Date(this.dateTo).setHours(0,0,0,0)), Validators.required);

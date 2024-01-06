@@ -19,7 +19,6 @@ export class AccommodationPricingService {
   createAccommodationPricing(
     accommodationPricingDTO: AccommodationPricingDTO
   ): Observable<AccommodationPricingDTO> {
-    console.log(this.apiUrl);
     return this.http.post<AccommodationPricingDTO>(
       this.apiUrl,
       accommodationPricingDTO,

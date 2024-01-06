@@ -50,7 +50,6 @@ export class FilterBarComponent {
   }
 
   setFilterSelections(selectedFilters:string[]){
-    console.log("a")
     for ( let filterOption of selectedFilters) {
 
       let typeAndValue:string[]=filterOption.split("=")

@@ -279,9 +279,7 @@ export class AccommodationCreationComponent implements OnInit {
         next: (data: HttpEvent<string[]>) => {
           if (data.type === HttpEventType.UploadProgress) {
             const percentDone = Math.round((100 * data.loaded) / data.total!);
-            console.log(`File is ${percentDone}% uploaded.`);
           } else if (data instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
           }
         },
         error: (error: any) => {
@@ -340,7 +338,6 @@ export class AccommodationCreationComponent implements OnInit {
           this.router.navigate(['/homePage']);
         },
         error: (error) => {
-          console.log(accommodation);
           console.error('Failed to create accommodation:', error);
           const errorMessage =
             error?.error?.message || 'Failed to create accommodation.';

@@ -6,7 +6,7 @@ import {
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AccommodationDetailsDTO } from '../../../../core/models/AccommodationDetailsDTO';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { AccommodationDetailsService } from '../../../../core/services/accommodation-details/accommodation-details.service';
 import { SharedModule } from '../../../../shared/shared.module';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,6 +37,7 @@ export class AccommodationDetailsComponent {
   loggedInUser: User;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private service: AccommodationDetailsService,
     public dialog: MatDialog,
@@ -92,6 +93,18 @@ export class AccommodationDetailsComponent {
     });
   }
 
+  ownerReviews(){
+    this.authService.userState.subscribe((result) => {
+      if (result == 'GUEST') {
+        this.router.navigate(['guestOwnerReview', this.acc.ownerId]);
+      }else{
+        this.snackBar.open('Logged in user is not a guest', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      }
+    });
+  }
   addToFavorites() {
     const jwtHelperService = new JwtHelperService();
     const userFromLocalStorage: any = localStorage.getItem('user');

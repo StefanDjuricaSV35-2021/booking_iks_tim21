@@ -22,7 +22,6 @@ export class UserNavbarComponent {
 
   ngOnInit(): void {
     this.authService.userState.subscribe((result) => {
-      console.log('User state changed:', result);
       this.role = result;
     });
   }

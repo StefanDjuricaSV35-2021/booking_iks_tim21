@@ -309,9 +309,7 @@ export class ChangeAccommodationComponent {
         next: (data: HttpEvent<string[]>) => {
           if (data.type === HttpEventType.UploadProgress) {
             const percentDone = Math.round((100 * data.loaded) / data.total!);
-            console.log(`File is ${percentDone}% uploaded.`);
           } else if (data instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
           }
         },
         error: (error: any) => {
@@ -380,7 +378,6 @@ export class ChangeAccommodationComponent {
                 .createAccommodationPricingChangeRequest(pricingChangeRequest)
                 .subscribe({
                   next: (data: AccommodationPricingChangeRequestDTO) => {
-                    console.log(data);
                   },
                   error: (error) => {
                     console.error(

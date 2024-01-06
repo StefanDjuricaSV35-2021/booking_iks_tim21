@@ -40,7 +40,6 @@ export class MapComponent {
   ngOnInit() {}
   ngAfterViewInit(): void {
     this.service.findByLocation(this.location).subscribe((data) => {
-      console.log(data);
       this.lat = data[0].lat;
       this.long = data[0].lon;
 

@@ -45,7 +45,6 @@ export class MakeReservationBarComponent {
   ngOnInit(): void {
     this.initializeFields();
     this.initializeFormGroup();
-    console.log("ovde sam");
   }
 
   initializeFields() {

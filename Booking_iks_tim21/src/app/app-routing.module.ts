@@ -21,6 +21,10 @@ import { ReservationsPageComponent } from './features/reservation-requests/compo
 import { FavoriteAccommodationsPageComponent } from './features/favorite-accommodation/components/favorite-accommodations-page/favorite-accommodations-page.component';
 import { OwnersReservationsPageComponent } from './features/reservations/components/owners-reservations-page/owners-reservations-page.component';
 import { GuestsReservationsPageComponent } from './features/reservations/components/guests-reservations-page/guests-reservations-page.component';
+import {OwnerReviewComponent} from "./features/review/components/owner-review/owner-review.component";
+import {
+  GuestOwnerReviewPageComponent
+} from "./features/review/components/guest-owner-review-page/guest-owner-review-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -36,6 +40,9 @@ const routes: Routes = [
   { path: 'homePage', component: HomePageComponent },
   { path: 'activate', component: ActivateAccountComponent },
   { path: 'activate/:email', component: ActivateAccountComponent },
+  { path: 'guestOwnerReview', component: GuestOwnerReviewPageComponent },
+  { path: 'guestOwnerReview/:ownerId', component: GuestOwnerReviewPageComponent },
+  { path: 'ownerOwnerReview', component: GuestOwnerReviewPageComponent },
   { path: 'reservation-confirmation', component: ConfirmationPageComponent },
   {
     path: 'ownersAccommodations',

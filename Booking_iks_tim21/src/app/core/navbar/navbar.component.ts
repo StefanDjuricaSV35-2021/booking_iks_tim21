@@ -13,7 +13,6 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     // this.role = this.authService.isLoggedIn();
-    // console.log('User state changed:', this.role);
     this.authService.userState.subscribe((result) => {
       this.role = result;
     });

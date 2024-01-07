@@ -3,9 +3,6 @@
     {{email}}-s Average Grade: {{ averageGrade }}
     <div [innerHTML]="getStarIcons(averageGrade)"></div>
   </div>
-
-
-
   <div class="container">
     <div class="container col-12">
       <form class="review-form" (submit)="submitReview()">
@@ -18,8 +15,6 @@
         <button type="submit">Submit Review</button>
       </form>
     </div>
-
-
     <app-owner-review
       [revv]="review"
       style="margin: 20px"

@@ -25,6 +25,9 @@ import {OwnerReviewComponent} from "./features/review/components/owner-review/ow
 import {
   GuestOwnerReviewPageComponent
 } from "./features/review/components/guest-owner-review-page/guest-owner-review-page.component";
+import {
+  OwnerOwnerReviewPageComponent
+} from "./features/review/components/owner-owner-review-page/owner-owner-review-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -42,7 +45,7 @@ const routes: Routes = [
   { path: 'activate/:email', component: ActivateAccountComponent },
   { path: 'guestOwnerReview', component: GuestOwnerReviewPageComponent },
   { path: 'guestOwnerReview/:ownerId', component: GuestOwnerReviewPageComponent },
-  { path: 'ownerOwnerReview', component: GuestOwnerReviewPageComponent },
+  { path: 'ownerOwnerReview', component: OwnerOwnerReviewPageComponent },
   { path: 'reservation-confirmation', component: ConfirmationPageComponent },
   {
     path: 'ownersAccommodations',
@@ -75,6 +78,7 @@ const routes: Routes = [
     path: 'favoriteAccommodations',
     component: FavoriteAccommodationsPageComponent,
   },
+
 ];
 
 @NgModule({

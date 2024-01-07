@@ -65,5 +65,12 @@
     >
       Favorite Accommodations
     </button>
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/ownerOwnerReview"
+    >
+      Owner Reviews
+    </button>
   </mat-menu>
 </div>

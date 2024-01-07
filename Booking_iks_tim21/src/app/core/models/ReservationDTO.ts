@@ -12,5 +12,5 @@ export class ReservationDTO{
 }
 
 export enum ReservationStatus {
-  Active, Cancelled
+  Active, Cancelled,Finished
 }

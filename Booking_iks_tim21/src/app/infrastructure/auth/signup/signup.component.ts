@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SignUp } from '../model/signup.model';
 import { User } from 'src/app/core/models/user.model';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,9 @@ import { User } from 'src/app/core/models/user.model';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService,
+              private snackBar: MatSnackBar,
+              private router: Router) {}
 
   private passwordMatchValidator: ValidatorFn = (
     control: AbstractControl
@@ -78,7 +81,10 @@ export class SignupComponent implements OnInit {
       };
       this.authService.signup(signup).subscribe({
         next: (response: User) => {
-          alert('Signup successful, check your email for confirmation.');
+          this.snackBar.open('Signup successful, check your email for confirmation.', 'Close', {
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          });
           this.router.navigate(['login']);
         },
         error: (error) => {
@@ -89,16 +95,24 @@ export class SignupComponent implements OnInit {
             'Signup failed. User with ' +
               this.signUpForm.value.email +
               ' email already exists.';
-          alert(errorMessage);
+          this.snackBar.open(errorMessage, 'Close', {
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          });
         },
       });
     } else {
       if (this.signUpForm.hasError('passwordMismatch')) {
-        alert('Passwords must match!!');
+        this.snackBar.open('Passwords must match!!', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
       } else {
-        alert(
-          "Some of your credentials aren't correct please check them again!!"
-        );
+
+        this.snackBar.open("Some of your credentials aren't correct please check them again!!", 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
       }
     }
   }

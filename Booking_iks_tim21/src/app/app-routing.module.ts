@@ -28,6 +28,9 @@ import {
 import {
   OwnerOwnerReviewPageComponent
 } from "./features/review/components/owner-owner-review-page/owner-owner-review-page.component";
+import {
+  AccommodationReviewPageComponent
+} from "./features/review/components/accommodation-review-page/accommodation-review-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -45,6 +48,8 @@ const routes: Routes = [
   { path: 'activate/:email', component: ActivateAccountComponent },
   { path: 'guestOwnerReview', component: GuestOwnerReviewPageComponent },
   { path: 'guestOwnerReview/:ownerId', component: GuestOwnerReviewPageComponent },
+  { path: 'accommodationReview', component: AccommodationReviewPageComponent },
+  { path: 'accommodationReview/:accommodationId', component: AccommodationReviewPageComponent },
   { path: 'ownerOwnerReview', component: OwnerOwnerReviewPageComponent },
   { path: 'reservation-confirmation', component: ConfirmationPageComponent },
   {

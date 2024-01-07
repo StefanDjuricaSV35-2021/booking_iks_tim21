@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthModule } from '../../auth.module';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserService } from 'src/app/core/services/user/user-service';
 import { ActivationRequest } from 'src/app/core/models/activationRequest.model';
 import { User } from 'src/app/core/models/user.model';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-activate.account',
@@ -12,6 +13,7 @@ import { User } from 'src/app/core/models/user.model';
 })
 export class ActivateAccountComponent implements OnInit {
   constructor(
+    private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService
@@ -22,7 +24,10 @@ export class ActivateAccountComponent implements OnInit {
   ngOnInit() {
     let e = this.route.snapshot.paramMap.get('email');
     if (e == null) {
-      alert('Error wrong page path!!!');
+      this.snackBar.open("Error wrong page path!!!", 'Close', {
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
       this.router.navigate(['homePage']);
     } else {
       this.userService.getActivationRequest(e).subscribe({
@@ -38,7 +43,10 @@ export class ActivateAccountComponent implements OnInit {
           const errorMessage =
             error?.error?.message ||
             'Failed to load page duo to invalid or expired request.';
-          alert(errorMessage);
+          this.snackBar.open(errorMessage, 'Close', {
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          });
           this.router.navigate(['homePage']);
         },
       });
@@ -48,9 +56,10 @@ export class ActivateAccountComponent implements OnInit {
   activate() {
     this.userService.activateAccount(this.email).subscribe({
       next: (data: User) => {
-        alert(
-          'You have successfully activated your account you will be redirected to login page.'
-        );
+        this.snackBar.open('You have successfully activated your account you will be redirected to login page.', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
         this.router.navigate(['login']);
       },
       error: (error) => {
@@ -59,7 +68,10 @@ export class ActivateAccountComponent implements OnInit {
         const errorMessage =
           error?.error?.message ||
           'Something went wrong upon account activation.';
-        alert(errorMessage);
+        this.snackBar.open(errorMessage, 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
         this.router.navigate(['homePage']);
       },
     });

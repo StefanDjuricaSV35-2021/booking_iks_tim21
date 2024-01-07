@@ -18,7 +18,7 @@ import { AccommodationDetailsService } from 'src/app/core/services/accommodation
 import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
 import { ReservationRequestService } from 'src/app/core/services/reservation-request/reservation-request-service';
 import { ReservationService } from 'src/app/core/services/reservation/reservation-service';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserService } from 'src/app/core/services/user/user-service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { AppSettings } from 'src/app/shared/AppSettings';
 

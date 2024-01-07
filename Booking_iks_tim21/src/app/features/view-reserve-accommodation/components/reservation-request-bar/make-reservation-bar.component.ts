@@ -19,7 +19,7 @@ import { TimeSlot } from '../../../../core/models/timeSlot.model';
 import {AppSettings} from "../../../../shared/AppSettings";
 import {User} from "../../../../core/models/user.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {UserService} from "../../../../core/services/user/user.service";
+import {UserService} from "../../../../core/services/user/user-service";
 
 @Component({
   selector: 'app-make-reservation-bar',

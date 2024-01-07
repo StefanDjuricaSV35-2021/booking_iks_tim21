@@ -12,7 +12,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '../../../../shared/components/map/map.component';
 import { AuthService } from '../../../../infrastructure/auth/auth.service';
-import { UserService } from '../../../../core/services/user/user.service';
+import { UserService } from '../../../../core/services/user/user-service';
 import { Role, User } from 'src/app/core/models/user.model';
 import { FavoriteAccommodationDTO } from 'src/app/core/models/FavoriteAccommodationDTO';
 import { FavoriteAccommodationService } from 'src/app/core/services/favorite-accommodation/favorite-accommodation.service';
@@ -103,6 +103,12 @@ export class AccommodationDetailsComponent {
           horizontalPosition: 'center',
         });
       }
+    });
+  }
+
+  accommodationReviews(){
+    this.authService.userState.subscribe((result) => {
+      this.router.navigate(['accommodationReview', this.acc.id]);
     });
   }
   addToFavorites() {

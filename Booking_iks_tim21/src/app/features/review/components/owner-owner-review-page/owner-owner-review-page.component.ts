@@ -3,7 +3,7 @@ import {ReviewModule} from "../../review.module";
 import {OwnerReviewDTO} from "../../../../core/models/OwnerReviewDTO";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OwnerReviewService} from "../../../../core/services/owner-review/owner-review.service";
-import {UserService} from "../../../../core/services/user/user.service";
+import {UserService} from "../../../../core/services/user/user-service";
 import {Location} from "@angular/common";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {User} from "../../../../core/models/user.model";

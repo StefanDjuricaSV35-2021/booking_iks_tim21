@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="container mt-1">
+    <div class="name">{{ email }}</div>
+    <div class="date">{{ formatDate(revv.timePosted) }}   {{ getStarIcons(revv.rating) }}</div>
+    <div class="comment">{{ revv.comment }}</div>
+  </div>
+  <button *ngIf="isCurrentUser()" (click)="deleteReview()">Delete Review</button>
+</div>

@@ -15,7 +15,7 @@ export class ReviewReportService {
 
   constructor(private http: HttpClient) {}
 
-  public createOwnerReviewReport(
+  public createReviewReport(
     reviewReportDTO: ReviewReportDTO
   ):
     Observable<ReviewReportDTO> {
@@ -26,7 +26,7 @@ export class ReviewReportService {
     );
   }
 
-  public deleteOwnerReviewReport(id: number): Observable<void> {
+  public deleteReviewReport(id: number): Observable<void> {
     return this.http.delete<void>(
       environment.apiHost + 'reports/reviews/'+id,
       { headers: this.headers }

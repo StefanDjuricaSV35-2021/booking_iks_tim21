@@ -7,7 +7,7 @@ import { AccommodationPreviewDTO } from 'src/app/core/models/accommodationPrevie
 import { User } from 'src/app/core/models/user.model';
 import { AccommodationPreviewService } from 'src/app/core/services/accommodation-preview/accommodation-preview.service';
 import { FavoriteAccommodationService } from 'src/app/core/services/favorite-accommodation/favorite-accommodation.service';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserService } from 'src/app/core/services/user/user-service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 
 @Component({

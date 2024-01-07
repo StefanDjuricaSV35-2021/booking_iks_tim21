@@ -5,7 +5,7 @@ import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Role, User} from "../../../../core/models/user.model";
-import {UserService} from "../../../../core/services/user/user.service";
+import {UserService} from "../../../../core/services/user/user-service";
 
 @Component({
   selector: 'app-reservations-page',

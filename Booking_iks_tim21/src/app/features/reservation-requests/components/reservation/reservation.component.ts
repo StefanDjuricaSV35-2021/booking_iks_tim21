@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ReservationRequestDTO, ReservationRequestStatus} from "../../../../core/models/ReservationRequestDTO";
-import {UserService} from "../../../../core/services/user/user.service";
+import {UserService} from "../../../../core/services/user/user-service";
 import {
   AccommodationDetailsService
 } from "../../../../core/services/accommodation-details/accommodation-details.service";

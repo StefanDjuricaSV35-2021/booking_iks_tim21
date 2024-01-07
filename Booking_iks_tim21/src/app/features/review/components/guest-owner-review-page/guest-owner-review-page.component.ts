@@ -5,8 +5,9 @@ import {OwnerReviewService} from "../../../../core/services/owner-review/owner-r
 import {ReviewModule} from "../../review.module";
 import { Location } from '@angular/common';
 import {User} from "../../../../core/models/user.model";
-import {UserService} from "../../../../core/services/user/user.service";
+import {UserService} from "../../../../core/services/user/user-service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-guest-owner-review-page',
@@ -21,6 +22,7 @@ export class GuestOwnerReviewPageComponent {
   public email:string = "Email not found";
   newReview: any = { rating: 1, description: '' };
   constructor(
+    private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute,
     private ownerReviewService: OwnerReviewService,
@@ -40,7 +42,10 @@ export class GuestOwnerReviewPageComponent {
 
     let e = this.route.snapshot.paramMap.get('ownerId');
     if (e == null) {
-      alert('Error wrong page path!!!');
+      this.snackBar.open('Error wrong page path!!!', 'Close', {
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
       this.router.navigate(['homePage']);
     }else{
       this.ownerId = parseInt(e,10);
@@ -92,7 +97,10 @@ export class GuestOwnerReviewPageComponent {
         window.location.reload();
       },error: (error: any) => {
         console.error('Can\'t create owner review since you don\'t have any reservations at that owner.', error);
-        alert('Can\'t create owner review since you don\'t have any reservations at that owner.');
+        this.snackBar.open('Can\'t create owner review since you don\'t have any reservations at that owner.', 'Close', {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
         return;
       },
     });

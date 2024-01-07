@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ReservationDTO } from 'src/app/core/models/ReservationDTO';
 import { Role, User } from 'src/app/core/models/user.model';
 import { ReservationService } from 'src/app/core/services/reservation/reservation-service';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserService } from 'src/app/core/services/user/user-service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 
 @Component({

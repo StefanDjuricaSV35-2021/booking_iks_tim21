@@ -5,5 +5,10 @@
       style="margin: 20px"
       *ngFor="let review of ownerReviewReports"
     />
+    <app-accommodation-review-report
+      [reviewReport]="review"
+      style="margin: 20px"
+      *ngFor="let review of accommodationReviewReports"
+    />
   </div>
 </div>

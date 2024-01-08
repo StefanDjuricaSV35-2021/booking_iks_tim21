@@ -11,14 +11,23 @@ import { UserService } from 'src/app/core/services/user/user-service';
 })
 export class ReviewReportPageComponent {
   public ownerReviewReports: ReviewReportDTO[];
+  public accommodationReviewReports: ReviewReportDTO[];
   constructor(
     private revievReportService: ReviewReportService,
     private userService: UserService
   ) {}
   ngOnInit() {
-    this.revievReportService.findAll().subscribe({
+    this.revievReportService.findAllOwnerReports().subscribe({
       next: (data: ReviewReportDTO[]) => {
         this.ownerReviewReports = data;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+    this.revievReportService.findAllAccommodationReports().subscribe({
+      next: (data: ReviewReportDTO[]) => {
+        this.accommodationReviewReports = data;
       },
       error: (error) => {
         console.error(error);

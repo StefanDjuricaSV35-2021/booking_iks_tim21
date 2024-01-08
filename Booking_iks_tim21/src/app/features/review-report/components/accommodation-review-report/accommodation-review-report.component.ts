@@ -2,22 +2,23 @@ import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { OwnerReviewDTO } from 'src/app/core/models/OwnerReviewDTO';
+import { AccommodationReviewDTO } from 'src/app/core/models/AccommodationReviewDTO';
 import { ReviewReportDTO } from 'src/app/core/models/ReviewReportDTO';
 import { User } from 'src/app/core/models/user.model';
+import { AccommodationReviewService } from 'src/app/core/services/accommodation-review/accommodation-review-service';
 import { OwnerReviewService } from 'src/app/core/services/owner-review/owner-review.service';
 import { ReviewReportService } from 'src/app/core/services/review-report/review-report-service';
 import { UserService } from 'src/app/core/services/user/user-service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 
 @Component({
-  selector: 'app-owner-review-report',
-  templateUrl: './owner-review-report.component.html',
-  styleUrls: ['./owner-review-report.component.css'],
+  selector: 'app-accommodation-review-report',
+  templateUrl: './accommodation-review-report.component.html',
+  styleUrls: ['./accommodation-review-report.component.css'],
 })
-export class OwnerReviewReportComponent {
+export class AccommodationReviewReportComponent {
   @Input() reviewReport: ReviewReportDTO;
-  revv: OwnerReviewDTO;
+  revv: AccommodationReviewDTO;
   public email: string = 'user not found';
   public userEmail: string;
   public role: string;
@@ -26,7 +27,7 @@ export class OwnerReviewReportComponent {
   constructor(
     private snackBar: MatSnackBar,
     private service: UserService,
-    private ownerReviewService: OwnerReviewService,
+    private accommodationReviewService: AccommodationReviewService,
     private location: Location,
     private authService: AuthService,
     private reviewReportService: ReviewReportService
@@ -41,10 +42,10 @@ export class OwnerReviewReportComponent {
     const userFromLocalStorage: any = localStorage.getItem('user');
     this.userEmail = jwtHelperService.decodeToken(userFromLocalStorage).sub;
 
-    this.ownerReviewService
-      .getOwnerReview(this.reviewReport.reportedReviewId)
+    this.accommodationReviewService
+      .getAccommodationReview(this.reviewReport.reportedReviewId)
       .subscribe({
-        next: (data: OwnerReviewDTO) => {
+        next: (data: AccommodationReviewDTO) => {
           if (data == null) {
             return;
           }
@@ -89,11 +90,13 @@ export class OwnerReviewReportComponent {
           console.error(error);
         },
       });
-    this.ownerReviewService.deleteOwnerReview(this.revv.id).subscribe({
-      error: (error) => {
-        console.error(error);
-      },
-    });
+    this.accommodationReviewService
+      .deleteAccommodationReview(this.revv.id)
+      .subscribe({
+        error: (error) => {
+          console.error(error);
+        },
+      });
     this.location.replaceState(this.location.path());
     window.location.reload();
   }

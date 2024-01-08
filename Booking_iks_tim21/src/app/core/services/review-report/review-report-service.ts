@@ -26,6 +26,17 @@ export class ReviewReportService {
     );
   }
 
+  public findAllOwnerReports(): Observable<ReviewReportDTO[]> {
+    return this.http.get<ReviewReportDTO[]>(
+      environment.apiHost + 'reports/reviews/owner'
+    );
+  }
+  public findAllAccommodationReports(): Observable<ReviewReportDTO[]> {
+    return this.http.get<ReviewReportDTO[]>(
+      environment.apiHost + 'reports/reviews/accommodation'
+    );
+  }
+
   public createReviewReport(
     reviewReportDTO: ReviewReportDTO
   ): Observable<ReviewReportDTO> {

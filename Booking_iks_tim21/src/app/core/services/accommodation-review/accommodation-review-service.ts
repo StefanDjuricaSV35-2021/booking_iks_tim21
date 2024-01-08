@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../../../env/env";
-import {ReservationRequestDTO} from "../../models/ReservationRequestDTO";
-import {AccommodationReviewDTO} from "../../models/AccommodationReviewDTO";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../env/env';
+import { ReservationRequestDTO } from '../../models/ReservationRequestDTO';
+import { AccommodationReviewDTO } from '../../models/AccommodationReviewDTO';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccommodationReviewService {
-
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
@@ -18,8 +17,7 @@ export class AccommodationReviewService {
 
   public createAccommodationReview(
     accommodationReviewDTO: AccommodationReviewDTO
-  ):
-    Observable<AccommodationReviewDTO> {
+  ): Observable<AccommodationReviewDTO> {
     return this.http.post<AccommodationReviewDTO>(
       environment.apiHost + 'reviews/accommodations',
       accommodationReviewDTO,
@@ -33,17 +31,32 @@ export class AccommodationReviewService {
     );
   }
 
-  public getAccommodationReviews(id:number): Observable<AccommodationReviewDTO[]> {
+  public getAccommodationReviews(
+    id: number
+  ): Observable<AccommodationReviewDTO[]> {
     return this.http.get<AccommodationReviewDTO[]>(
-      environment.apiHost +"reviews/accommodations/"+ id
+      environment.apiHost + 'reviews/accommodations/' + id
+    );
+  }
+
+  public getAccommodationReview(
+    id: number
+  ): Observable<AccommodationReviewDTO> {
+    return this.http.get<AccommodationReviewDTO>(
+      environment.apiHost + 'reviews/accommodations/one/' + id
     );
   }
 
   public deleteAccommodationReviews(id: number): Observable<void> {
     return this.http.delete<void>(
-      environment.apiHost + 'reviews/accommodations/'+id,
+      environment.apiHost + 'reviews/accommodations/' + id,
       { headers: this.headers }
     );
   }
 
+  public deleteAccommodationReview(id: number): Observable<void> {
+    return this.http.delete<void>(
+      `${environment.apiHost}reviews/accommodations/${id}`
+    );
+  }
 }

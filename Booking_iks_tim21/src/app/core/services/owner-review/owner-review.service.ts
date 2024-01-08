@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {FavoriteAccommodationDTO} from "../../models/FavoriteAccommodationDTO";
-import {environment} from "../../../../env/env";
-import {OwnerReviewDTO} from "../../models/OwnerReviewDTO";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { FavoriteAccommodationDTO } from '../../models/FavoriteAccommodationDTO';
+import { environment } from '../../../../env/env';
+import { OwnerReviewDTO } from '../../models/OwnerReviewDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +21,15 @@ export class OwnerReviewService {
     );
   }
 
-  public getOwnerReviews(
-    ownerId: number
-  ): Observable<OwnerReviewDTO[]> {
+  public getOwnerReviews(ownerId: number): Observable<OwnerReviewDTO[]> {
     return this.http.get<OwnerReviewDTO[]>(
       `${environment.apiHost}reviews/owners/${ownerId}`
+    );
+  }
+
+  public getOwnerReview(id: number): Observable<OwnerReviewDTO> {
+    return this.http.get<OwnerReviewDTO>(
+      `${environment.apiHost}reviews/owners/one/${id}`
     );
   }
 
@@ -40,8 +44,6 @@ export class OwnerReviewService {
   }
 
   public deleteOwnerReview(id: number): Observable<void> {
-    return this.http.delete<void>(
-      `${environment.apiHost}reviews/owners/${id}`
-    );
+    return this.http.delete<void>(`${environment.apiHost}reviews/owners/${id}`);
   }
 }

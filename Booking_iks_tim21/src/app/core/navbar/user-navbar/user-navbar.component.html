@@ -36,6 +36,9 @@
     >
       Accommodation Updating Requests
     </button>
+    <button *ngIf="role == 'ADMIN'" mat-menu-item routerLink="/reviewReports">
+      Review Reports
+    </button>
 
     <button
       *ngIf="role == 'GUEST' || role == 'OWNER'"

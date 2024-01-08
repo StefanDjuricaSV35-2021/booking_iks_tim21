@@ -33,8 +33,8 @@ import { AccommodationRequestsModule } from './accommodation-requests/accommodat
 import { ReservationRequestsModule } from './features/reservation-requests/reservation-requests.module';
 import { FavoriteAccommodationModule } from './features/favorite-accommodation/favorite-accommodation.module';
 import { ReservationsModule } from './features/reservations/reservations.module';
-import {ReviewModule} from "./features/review/review.module";
-
+import { ReviewModule } from './features/review/review.module';
+import { ReviewReportModule } from './features/review-report/review-report.module';
 
 @NgModule({
   declarations: [AppComponent, AccommodationCreationComponent],
@@ -67,6 +67,7 @@ import {ReviewModule} from "./features/review/review.module";
     FavoriteAccommodationModule,
     ReservationsModule,
     ReviewModule,
+    ReviewReportModule,
   ],
   providers: [
     {

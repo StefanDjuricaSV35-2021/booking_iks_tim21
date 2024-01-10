@@ -10,7 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
-import {FilterModule} from "../filter/filter.module";
+import {FilterModule} from "../filter-search/filter.module";
 
 
 

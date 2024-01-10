@@ -1,7 +1,11 @@
-<div >
-  <app-reservation
-    [res]="ress"
-    style="margin: 20px"
-    *ngFor="let ress of res"
-  />
+<div  class="content">
+  <app-res-req-filter-bar (changeStatus)="changeStatus($event);filterRequests()"
+  (changeName)="changeName($event);filterRequests()"/>
+  <div style="width: 800px">
+    <app-reservation
+      [res]="ress"
+      style="margin: 20px"
+      *ngFor="let ress of showedReq"
+    />
+  </div>
 </div>

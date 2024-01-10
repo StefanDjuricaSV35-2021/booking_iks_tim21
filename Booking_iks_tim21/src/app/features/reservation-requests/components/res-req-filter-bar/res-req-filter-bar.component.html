@@ -1,0 +1,23 @@
+<div class="filter-bar">
+
+  <span style="padding: 5px">Filter by:</span>
+
+  <div style="padding-top: 15px" class="filter-section">
+    <mat-form-field (change)="nameChange(name.value)"  [subscriptSizing]="'dynamic'">
+      <mat-label>Accommodation</mat-label>
+      <input #name matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-radio-group class="filter-section"  >
+    <span>Property type</span>
+    <mat-radio-button  #button style="height: 30px"
+                       (click)="statusOptionSelect($event, button)"
+                      [value]="statusType"
+                      *ngFor="let statusType of resReqStatuses">
+      {{statusType}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+
+</div>

@@ -1,0 +1,10 @@
+.content{
+  width: auto;
+  gap: 20px;
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  padding-left:50px ;
+  padding-right:50px ;
+
+}

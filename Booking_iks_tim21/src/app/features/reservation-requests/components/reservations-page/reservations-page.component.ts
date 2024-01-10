@@ -76,7 +76,6 @@ export class ReservationsPageComponent {
 
   changeStatus($event: string | undefined) {
 
-    console.log($event)
     if($event==undefined){
       this.status=undefined;
     }else {
@@ -117,7 +116,6 @@ export class ReservationsPageComponent {
         }
 
         if (!--iterations)
-          console.log(req)
           this.filterByStatus(req)
 
       })
@@ -136,13 +134,11 @@ export class ReservationsPageComponent {
     let reqss:ReservationRequestDTO[]=[];
 
     for (const reqq of reqs) {
-      console.log(ReservationRequestStatus[reqq.status])
-      console.log(ReservationRequestStatus[this.status!])
+
       if(reqq.status.toString()===ReservationRequestStatus[this.status!]){
         reqss.push(reqq)
       }
     }
-    console.log(reqss)
 
     this.showedReq=reqss;
 

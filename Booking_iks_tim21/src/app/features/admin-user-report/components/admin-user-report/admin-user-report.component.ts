@@ -19,11 +19,11 @@ import { UserService } from 'src/app/core/services/user/user-service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 
 @Component({
-  selector: 'app-user-report',
-  templateUrl: './user-report.component.html',
-  styleUrls: ['./user-report.component.css'],
+  selector: 'app-admin-user-report',
+  templateUrl: './admin-user-report.component.html',
+  styleUrls: ['./admin-user-report.component.css'],
 })
-export class UserReportComponent {
+export class AdminUserReportComponent {
   @Input() userReport: UserReportDTO;
   public reporterEmail: string;
   public reportedUser: User;

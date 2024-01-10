@@ -4,11 +4,11 @@ import { UserReportService } from 'src/app/core/services/user-report/user-report
 import { UserService } from 'src/app/core/services/user/user-service';
 
 @Component({
-  selector: 'app-user-report-page',
-  templateUrl: './user-report-page.component.html',
-  styleUrls: ['./user-report-page.component.css'],
+  selector: 'app-admin-user-report-page',
+  templateUrl: './admin-user-report-page.component.html',
+  styleUrls: ['./admin-user-report-page.component.css'],
 })
-export class UserReportPageComponent {
+export class AdminUserReportPageComponent {
   public userReports: UserReportDTO[];
   constructor(
     private userReportService: UserReportService,

@@ -39,7 +39,11 @@
     <button *ngIf="role == 'ADMIN'" mat-menu-item routerLink="/reviewReports">
       Review Reports
     </button>
-    <button *ngIf="role == 'ADMIN'" mat-menu-item routerLink="/userReports">
+    <button
+      *ngIf="role == 'ADMIN'"
+      mat-menu-item
+      routerLink="/adminUserReports"
+    >
       User Reports
     </button>
 

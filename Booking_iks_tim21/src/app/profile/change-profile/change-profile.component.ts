@@ -104,6 +104,7 @@ export class ChangeProfileComponent implements OnInit {
         street: formData.street,
         phone: formData.phone,
         enabled: true,
+        blocked: false,
       };
 
       this.service.update(updatedUser).subscribe({

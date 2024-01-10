@@ -27,6 +27,7 @@ import { OwnerOwnerReviewPageComponent } from './features/review/components/owne
 import { AccommodationReviewPageComponent } from './features/review/components/accommodation-review-page/accommodation-review-page.component';
 import { OwnerReviewReportComponent } from './features/review-report/components/owner-review-report/owner-review-report.component';
 import { ReviewReportPageComponent } from './features/review-report/components/review-report-page/review-report-page.component';
+import { UserReportPageComponent } from './features/user-report/components/user-report-page/user-report-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'ownerOwnerReview', component: OwnerOwnerReviewPageComponent },
   { path: 'reservation-confirmation', component: ConfirmationPageComponent },
   { path: 'reviewReports', component: ReviewReportPageComponent },
+  { path: 'userReports', component: UserReportPageComponent },
   {
     path: 'ownersAccommodations',
     component: OwnersAccommodationsPageComponent,

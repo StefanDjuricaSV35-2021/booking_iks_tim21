@@ -10,6 +10,7 @@ export interface User {
   street?: string | null;
   phone?: string | null;
   enabled?: boolean;
+  blocked?: boolean;
 }
 
 export enum Role {

@@ -1,0 +1,21 @@
+<div class="card" *ngIf="userReport">
+  <div class="container-request">
+    <h1 *ngIf="reportedUser">
+      Request for blocking user: {{ reportedUser.email }}
+    </h1>
+  </div>
+  <div class="container-review">
+    <div class="grey-line"></div>
+    <div class="container mt-1">
+      <div class="comment">Reasons for the request:</div>
+      <div class="comment">{{ userReport.description }}</div>
+    </div>
+  </div>
+  <div class="container-request">
+    <h1>Request submitted by: {{ reporterEmail }}</h1>
+  </div>
+  <div class="button-container">
+    <button (click)="acceptReport()">Block User</button>
+    <button (click)="rejectReport()">Reject Report</button>
+  </div>
+</div>

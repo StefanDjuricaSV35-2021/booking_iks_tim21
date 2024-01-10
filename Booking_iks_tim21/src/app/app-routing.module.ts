@@ -29,6 +29,7 @@ import { OwnerReviewReportComponent } from './features/review-report/components/
 import { ReviewReportPageComponent } from './features/review-report/components/review-report-page/review-report-page.component';
 import { AdminUserReportComponent } from './features/admin-user-report/components/admin-user-report/admin-user-report.component';
 import { AdminUserReportPageComponent } from './features/admin-user-report/components/admin-user-report-page/admin-user-report-page.component';
+import { UserReportPageComponent } from './features/user-report/user-report-page/user-report-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
@@ -88,6 +89,10 @@ const routes: Routes = [
   {
     path: 'favoriteAccommodations',
     component: FavoriteAccommodationsPageComponent,
+  },
+  {
+    path: 'userReport',
+    component: UserReportPageComponent,
   },
 ];
 

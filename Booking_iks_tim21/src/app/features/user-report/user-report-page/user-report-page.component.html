@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <div class="container">
+    <div class="container col-12">
+      <form class="review-form" (submit)="reportUser()">
+        <label for="description">Description: </label>
+        <textarea id="description" name="description" rows="4" cols="50" [(ngModel)]="description" required></textarea>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </div>
+    <app-user-report
+      [user]="u"
+      [isSelected]="selectedUserIndex === i"
+      (cardSelected)="handleCardSelection(i)"
+      style="margin: 20px"
+      *ngFor="let u of reportableUsers; let i = index"
+    />
+  </div>
+
+</div>

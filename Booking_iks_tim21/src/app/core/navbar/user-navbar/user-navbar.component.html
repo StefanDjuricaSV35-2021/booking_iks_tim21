@@ -82,5 +82,21 @@
     >
       Owner Reviews
     </button>
+
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/userReport"
+    >
+      Guest Report
+    </button>
+
+    <button
+      *ngIf="role == 'GUEST'"
+      mat-menu-item
+      routerLink="/userReport"
+    >
+      Owner Report
+    </button>
   </mat-menu>
 </div>

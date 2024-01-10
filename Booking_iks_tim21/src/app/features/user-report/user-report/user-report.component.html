@@ -1,0 +1,10 @@
+<div class="card" [class.selected]="isSelected">
+  <div class="container mt-1">
+    <div class="name">{{ user.email }}</div>
+    <div class="full_name">{{ user.name }}   {{ user.surname }}</div>
+    <div class="description">{{ user.street }} , {{ user.city }} , {{ user.country }}</div>
+  </div>
+  <button *ngIf="!isSelected" (click)="selectCard()">Select User</button>
+  <button class="selected-button" *ngIf="isSelected" (click)="selectCard()">Currently Selected User</button>
+</div>
+

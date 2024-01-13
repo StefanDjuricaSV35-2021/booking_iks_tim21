@@ -1,0 +1,21 @@
+<div >
+  <div class="form">
+    <mat-form-field    >
+      <mat-label>Year</mat-label>
+      <input #yearInp matInput [(ngModel)]="year"  (change)="updateData()"  type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Accommodation</mat-label>
+      <mat-select (selectionChange)="updateData()" [(value)]="accId">
+        <mat-option #accSel [value]="acc.id" *ngFor="let acc of accOptions">{{acc.name}}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div style="width: 80%; height: 400px;margin-left: auto;margin-right: auto" id="chartContainer" echarts (chartInit)="onAnnualChartInit($event)" [options]="annualChartOptions"  class="demo-chart"></div>
+  <div style="width:80%;display:flex;justify-content: right;margin-left: auto;margin-right: auto">
+    <button (click)="exportToPdf()" mat-button style="background-color: #082c3c;color: white">Get PDF</button>
+  </div>
+</div>

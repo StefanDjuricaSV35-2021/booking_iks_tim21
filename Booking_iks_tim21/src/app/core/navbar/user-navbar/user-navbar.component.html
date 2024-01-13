@@ -98,5 +98,13 @@
     >
       Owner Report
     </button>
+
+    <button
+      *ngIf="role == 'OWNER'"
+      mat-menu-item
+      routerLink="/analytics"
+    >
+      Analytics
+    </button>
   </mat-menu>
 </div>

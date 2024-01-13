@@ -30,10 +30,12 @@ import { ReviewReportPageComponent } from './features/review-report/components/r
 import { AdminUserReportComponent } from './features/admin-user-report/components/admin-user-report/admin-user-report.component';
 import { AdminUserReportPageComponent } from './features/admin-user-report/components/admin-user-report-page/admin-user-report-page.component';
 import { UserReportPageComponent } from './features/user-report/user-report-page/user-report-page.component';
+import {ReportPageComponent} from "./features/analytics/components/report-page/report-page.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/homePage', pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent },
+  { path: 'analytics', component: ReportPageComponent },
   { path: 'changeProfile', component: ChangeProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

@@ -37,10 +37,13 @@ import { ReviewModule } from './features/review/review.module';
 import { ReviewReportModule } from './features/review-report/review-report.module';
 import { AdminUserReportModule } from './features/admin-user-report/admin-user-report.module';
 import { UserReportModule } from './features/user-report/user-report.module';
+import {DaterangeReportComponent} from "./features/analytics/components/daterange-report/daterange-report.component";
+import {AnalyticsModule} from "./features/analytics/analytics.module";
 
 @NgModule({
   declarations: [AppComponent, AccommodationCreationComponent],
   imports: [
+    AnalyticsModule,
     CoreModule,
     ReactiveFormsModule,
     ViewReserveAccommodationModule,

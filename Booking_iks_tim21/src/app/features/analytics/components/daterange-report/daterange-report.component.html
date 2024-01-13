@@ -1,0 +1,36 @@
+<div>
+
+  <div id="chartContainer">
+  <div class="datepickers">
+
+    <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
+      <mat-label>Start Date</mat-label>
+      <input (dateChange)="datesChanged(startDateVal,endDateVal)" matInput [matDatepicker]="pickerStart" #startDateVal>
+      <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker  #pickerStart></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker  [subscriptSizing]="'dynamic'" >
+      <mat-label>End Date</mat-label>
+      <input (dateChange)="datesChanged(startDateVal,endDateVal)"  matInput [matDatepicker]="pickerEnd" #endDateVal>
+      <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <div style="display:flex;" >
+
+    <div style="width: 50%;"  echarts (chartInit)="onProfitChartInit($event)" [options]="profitChartOptions" class="demo-chart"></div>
+    <div style="width: 50%;" echarts (chartInit)="onResChartInit($event)" [options]="reservationChartOptions" class="demo-chart"></div>
+
+  </div>
+
+  </div>
+
+  <div style="width:80%;display:flex;justify-content: right;margin-left: auto;margin-right: auto">
+    <button (click)="exportToPdf()" mat-button style="background-color: #082c3c;color: white">Get PDF</button>
+  </div>
+
+</div>
+

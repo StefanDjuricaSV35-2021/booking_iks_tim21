@@ -132,7 +132,7 @@ export class YearlyReportComponent {
   }
 
   exportToPdf() {
-    html2canvas(document.getElementById('chartContainer') as HTMLDivElement).then((canvas) => {
+    html2canvas(document.getElementById('chartContainerYear') as HTMLDivElement).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
 
       // Create a PDF document

@@ -73,10 +73,8 @@ export class NotificationService {
   }
 
 
-  sendMessage(): void {
-
-    let not=new NotificationDTO(NotificationType.ACCOMMODATION_REVIEW,"aa",3)
-    this.stompClient.send("/notifications-ws/send", {}, JSON.stringify(not));
+  sendNotification(notification:NotificationDTO): void {
+    this.stompClient.send("/notifications-ws/send", {}, JSON.stringify(notification));
   }
 
 

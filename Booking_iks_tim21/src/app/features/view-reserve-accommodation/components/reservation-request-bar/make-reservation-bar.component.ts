@@ -1,26 +1,20 @@
-import { Component, Input, signal } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators,} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AccommodationDetailsDTO} from '../../../../core/models/AccommodationDetailsDTO';
+import {formatDate} from '@angular/common';
 import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AccommodationDetailsDTO } from '../../../../core/models/AccommodationDetailsDTO';
-import { HttpParams } from '@angular/common/http';
-import { formatDate, Time } from '@angular/common';
-import { AccommodationDetailsService } from '../../../../core/services/accommodation-details/accommodation-details.service';
-import { ConfirmationPageComponent } from '../confirmation-page/confirmation-page.component';
-import { ReservationRequestDTO } from '../../../../core/models/ReservationRequestDTO';
-import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
-import { TimeSlot } from '../../../../core/models/timeSlot.model';
+  AccommodationDetailsService
+} from '../../../../core/services/accommodation-details/accommodation-details.service';
+import {ReservationRequestDTO} from '../../../../core/models/ReservationRequestDTO';
+import {ReservationRequestService} from '../../../../core/services/reservation-request/reservation-request-service';
+import {TimeSlot} from '../../../../core/models/timeSlot.model';
 import {AppSettings} from "../../../../shared/AppSettings";
 import {User} from "../../../../core/models/user.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {UserService} from "../../../../core/services/user/user-service";
 import {NotificationService} from "../../../../core/services/notification/notification.service";
+import {NotificationDTO, NotificationType} from "../../../../core/models/NotificationDTO";
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -150,8 +144,15 @@ export class MakeReservationBarComponent {
     );
 
     this.serviceReq.createReservationReq(req).subscribe((data) => {
-      console.log(data);
+      this.sendNotification()
     });
+
+  }
+
+  sendNotification(){
+
+    let notification=new NotificationDTO(NotificationType.RESERVATION_REQUEST,"You have a new reservation request",this.acc.ownerId)
+    this.notifService.sendNotification(notification)
 
   }
 

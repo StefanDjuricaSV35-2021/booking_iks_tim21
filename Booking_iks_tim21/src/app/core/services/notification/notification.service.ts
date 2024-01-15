@@ -51,9 +51,9 @@ export class NotificationService {
 
   openSocket() {
         const loggedUserId=sessionStorage.getItem("userId");
-
         const destination = `/user/${loggedUserId}/specific`;
-        this.stompClient.subscribe(destination, (message) => {
+
+    this.stompClient.subscribe(destination, (message) => {
           let duration=6000
             this.snackBar.open(message.body, 'Close', {
               horizontalPosition: "end",
@@ -61,15 +61,15 @@ export class NotificationService {
               panelClass: ['custom-snackbar'],
             });
 
-        });
+        },{ id: loggedUserId+"-notifs" });
   }
 
   closeSocket() {
-
     const loggedUserId=sessionStorage.getItem("userId");
-
     const destination = `/user/${loggedUserId}/specific`;
-    this.stompClient.unsubscribe(destination)
+
+    this.stompClient.unsubscribe(loggedUserId+"-notifs")
+
   }
 
 

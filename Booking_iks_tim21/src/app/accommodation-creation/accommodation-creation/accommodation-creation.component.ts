@@ -325,7 +325,8 @@ export class AccommodationCreationComponent implements OnInit {
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
         enabled: false,
-        dates:[]
+        dates:[],
+        autoAccepting:false
       };
       this.accommodationService.createAccommodation(accommodation).subscribe({
         next: (data: AccommodationDetailsDTO) => {

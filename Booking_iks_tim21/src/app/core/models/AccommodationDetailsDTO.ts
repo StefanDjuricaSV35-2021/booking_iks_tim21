@@ -14,6 +14,7 @@ export class AccommodationDetailsDTO {
   daysForCancellation: number;
   perNight: boolean;
   enabled: boolean;
+  autoAccepting:boolean;
   dates?:TimeSlot[];
 }
 

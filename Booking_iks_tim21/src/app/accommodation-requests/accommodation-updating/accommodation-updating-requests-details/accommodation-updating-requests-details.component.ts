@@ -74,6 +74,7 @@ export class AccommodationUpdatingRequestsDetailsComponent {
       daysForCancellation:
         this.accommodationChangeRequest.daysForCancellation || 0,
       perNight: this.accommodationChangeRequest.perNight || false,
+      autoAccepting:this.accommodationChangeRequest.autoAccepting,
       enabled: true,
     };
 

@@ -35,7 +35,6 @@
         <mat-select
           id="accommodationType"
           formControlName="accommodationType"
-          required
         >
           <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{
             type
@@ -139,6 +138,18 @@
             >Per Night</mat-radio-button
           >
           <mat-radio-button value="guest">Per Guest</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 mt-3">
+        <label>Auto accepting:</label>
+        <mat-radio-group formControlName="autoAccepting">
+          <mat-radio-button value="off" checked="true"
+          >Off</mat-radio-button
+          >
+          <mat-radio-button value="on">On</mat-radio-button>
         </mat-radio-group>
       </div>
     </div>

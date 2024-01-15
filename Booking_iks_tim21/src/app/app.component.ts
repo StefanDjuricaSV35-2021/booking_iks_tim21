@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnDestroy} from '@angular/core';
 import {NotificationService} from "./core/services/notification/notification.service";
 
 @Component({
@@ -6,7 +6,7 @@ import {NotificationService} from "./core/services/notification/notification.ser
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Booking_iks_tim21';
 
   constructor(private notifService:NotificationService) {

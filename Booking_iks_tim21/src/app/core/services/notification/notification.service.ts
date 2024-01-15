@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import * as Stomp from '@stomp/stompjs';
 import SockJS from "sockjs-client/dist/sockjs"
 
@@ -20,9 +20,6 @@ export class NotificationService {
   constructor( private userService:UserService,private snackBar: MatSnackBar) {
   }
 
-  ngOnDestroy(){
-    this.stompClient.disconnect;
-  }
 
   initialize(): void {
     this.initializeWebSocketConnection()
@@ -66,7 +63,6 @@ export class NotificationService {
 
   closeSocket() {
     const loggedUserId=sessionStorage.getItem("userId");
-    const destination = `/user/${loggedUserId}/specific`;
 
     this.stompClient.unsubscribe(loggedUserId+"-notifs")
 

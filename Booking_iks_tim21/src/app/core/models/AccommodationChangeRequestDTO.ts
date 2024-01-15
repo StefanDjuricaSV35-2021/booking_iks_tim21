@@ -16,6 +16,7 @@ export interface AccommodationChangeRequestDTO {
   photos: string[];
   daysForCancellation: number;
   perNight: boolean;
+  autoAccepting:boolean;
   enabled: boolean;
 }
 

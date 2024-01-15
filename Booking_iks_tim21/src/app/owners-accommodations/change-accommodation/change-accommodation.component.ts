@@ -87,6 +87,7 @@ export class ChangeAccommodationComponent {
       ]),
       description: new FormControl(null, [Validators.required]),
       priceType: new FormControl(null, [Validators.required]),
+      autoAccepting: new FormControl(null, [Validators.required]),
     });
 
     this.dateForm = new FormGroup({
@@ -156,6 +157,8 @@ export class ChangeAccommodationComponent {
       daysForCancellation: this.accommodation.daysForCancellation,
       description: this.accommodation.description,
       priceType: this.accommodation.perNight ? 'night' : 'guest',
+      autoAccepting: this.accommodation.autoAccepting ? 'on' : 'off',
+
     });
     this.selectedFileNames = this.accommodation.photos;
     for (const amenity of this.accommodation.amenities as unknown as string[]) {
@@ -319,18 +322,21 @@ export class ChangeAccommodationComponent {
         form.append('images', file, file.name);
       });
 
-      this.fileUploadService.upload(form).subscribe({
-        next: (data: HttpEvent<string[]>) => {
-          if (data.type === HttpEventType.UploadProgress) {
-            const percentDone = Math.round((100 * data.loaded) / data.total!);
-          } else if (data instanceof HttpResponse) {
-          }
-        },
-        error: (error: any) => {
-          console.error('Error uploading file:', error);
-          return;
-        },
-      });
+      if(this.selectedFiles.length!=0) {
+
+        this.fileUploadService.upload(form).subscribe({
+          next: (data: HttpEvent<string[]>) => {
+            if (data.type === HttpEventType.UploadProgress) {
+              const percentDone = Math.round((100 * data.loaded) / data.total!);
+            } else if (data instanceof HttpResponse) {
+            }
+          },
+          error: (error: any) => {
+            console.error('Error uploading file:', error);
+            return;
+          },
+        });
+      }
 
       if (this.selectedAmenities.length <= 0) {
         this.snackBar.open('Your accommodation needs at least 1 amenity.', 'Close', {
@@ -384,8 +390,10 @@ export class ChangeAccommodationComponent {
         photos: this.selectedFileNames,
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
+        autoAccepting:this.pricingForm.get("autoAccepting")!.value != "off",
         enabled: true,
       };
+      console.log(accommodationChangeRequest)
       this.accommodationChangeRequestService
         .createAccommodationChangeRequest(accommodationChangeRequest)
         .subscribe({

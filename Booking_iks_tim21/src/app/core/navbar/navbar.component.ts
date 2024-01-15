@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
+import {NotificationService} from "../services/notification/notification.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 export class NavbarComponent {
   role: string = '';
   constructor(private authService: AuthService, private router: Router) {}
+
 
   ngOnInit(): void {
     // this.role = this.authService.isLoggedIn();

@@ -34,7 +34,7 @@ export class AccommodationReviewComponent {
     });
 
     const jwtHelperService = new JwtHelperService();
-    const userFromLocalStorage: any = localStorage.getItem('user');
+    const userFromLocalStorage: any = sessionStorage.getItem('user');
     this.userEmail = jwtHelperService.decodeToken(userFromLocalStorage).sub;
 
     this.service.getUser(this.revv.reviewerId).subscribe({

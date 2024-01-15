@@ -45,14 +45,14 @@ export class AuthService {
 
   getRole(): any {
     if (this.isLoggedIn()) {
-      const accessToken: any = localStorage.getItem('user');
+      const accessToken: any = sessionStorage.getItem('user');
       return this.jwtHelper.decodeToken(accessToken).role[0].authority;
     }
     return null;
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('user') != null;
+    return sessionStorage.getItem('user') != null;
   }
 
   setUser(): void {

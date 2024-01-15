@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import {NotificationService} from "../../services/notification/notification.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-user-navbar',
@@ -12,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class UserNavbarComponent {
   role: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private notifService:NotificationService) {}
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
@@ -29,10 +31,15 @@ export class UserNavbarComponent {
   logOut(): void {
     this.authService.logout().subscribe({
       next: (_) => {
-        localStorage.removeItem('user');
+        this.notifService.closeSocket();
+        sessionStorage.removeItem('user');
         this.authService.setUser();
         this.router.navigate(['/homePage']);
+        sessionStorage.removeItem("userId")
       },
     });
+    this.notifService
   }
+
+
 }

@@ -39,6 +39,7 @@ import { AdminUserReportModule } from './features/admin-user-report/admin-user-r
 import { UserReportModule } from './features/user-report/user-report.module';
 import {DaterangeReportComponent} from "./features/analytics/components/daterange-report/daterange-report.component";
 import {AnalyticsModule} from "./features/analytics/analytics.module";
+import {NotificationService} from "./core/services/notification/notification.service";
 
 @NgModule({
   declarations: [AppComponent, AccommodationCreationComponent],
@@ -77,6 +78,7 @@ import {AnalyticsModule} from "./features/analytics/analytics.module";
     UserReportModule,
   ],
   providers: [
+   NotificationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

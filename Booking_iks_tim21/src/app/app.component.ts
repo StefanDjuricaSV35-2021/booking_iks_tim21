@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
+import {NotificationService} from "./core/services/notification/notification.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Booking_iks_tim21';
+
+  constructor(private notifService:NotificationService) {
+
+    notifService.initialize();
+
+  }
+
+
 }

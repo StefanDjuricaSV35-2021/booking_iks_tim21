@@ -46,9 +46,6 @@ export class AvailabilityCalendarComponent {
       let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
       dateFrom.setMonth(0);
       dateFrom.setDate(0);
-      console.log(dateFrom);
-      console.log(date);
-      console.log(dateTo);
 
       if (date >= dateFrom && date < dateTo) {
 
@@ -66,10 +63,6 @@ export class AvailabilityCalendarComponent {
 
       dateFrom.setDate(0);
 
-      console.log(dateFrom);
-      console.log(date);
-      console.log(dateTo);
-
       if (date >= dateFrom && date < dateTo) {
 
         return 'highlight';
@@ -82,15 +75,8 @@ export class AvailabilityCalendarComponent {
   getDayView(date: Date) {
     for (const ts of this.dates) {
 
-      console.log(date)
-
       let dateFrom = new Date(new Date(ts.startDate*AppSettings.unixMultiplier).setHours(0,0,0,0));
       let dateTo = new Date(new Date(ts.endDate*AppSettings.unixMultiplier).setHours(0,0,0,0));
-
-      console.log(dateFrom);
-      console.log(dateTo);
-      console.log("\n")
-
 
       if (date >= dateFrom && date < dateTo) {
         return 'highlight Disabled';

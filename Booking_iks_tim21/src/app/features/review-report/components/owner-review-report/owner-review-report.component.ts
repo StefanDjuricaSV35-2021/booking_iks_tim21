@@ -38,7 +38,7 @@ export class OwnerReviewReportComponent {
     });
 
     const jwtHelperService = new JwtHelperService();
-    const userFromLocalStorage: any = localStorage.getItem('user');
+    const userFromLocalStorage: any = sessionStorage.getItem('user');
     this.userEmail = jwtHelperService.decodeToken(userFromLocalStorage).sub;
 
     this.ownerReviewService

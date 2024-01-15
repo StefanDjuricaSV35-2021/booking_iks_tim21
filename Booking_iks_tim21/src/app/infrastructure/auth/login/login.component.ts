@@ -6,6 +6,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Login } from '../model/login.model';
 import { AuthResponse } from '../model/auth-resposne.model';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {User} from "../../../core/models/user.model";
+import {UserService} from "../../../core/services/user/user-service";
+import {NotificationService} from "../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    private userService:UserService,
+    private notifService:NotificationService) {
 
   }
 
@@ -38,9 +43,11 @@ export class LoginComponent implements OnInit {
       }
       this.authService.login(login).subscribe({
         next: (response: AuthResponse) => {
-          localStorage.setItem('user', response.token);
+          sessionStorage.setItem('user', response.token);
           this.authService.setUser()
           this.router.navigate(['homePage'])
+          this.setSessionParams()
+
         },
         error: (error) => {
           console.error('Login failed:', error);
@@ -53,6 +60,17 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+  }
+
+  setSessionParams(){
+    this.userService.getUserByEmail(this.loginForm.value.email!).subscribe({
+      next: (data: User) => {
+        let user = data;
+        sessionStorage.setItem("userId",data.id.toString())
+        this.notifService.openSocket()
+      },
+    });
+
   }
 
 

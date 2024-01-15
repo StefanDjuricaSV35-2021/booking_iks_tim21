@@ -43,7 +43,7 @@ export class ReservationsPageComponent {
       const id = +params['userId'];
 
       const jwtHelperService = new JwtHelperService();
-      const userFromLocalStorage: any = localStorage.getItem('user');
+      const userFromLocalStorage: any = sessionStorage.getItem('user');
       const userEmail: string =
         jwtHelperService.decodeToken(userFromLocalStorage).sub;
       this.service.getUserByEmail(userEmail).subscribe({

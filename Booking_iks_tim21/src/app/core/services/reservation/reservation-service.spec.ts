@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import {ReservationRequestService} from "../reservation-request/reservation-request-service";
 
-import { ReservationRequestService } from './reservation-service';
 
 describe('MakeReservationService', () => {
   let service: ReservationRequestService;

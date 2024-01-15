@@ -4,11 +4,25 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
 /**
 * Generated theme by Material Theme Generator
 * https://materialtheme.arcsine.dev
 * Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzA5MmQzYyIsIj9lcjwjYjVjMGM1IiwiO2VyPCMwNTFjMjd$LCIlPmBePCMxZDc0YWIiLCI~ZXI8I2JiZDVlNiIsIjtlcjwjMTE1Nzkxfiwid2Fybj5gXjwjZGJkZmUyIiwiP2VyPCNmNGY1ZjYiLCI7ZXI8I2NkZDJkNn4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz5mYWxzZSwidmVyc2lvbj4xMX0=
 */
+
+.mat-mdc-snack-bar-container {
+
+  --mdc-snackbar-container-color: #ffff !important;
+  border-style: solid;
+  border-color: #000;
+  border-width: 2px;
+  --mat-mdc-snack-bar-button-color: #ffff !important;
+  --mdc-snackbar-supporting-text-color: #000 !important;
+  --mat-snack-bar-button-color:#092D3C
+
+}
+
 .Disabled{
   pointer-events: none;
   cursor: not-allowed;

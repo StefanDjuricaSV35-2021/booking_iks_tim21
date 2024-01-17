@@ -16,11 +16,11 @@ export class ReservationService {
   constructor(private http: HttpClient) {}
 
   public createReservation(
-    resReqDTO: ReservationRequestDTO
-  ): Observable<ReservationRequestDTO> {
-    return this.http.post<ReservationRequestDTO>(
+      resDTO: ReservationDTO
+  ): Observable<ReservationDTO> {
+    return this.http.post<ReservationDTO>(
       environment.apiHost + 'reservations',
-      resReqDTO,
+      resDTO,
       { headers: this.headers }
     );
   }

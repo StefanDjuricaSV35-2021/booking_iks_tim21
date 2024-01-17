@@ -6,7 +6,6 @@ import {formatDate} from '@angular/common';
 import {
   AccommodationDetailsService
 } from '../../../../core/services/accommodation-details/accommodation-details.service';
-import {ReservationRequestDTO} from '../../../../core/models/ReservationRequestDTO';
 import {ReservationRequestService} from '../../../../core/services/reservation-request/reservation-request-service';
 import {TimeSlot} from '../../../../core/models/timeSlot.model';
 import {AppSettings} from "../../../../shared/AppSettings";
@@ -15,6 +14,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {UserService} from "../../../../core/services/user/user-service";
 import {NotificationService} from "../../../../core/services/notification/notification.service";
 import {NotificationDTO, NotificationType} from "../../../../core/models/NotificationDTO";
+import {ReservationDTO, ReservationStatus} from "../../../../core/models/ReservationDTO";
+import {ReservationRequestDTO, ReservationRequestStatus} from "../../../../core/models/ReservationRequestDTO";
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -140,7 +141,7 @@ export class MakeReservationBarComponent {
       this.reservationForm.get('noGuests')?.value,
       this.price,
       ts,
-      3
+      ReservationRequestStatus.Waiting
     );
 
     this.serviceReq.createReservationReq(req).subscribe((data) => {

@@ -15,7 +15,7 @@ import {
 import {AccommodationPricingDTO} from "../../../../core/models/accommodationPricing.model";
 import {ReservationRequestService} from "../../../../core/services/reservation-request/reservation-request-service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
-
+import {ReservationDTO, ReservationStatus} from "../../../../core/models/ReservationDTO";
 
 
 @Component({
@@ -68,7 +68,15 @@ export class ReservationComponent {
 
     this.res.status=ReservationRequestStatus.Accepted;
     this.status="Accepted"
-    this.reservationService.createReservation(this.res).subscribe(data=>{
+    let res=new ReservationDTO(
+      this.res.userId,
+      this.res.accommodationId,
+      this.res.guestsNumber,
+      this.res.price,
+      this.res.timeSlot,
+      ReservationStatus.Active
+    )
+    this.reservationService.createReservation(res).subscribe(data=>{
       console.log(data);
     })
     this.updateRequests()

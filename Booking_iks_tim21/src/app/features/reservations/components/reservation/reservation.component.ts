@@ -4,6 +4,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AccommodationDetailsDTO } from 'src/app/core/models/AccommodationDetailsDTO';
 import {
+  NotificationDTO,
+  NotificationType,
+} from 'src/app/core/models/NotificationDTO';
+import {
   ReservationDTO,
   ReservationStatus,
 } from 'src/app/core/models/ReservationDTO';
@@ -16,6 +20,7 @@ import { TimeSlot } from 'src/app/core/models/timeSlot.model';
 import { Role, User } from 'src/app/core/models/user.model';
 import { AccommodationDetailsService } from 'src/app/core/services/accommodation-details/accommodation-details.service';
 import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
+import { NotificationService } from 'src/app/core/services/notification/notification.service';
 import { ReservationRequestService } from 'src/app/core/services/reservation-request/reservation-request-service';
 import { ReservationService } from 'src/app/core/services/reservation/reservation-service';
 import { UserService } from 'src/app/core/services/user/user-service';
@@ -46,7 +51,8 @@ export class ReservationComponent {
     private userService: UserService,
     private accommodationService: AccommodationDetailsService,
     private reservationService: ReservationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -111,6 +117,16 @@ export class ReservationComponent {
     this.status = 'Cancelled';
     this.reservation.status = ReservationStatus.Cancelled;
     this.updateReservations();
+    this.sendNotificationCanceled();
+  }
+
+  sendNotificationCanceled() {
+    let notification = new NotificationDTO(
+      NotificationType.RESERVATION_CANCELLATION,
+      'Your request has been cancelled',
+      this.accommodation.ownerId
+    );
+    this.notifService.sendNotification(notification);
   }
 
   protected readonly ReservationRequestStatus = ReservationRequestStatus;

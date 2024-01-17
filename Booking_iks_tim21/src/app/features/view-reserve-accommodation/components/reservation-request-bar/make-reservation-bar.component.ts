@@ -1,21 +1,35 @@
-import {Component, Input} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators,} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AccommodationDetailsDTO} from '../../../../core/models/AccommodationDetailsDTO';
-import {formatDate} from '@angular/common';
+import { Component, Input } from '@angular/core';
 import {
-  AccommodationDetailsService
-} from '../../../../core/services/accommodation-details/accommodation-details.service';
-import {ReservationRequestService} from '../../../../core/services/reservation-request/reservation-request-service';
-import {TimeSlot} from '../../../../core/models/timeSlot.model';
-import {AppSettings} from "../../../../shared/AppSettings";
-import {User} from "../../../../core/models/user.model";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {UserService} from "../../../../core/services/user/user-service";
-import {NotificationService} from "../../../../core/services/notification/notification.service";
-import {NotificationDTO, NotificationType} from "../../../../core/models/NotificationDTO";
-import {ReservationDTO, ReservationStatus} from "../../../../core/models/ReservationDTO";
-import {ReservationRequestDTO, ReservationRequestStatus} from "../../../../core/models/ReservationRequestDTO";
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AccommodationDetailsDTO } from '../../../../core/models/AccommodationDetailsDTO';
+import { formatDate } from '@angular/common';
+import { AccommodationDetailsService } from '../../../../core/services/accommodation-details/accommodation-details.service';
+import { ReservationRequestService } from '../../../../core/services/reservation-request/reservation-request-service';
+import { TimeSlot } from '../../../../core/models/timeSlot.model';
+import { AppSettings } from '../../../../shared/AppSettings';
+import { User } from '../../../../core/models/user.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserService } from '../../../../core/services/user/user-service';
+import { NotificationService } from '../../../../core/services/notification/notification.service';
+import {
+  NotificationDTO,
+  NotificationType,
+} from '../../../../core/models/NotificationDTO';
+import {
+  ReservationDTO,
+  ReservationStatus,
+} from '../../../../core/models/ReservationDTO';
+import {
+  ReservationRequestDTO,
+  ReservationRequestStatus,
+} from '../../../../core/models/ReservationRequestDTO';
 
 @Component({
   selector: 'app-make-reservation-bar',
@@ -36,8 +50,8 @@ export class MakeReservationBarComponent {
     private accService: AccommodationDetailsService,
     private router: Router,
     private serviceReq: ReservationRequestService,
-    private service:UserService,
-    private notifService:NotificationService
+    private service: UserService,
+    private notifService: NotificationService
   ) {}
   ngOnInit(): void {
     this.initializeFields();
@@ -79,12 +93,12 @@ export class MakeReservationBarComponent {
   ) {
     if (this.reservationForm.valid) {
       let dateFrom = formatDate(
-        new Date(new Date(dateFromInput.value).setHours(0,0,0,0)),
+        new Date(new Date(dateFromInput.value).setHours(0, 0, 0, 0)),
         'yyyy-MM-dd',
         'en_US'
       );
       let dateTo = formatDate(
-        new Date(new Date(dateToInput.value).setHours(0,0,0,0)),
+        new Date(new Date(dateToInput.value).setHours(0, 0, 0, 0)),
         'yyyy-MM-dd',
         'en_US'
       );
@@ -106,35 +120,38 @@ export class MakeReservationBarComponent {
   }
 
   extractFormData() {
-    let dateFrom = new Date(new Date(this.reservationForm.get('dateFrom')?.value).setHours(0,0,0,0));
-    let dateTo = new Date(new Date(this.reservationForm.get('dateTo')?.value).setHours(0,0,0,0));
+    let dateFrom = new Date(
+      new Date(this.reservationForm.get('dateFrom')?.value).setHours(0, 0, 0, 0)
+    );
+    let dateTo = new Date(
+      new Date(this.reservationForm.get('dateTo')?.value).setHours(0, 0, 0, 0)
+    );
 
     let ts = new TimeSlot();
-    ts.startDate = Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier)+3600000/AppSettings.unixMultiplier;
-    ts.endDate = Math.floor(dateTo.getTime() / AppSettings.unixMultiplier)+3600000/AppSettings.unixMultiplier;
+    ts.startDate =
+      Math.floor(dateFrom.getTime() / AppSettings.unixMultiplier) +
+      3600000 / AppSettings.unixMultiplier;
+    ts.endDate =
+      Math.floor(dateTo.getTime() / AppSettings.unixMultiplier) +
+      3600000 / AppSettings.unixMultiplier;
 
     this.route.params.subscribe((params) => {
       this.route.params.subscribe((params) => {
-
         const jwtHelperService = new JwtHelperService();
         const userFromLocalStorage: any = sessionStorage.getItem('user');
-        let userEmail= jwtHelperService.decodeToken(userFromLocalStorage).sub;
+        let userEmail = jwtHelperService.decodeToken(userFromLocalStorage).sub;
         this.service.getUserByEmail(userEmail).subscribe({
           next: (data: User) => {
             let user = data;
 
-            this.sendReservationRequest(user.id,ts);
+            this.sendReservationRequest(user.id, ts);
           },
         });
       });
-
-
-    })
-
+    });
   }
 
-  sendReservationRequest(userId:number,ts:TimeSlot){
-
+  sendReservationRequest(userId: number, ts: TimeSlot) {
     let req = new ReservationRequestDTO(
       userId,
       this.acc.id,
@@ -145,30 +162,26 @@ export class MakeReservationBarComponent {
     );
 
     this.serviceReq.createReservationReq(req).subscribe((data) => {
-      this.sendNotification()
+      this.sendNotification();
     });
-
   }
 
-  sendNotification(){
-
-    let notification=new NotificationDTO(NotificationType.RESERVATION_REQUEST,"You have a new reservation request",this.acc.ownerId)
-    this.notifService.sendNotification(notification)
-
+  sendNotification() {
+    let notification = new NotificationDTO(
+      NotificationType.RESERVATION_REQUEST,
+      'You have a new reservation request',
+      this.acc.ownerId
+    );
+    this.notifService.sendNotification(notification);
   }
-
 }
-
-
-
-
 
 export const ValidateDates: ValidatorFn = (fg: AbstractControl) => {
   const dateFromInput: string = fg.get('dateFrom')!.value;
   const dateToFormInput: string = fg.get('dateTo')!.value;
 
-  let dateFrom = new Date(new Date(dateFromInput).setHours(0,0,0,0));
-  let dateTo = new Date(new Date(dateToFormInput).setHours(0,0,0,0));
+  let dateFrom = new Date(new Date(dateFromInput).setHours(0, 0, 0, 0));
+  let dateTo = new Date(new Date(dateToFormInput).setHours(0, 0, 0, 0));
 
   return dateFromInput != null && dateToFormInput != null && dateFrom < dateTo
     ? null
@@ -181,8 +194,12 @@ export function ValidateAvailability(
 ): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (dates == undefined) return { valid: false };
-    let dateFrom = new Date(new Date(fg.get('dateFrom')?.value).setHours(0,0,0,0));
-    let dateTo = new Date(new Date(fg.get('dateTo')?.value).setHours(0,0,0,0));
+    let dateFrom = new Date(
+      new Date(fg.get('dateFrom')?.value).setHours(0, 0, 0, 0)
+    );
+    let dateTo = new Date(
+      new Date(fg.get('dateTo')?.value).setHours(0, 0, 0, 0)
+    );
 
     let inTimeSlots = checkIfDateRangeInTimeSlots(dateFrom, dateTo, dates);
 
@@ -212,8 +229,12 @@ export function checkIfDateRangeInTimeSlots(
 
 export function checkIfDateInTimeSlots(date: Date, timeSlots: TimeSlot[]) {
   for (const ts of timeSlots) {
-    let dateFrom = new Date(new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
-    let dateTo = new Date(new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0,0,0,0));
+    let dateFrom = new Date(
+      new Date(ts.startDate * AppSettings.unixMultiplier).setHours(0, 0, 0, 0)
+    );
+    let dateTo = new Date(
+      new Date(ts.endDate * AppSettings.unixMultiplier).setHours(0, 0, 0, 0)
+    );
 
     if (date >= dateFrom && date <= dateTo) {
       return true;

@@ -2,7 +2,9 @@
   "dependencies": {
     "@asymmetrik/ngx-leaflet": "^17.0.0",
     "@auth0/angular-jwt": "^5.2.0",
-    "leaflet": "^1.9.4"
+    "echarts": "^5.4.3",
+    "leaflet": "^1.9.4",
+    "ngx-echarts": "^17.1.0"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.8"

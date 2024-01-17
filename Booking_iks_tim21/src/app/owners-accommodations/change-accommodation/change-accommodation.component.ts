@@ -25,7 +25,7 @@ import { AccommodationPricingDTO } from '../../core/models/accommodationPricing.
 import { FileUploadService } from 'src/app/core/services/file-upload/fileUpload.service';
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { AccommodationPricingService } from 'src/app/core/services/accommodation-pricing/accommodationPricing.service';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 enum Amenity {
   TV,
@@ -158,7 +158,6 @@ export class ChangeAccommodationComponent {
       description: this.accommodation.description,
       priceType: this.accommodation.perNight ? 'night' : 'guest',
       autoAccepting: this.accommodation.autoAccepting ? 'on' : 'off',
-
     });
     this.selectedFileNames = this.accommodation.photos;
     for (const amenity of this.accommodation.amenities as unknown as string[]) {
@@ -182,7 +181,6 @@ export class ChangeAccommodationComponent {
         verticalPosition: 'top',
         horizontalPosition: 'center',
       });
-
     }
   }
 
@@ -240,8 +238,12 @@ export class ChangeAccommodationComponent {
     }
 
     for (const item of pricingList) {
-      const existingStartDate = new Date(new Date(item.timeSlot.startDate).setHours(0,0,0,0));
-      const existingEndDate = new Date(new Date(item.timeSlot.endDate).setHours(0,0,0,0));
+      const existingStartDate = new Date(
+        new Date(item.timeSlot.startDate).setHours(0, 0, 0, 0)
+      );
+      const existingEndDate = new Date(
+        new Date(item.timeSlot.endDate).setHours(0, 0, 0, 0)
+      );
 
       if (
         (startDate >= existingStartDate && startDate <= existingEndDate) ||
@@ -270,8 +272,12 @@ export class ChangeAccommodationComponent {
       formData.endDate != undefined &&
       formData.endDate != null
     ) {
-      const startDate: Date = new Date(new Date(formData.startDate).setHours(0,0,0,0));
-      const endDate: Date = new Date(new Date(formData.endDate).setHours(0,0,0,0));
+      const startDate: Date = new Date(
+        new Date(formData.startDate).setHours(0, 0, 0, 0)
+      );
+      const endDate: Date = new Date(
+        new Date(formData.endDate).setHours(0, 0, 0, 0)
+      );
       const price: number = parseFloat(formData.price);
 
       if (this.validateDates(startDate, endDate, this.pricingList)) {
@@ -288,10 +294,14 @@ export class ChangeAccommodationComponent {
       return;
     }
 
-    this.snackBar.open('Before adding a new pricing time slot you must fill out all of the form parameters', 'Close', {
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-    });
+    this.snackBar.open(
+      'Before adding a new pricing time slot you must fill out all of the form parameters',
+      'Close',
+      {
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      }
+    );
   }
 
   removeItem(index: number) {
@@ -322,8 +332,7 @@ export class ChangeAccommodationComponent {
         form.append('images', file, file.name);
       });
 
-      if(this.selectedFiles.length!=0) {
-
+      if (this.selectedFiles.length != 0) {
         this.fileUploadService.upload(form).subscribe({
           next: (data: HttpEvent<string[]>) => {
             if (data.type === HttpEventType.UploadProgress) {
@@ -339,18 +348,26 @@ export class ChangeAccommodationComponent {
       }
 
       if (this.selectedAmenities.length <= 0) {
-        this.snackBar.open('Your accommodation needs at least 1 amenity.', 'Close', {
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
+        this.snackBar.open(
+          'Your accommodation needs at least 1 amenity.',
+          'Close',
+          {
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          }
+        );
         return;
       }
 
       if (formData.minGuests > formData.maxGuests) {
-        this.snackBar.open('Your minimum guest number needs to be lower than your maximum guest number.', 'Close', {
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
+        this.snackBar.open(
+          'Your minimum guest number needs to be lower than your maximum guest number.',
+          'Close',
+          {
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+          }
+        );
         return;
       }
 
@@ -390,10 +407,10 @@ export class ChangeAccommodationComponent {
         photos: this.selectedFileNames,
         daysForCancellation: formData.daysForCancellation,
         perNight: this.pricingForm.get('perNight')?.value || false,
-        autoAccepting:this.pricingForm.get("autoAccepting")!.value != "off",
+        autoAccepting: this.pricingForm.get('autoAccepting')!.value != 'off',
         enabled: true,
       };
-      console.log(accommodationChangeRequest)
+      console.log(accommodationChangeRequest);
       this.accommodationChangeRequestService
         .createAccommodationChangeRequest(accommodationChangeRequest)
         .subscribe({
@@ -403,8 +420,7 @@ export class ChangeAccommodationComponent {
               this.accommodationPricingChangeRequestService
                 .createAccommodationPricingChangeRequest(pricingChangeRequest)
                 .subscribe({
-                  next: (data: AccommodationPricingChangeRequestDTO) => {
-                  },
+                  next: (data: AccommodationPricingChangeRequestDTO) => {},
                   error: (error) => {
                     console.error(
                       'Failed to create accommodation pricing change request:',
@@ -422,10 +438,14 @@ export class ChangeAccommodationComponent {
                   },
                 });
 
-              this.snackBar.open('Successfuly added your accommodation change request. You will be notified once the admin approves your accommodation.', 'Close', {
-                verticalPosition: 'top',
-                horizontalPosition: 'center',
-              });
+              this.snackBar.open(
+                'Successfuly added your accommodation change request. You will be notified once the admin approves your accommodation.',
+                'Close',
+                {
+                  verticalPosition: 'top',
+                  horizontalPosition: 'center',
+                }
+              );
             });
           },
           error: (error) => {
@@ -444,10 +464,14 @@ export class ChangeAccommodationComponent {
           },
         });
     } else {
-      this.snackBar.open('Before creating a new pricing time slot you must fill out all of the form parameters', 'Close', {
-        verticalPosition: 'top',
-        horizontalPosition: 'center',
-      });
+      this.snackBar.open(
+        'Before creating a new pricing time slot you must fill out all of the form parameters',
+        'Close',
+        {
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        }
+      );
     }
     this.router.navigate(['/ownersAccommodation/' + this.accommodation.id]);
   }

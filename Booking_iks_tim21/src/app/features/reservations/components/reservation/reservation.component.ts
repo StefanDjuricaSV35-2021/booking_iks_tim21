@@ -72,7 +72,7 @@ export class ReservationComponent {
 
         const currentDate = new Date();
         const reservationStartDate = new Date(
-          this.reservation.timeSlot.startDate * 1000
+          this.reservation.timeSlot.startDate * AppSettings.unixMultiplier
         );
 
         this.daysDifference =
@@ -87,19 +87,18 @@ export class ReservationComponent {
 
     this.dateFrom = formatDate(
       new Date(
-        new Date(this.reservation.timeSlot.startDate * 1000).setHours(
-          0,
-          0,
-          0,
-          0
-        )
+        new Date(
+          this.reservation.timeSlot.startDate * AppSettings.unixMultiplier
+        ).setHours(0, 0, 0, 0)
       ),
       'dd-MM-yyy',
       'en_US'
     );
     this.dateTo = formatDate(
       new Date(
-        new Date(this.reservation.timeSlot.endDate * 1000).setHours(0, 0, 0, 0)
+        new Date(
+          this.reservation.timeSlot.endDate * AppSettings.unixMultiplier
+        ).setHours(0, 0, 0, 0)
       ),
       'dd-MM-yyy',
       'en_US'

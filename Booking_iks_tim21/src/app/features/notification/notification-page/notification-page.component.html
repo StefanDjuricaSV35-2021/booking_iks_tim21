@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="notification-checkboxes">
+        <div class="checkbox-container">
+          <input type="checkbox" id="type1" name="notificationTypes" value="type1" [(ngModel)]="notificationForm.RESERVATION_REQUEST">
+          <label class="checkbox-label" for="type1">RESERVATION_REQUEST</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="type2" name="notificationTypes" value="type2" [(ngModel)]="notificationForm.RESERVATION_CANCELLATION">
+          <label class="checkbox-label" for="type2">RESERVATION_CANCELLATION</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="type3" name="notificationTypes" value="type3" [(ngModel)]="notificationForm.OWNER_REVIEW">
+          <label class="checkbox-label" for="type3">OWNER_REVIEW</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="type4" name="notificationTypes" value="type4" [(ngModel)]="notificationForm.ACCOMMODATION_REVIEW">
+          <label class="checkbox-label" for="type4">ACCOMMODATION_REVIEW</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="type5" name="notificationTypes" value="type5" [(ngModel)]="notificationForm.RESERVATION_REQUEST_RESPONSE">
+          <label class="checkbox-label" for="type5">RESERVATION_REQUEST_RESPONSE</label>
+        </div>
+
+        <div class="submit-button text-center">
+          <button type="submit" (click)="submit(notificationForm)">Update Notification Settings</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="app-notification-views">
+        <app-notification-view [not]="notification" *ngFor="let notification of notifications"></app-notification-view>
+      </div>
+    </div>
+  </div>
+</div>

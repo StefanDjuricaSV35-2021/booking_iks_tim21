@@ -4,6 +4,8 @@ import { environment } from '../../../../env/env';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { ActivationRequest } from '../../models/activationRequest.model';
+import {NotificationType} from "../../models/NotificationDTO";
+import {NotificationTypeUpdateRequest} from "../../models/NotificationTypeUpdateRequest";
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +41,14 @@ export class UserService {
     return this.httpClient.get<ActivationRequest>(
       environment.apiHost + 'users/activate/' + email
     );
+  }
+  getUserNotificationTypes(email: string): Observable<NotificationType[]> {
+    return this.httpClient.get<NotificationType[]>(
+      environment.apiHost + 'users/notification/' + email
+    );
+  }
+
+  updateUserNotificationTypes(request: NotificationTypeUpdateRequest): Observable<User> {
+    return this.httpClient.put<User>(environment.apiHost + 'users/notification', request);
   }
 }

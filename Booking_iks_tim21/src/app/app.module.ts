@@ -40,6 +40,7 @@ import { UserReportModule } from './features/user-report/user-report.module';
 import {DaterangeReportComponent} from "./features/analytics/components/daterange-report/daterange-report.component";
 import {AnalyticsModule} from "./features/analytics/analytics.module";
 import {NotificationService} from "./core/services/notification/notification.service";
+import {NotificationModule} from "./features/notification/notification.module";
 
 @NgModule({
   declarations: [AppComponent, AccommodationCreationComponent],
@@ -76,6 +77,7 @@ import {NotificationService} from "./core/services/notification/notification.ser
     ReviewReportModule,
     AdminUserReportModule,
     UserReportModule,
+    NotificationModule,
   ],
   providers: [
    NotificationService,

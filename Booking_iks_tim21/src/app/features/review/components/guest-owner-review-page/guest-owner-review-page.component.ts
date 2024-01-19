@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OwnerReviewDTO} from "../../../../core/models/OwnerReviewDTO";
 import {OwnerReviewService} from "../../../../core/services/owner-review/owner-review.service";
-import {ReviewModule} from "../../review.module";
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {User} from "../../../../core/models/user.model";
 import {UserService} from "../../../../core/services/user/user-service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotificationDTO, NotificationType} from "../../../../core/models/NotificationDTO";
+import {NotificationService} from "../../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-guest-owner-review-page',
@@ -28,6 +29,7 @@ export class GuestOwnerReviewPageComponent {
     private ownerReviewService: OwnerReviewService,
     private userService: UserService,
     private location: Location,
+    private notificationService:NotificationService,
   ) {}
   ngOnInit() {
     const jwtHelperService = new JwtHelperService();
@@ -89,9 +91,10 @@ export class GuestOwnerReviewPageComponent {
       timePosted: Date.now()
     }
 
-
     this.ownerReviewService.createOwnerReview(ownerReview).subscribe({
       next: (data: OwnerReviewDTO) => {
+        const notification : NotificationDTO = new NotificationDTO(NotificationType.OWNER_REVIEW, "You got reviewed by an user with id: "+this.reviewerId,this.ownerId);
+        this.notificationService.sendNotification(notification);
         console.log(data);
         this.location.replaceState(this.location.path());
         window.location.reload();

@@ -13,6 +13,8 @@ import {
 import {AccommodationDetailsDTO} from "../../../../core/models/AccommodationDetailsDTO";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
+import {NotificationDTO, NotificationType} from "../../../../core/models/NotificationDTO";
+import {NotificationService} from "../../../../core/services/notification/notification.service";
 
 @Component({
   selector: 'app-accommodation-review-page',
@@ -26,6 +28,7 @@ export class AccommodationReviewPageComponent {
   public accommodationReviews: AccommodationReviewDTO[];
   public averageGrade: number;
   public name:string = "Email not found";
+  public ownerId: number;
   newReview: any = { rating: 1, description: '' };
   constructor(
     private snackBar: MatSnackBar,
@@ -36,6 +39,7 @@ export class AccommodationReviewPageComponent {
     private accommodationDetailsService:AccommodationDetailsService,
     private location: Location,
     private authService:AuthService,
+    private notificationService:NotificationService,
   ) {}
   ngOnInit() {
     this.authService.userState.subscribe((result) => {
@@ -68,8 +72,9 @@ export class AccommodationReviewPageComponent {
 
       this.accommodationDetailsService.findById(this.accommodationId).subscribe({
         next: (data: AccommodationDetailsDTO) => {
-          if(data!=null && data.name!=null){
+          if(data!=null && data.name!=null && data.ownerId!=null){
             this.name = data.name;
+            this.ownerId = data.ownerId;
           }
         },
       });
@@ -107,6 +112,9 @@ export class AccommodationReviewPageComponent {
       rating: this.newReview.rating,
       timePosted: Date.now()
     }
+
+    const notification : NotificationDTO = new NotificationDTO(NotificationType.ACCOMMODATION_REVIEW, "Your accommodation :"+this.accommodationId+" got reviewed by an user with id: "+this.userId,this.ownerId);
+    this.notificationService.sendNotification(notification);
 
 
     this.accommodationReviewService.createAccommodationReview(accommodationReview).subscribe({

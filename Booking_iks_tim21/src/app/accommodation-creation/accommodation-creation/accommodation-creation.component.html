@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <form [formGroup]="dateForm" (ngSubmit)="addTimeSlot()">
+    <form id="priceForm" [formGroup]="dateForm" (ngSubmit)="addTimeSlot()">
       <div class="row g-3">
         <div class="col-md-4">
           <label for="startDate" class="form-label">Start Date:</label>
@@ -186,7 +186,7 @@
     </div>
 
     <div class="col-12 mt-3">
-      <button type="submit" class="btn btn-primary">Create Accommodation</button>
+      <button id="create" type="submit" class="btn btn-primary">Create Accommodation</button>
     </div>
   </form>
 </div>

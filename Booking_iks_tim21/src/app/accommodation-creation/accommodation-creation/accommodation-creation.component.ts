@@ -191,8 +191,8 @@ export class AccommodationCreationComponent implements OnInit {
       const existingEndDate = new Date(new Date(item.timeSlot.endDate).setHours(0,0,0,0));
 
       if (
-        (startDate >= existingStartDate && startDate <= existingEndDate) ||
-        (endDate >= existingStartDate && endDate <= existingEndDate) ||
+        (startDate >= existingStartDate && startDate < existingEndDate) ||
+        (endDate > existingStartDate && endDate <= existingEndDate) ||
         (startDate <= existingStartDate && endDate >= existingEndDate)
       ) {
         this.snackBar.open('Date range overlaps with existing item', 'Close', {

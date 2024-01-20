@@ -1,5 +1,7 @@
 <div class="buttonDiv">
-  <button (click)="logOut()" mat-raised-button>Log out</button>
+  <button (click)="logOut()" mat-raised-button id="logOutButton">
+    Log out
+  </button>
   <img
     class="profileImg"
     src="../../assets/images/profileImage.png"
@@ -83,35 +85,18 @@
       Owner Reviews
     </button>
 
-    <button
-      *ngIf="role == 'OWNER'"
-      mat-menu-item
-      routerLink="/userReport"
-    >
+    <button *ngIf="role == 'OWNER'" mat-menu-item routerLink="/userReport">
       Guest Report
     </button>
 
-    <button
-      *ngIf="role == 'GUEST'"
-      mat-menu-item
-      routerLink="/userReport"
-    >
+    <button *ngIf="role == 'GUEST'" mat-menu-item routerLink="/userReport">
       Owner Report
     </button>
 
-    <button
-      *ngIf="role == 'OWNER'"
-      mat-menu-item
-      routerLink="/analytics"
-    >
+    <button *ngIf="role == 'OWNER'" mat-menu-item routerLink="/analytics">
       Analytics
     </button>
 
-    <button
-      mat-menu-item
-      routerLink="/notifications"
-    >
-      Notifications
-    </button>
+    <button mat-menu-item routerLink="/notifications">Notifications</button>
   </mat-menu>
 </div>

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../../../env/env";
-import {ReservationRequestDTO} from "../../models/ReservationRequestDTO";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../env/env';
+import { ReservationRequestDTO } from '../../models/ReservationRequestDTO';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReservationRequestService {
-
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
@@ -17,8 +16,7 @@ export class ReservationRequestService {
 
   public createReservationReq(
     resReqDTO: ReservationRequestDTO
-  ):
-    Observable<ReservationRequestDTO> {
+  ): Observable<ReservationRequestDTO> {
     return this.http.post<ReservationRequestDTO>(
       environment.apiHost + 'reservationRequests',
       resReqDTO,
@@ -32,20 +30,24 @@ export class ReservationRequestService {
     );
   }
 
-  public update(res:ReservationRequestDTO): Observable<ReservationRequestDTO[]> {
-    return this.http.put<ReservationRequestDTO[]>(
-      environment.apiHost + 'reservationRequests',res
+  public update(res: ReservationRequestDTO): Observable<ReservationRequestDTO> {
+    return this.http.put<ReservationRequestDTO>(
+      environment.apiHost + 'reservationRequests',
+      res
     );
   }
 
-  public getUserRequests(id:number): Observable<ReservationRequestDTO[]> {
+  public getUserRequests(id: number): Observable<ReservationRequestDTO[]> {
     return this.http.get<ReservationRequestDTO[]>(
-      environment.apiHost +"reservationRequests/"+ id +'/reservationRequests'
+      environment.apiHost + 'reservationRequests/' + id + '/reservationRequests'
     );
   }
-  public getOwnerRequests(id:number): Observable<ReservationRequestDTO[]> {
+  public getOwnerRequests(id: number): Observable<ReservationRequestDTO[]> {
     return this.http.get<ReservationRequestDTO[]>(
-      environment.apiHost +"reservationRequests/"+ id +'/ownerReservationRequests'
+      environment.apiHost +
+        'reservationRequests/' +
+        id +
+        '/ownerReservationRequests'
     );
   }
 }

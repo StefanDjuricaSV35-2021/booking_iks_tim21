@@ -101,9 +101,9 @@ export class ReservationComponent {
       this.res.timeSlot,
       ReservationStatus.Active
     );
-    this.reservationService.createReservation(res).subscribe((data) => {
-      console.log(data);
-    });
+    // this.reservationService.createReservation(res).subscribe((data) => {
+    //   console.log(data);
+    // });
     this.updateRequests();
     this.sendNotificationAccepted();
   }

@@ -23,6 +23,7 @@ import {
   NotificationType,
 } from 'src/app/core/models/NotificationDTO';
 import { NotificationService } from 'src/app/core/services/notification/notification.service';
+import { ReservationRefreshService } from 'src/app/core/services/reservation/refresh-reservation-service';
 
 @Component({
   selector: 'app-reservation',
@@ -48,7 +49,8 @@ export class ReservationComponent {
     private pricingService: AccommodationPricingService,
     private reqService: ReservationRequestService,
     private authService: AuthService,
-    private notifService: NotificationService
+    private notifService: NotificationService,
+    private reservationRefreshService: ReservationRefreshService
   ) {}
 
   ngOnInit() {
@@ -107,7 +109,9 @@ export class ReservationComponent {
   }
 
   updateRequests() {
-    this.reqService.update(this.res).subscribe((data) => {});
+    this.reqService.update(this.res).subscribe((data) => {
+      this.reservationRefreshService.refreshReservations();
+    });
   }
 
   deleteDates(

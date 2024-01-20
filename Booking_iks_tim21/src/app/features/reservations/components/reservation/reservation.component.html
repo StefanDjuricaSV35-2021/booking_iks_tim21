@@ -29,7 +29,7 @@
   </div>
   <div class="tr">
     <span class="column-name">Status</span>
-    <span [textContent]="status"></span>
+    <span [textContent]="status" id="status"></span>
   </div>
   <div class="tr" *ngIf="status == 'Active' && this.canBeCancelled">
     <span class="column-name">Days to cancel</span>
@@ -39,14 +39,16 @@
     class="tr"
     *ngIf="status == 'Active' && this.role == 'OWNER' && this.canBeCancelled"
   >
-    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="cancel()" id="cancelButton">Cancel</button>
   </div>
   <div
     class="tr"
     *ngIf="status == 'Active' && this.role == 'GUEST' && this.canBeCancelled"
   >
     <div class="buttonFrame">
-      <button mat-raised-button (click)="cancel()">Cancel</button>
+      <button mat-raised-button (click)="cancel()" id="cancelButton">
+        Cancel
+      </button>
     </div>
   </div>
   <div class="tr" *ngIf="status == 'Active' && !this.canBeCancelled">

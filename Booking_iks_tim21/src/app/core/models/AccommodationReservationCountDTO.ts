@@ -1,4 +1,4 @@
 export class AccommodationReservationCountDTO{
   name:string;
-  count:number;
+  value:number;
 }

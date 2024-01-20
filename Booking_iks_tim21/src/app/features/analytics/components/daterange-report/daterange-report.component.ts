@@ -137,10 +137,9 @@ export class DaterangeReportComponent {
 
     this.analyticsService.getAccommodationsProfit(ownerId,dateFromFormatted,dateToFormatted).subscribe((data) => {
       let profitData=data;
-
+      
 
       this.analyticsService.getAccommodationReservationCount(ownerId,dateFromFormatted,dateToFormatted).subscribe((data) => {
-        console.log(data);
 
         this.setData(profitData,data);
 
@@ -159,17 +158,18 @@ export class DaterangeReportComponent {
 
     for (const d of profitData) {
       let color = this.getRandomColor(50)
-      profits.push(new PieChartData(d.name, d.profit,color))
+      profits.push(new PieChartData(d.name, d.value,color))
       colors.set(d.name,color)
 
     }
 
     for (const d of resCountData) {
-      res.push(new PieChartData(d.name, d.count,colors.get(d.name)!));
+      res.push(new PieChartData(d.name, d.value,colors.get(d.name)!));
     }
 
     this.profitData=profits;
     this.reservationData=res;
+
 
     this.refreshCharts();
 

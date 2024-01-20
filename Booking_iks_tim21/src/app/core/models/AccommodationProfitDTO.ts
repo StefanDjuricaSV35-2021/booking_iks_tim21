@@ -1,4 +1,4 @@
 export class AccommodationProfitDTO{
   name:string;
-  profit:number;
+  value:number;
 }

@@ -116,22 +116,22 @@
           <label for="startDate" class="form-label">Start Date:</label>
           <input type="date" id="startDate" formControlName="startDate" class="form-control" required>
         </div>
-  
+
         <div class="col-md-4">
           <label for="endDate" class="form-label">End Date:</label>
           <input type="date" id="endDate" formControlName="endDate" class="form-control" required>
         </div>
-  
+
         <div class="col-md-4">
           <label for="price" class="form-label">Price:</label>
           <input type="number" id="price" formControlName="price" class="form-control" required>
         </div>
-  
+
         <div class="col-12 mt-3">
-          <button type="submit" class="btn btn-primary">Add to Table</button>
+          <button id="submitPrice" type="submit" class="btn btn-primary">Add to Table</button>
         </div>
       </div>
-  
+
       <table class="table table-bordered mt-3">
         <thead>
           <tr>
@@ -151,20 +151,20 @@
         </tbody>
       </table>
     </form>
-  
+
     <form [formGroup]="imageForm" (ngSubmit)="addImage()">
       <div class="form-group">
         <label for="image">Upload Image:</label>
         <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*">
       </div>
-    
+
       <div class="image-preview" *ngIf="selectedFile">
         <img [src]="imagePreview" alt="Selected Image" class="preview-image">
       </div>
-    
+
       <button type="submit" [disabled]="!selectedFile" class="btn btn-primary">Add Image</button>
     </form>
-    
+
     <div class="image-list">
       <label>Image List</label>
       <table class="table table-bordered">
@@ -184,7 +184,7 @@
         </tbody>
       </table>
     </div>
-  
+
     <div class="col-12 mt-3">
       <button type="submit" class="btn btn-primary">Create Accommodation</button>
     </div>

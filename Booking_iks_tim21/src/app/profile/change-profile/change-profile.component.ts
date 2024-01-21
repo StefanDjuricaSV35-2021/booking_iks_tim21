@@ -20,7 +20,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class ChangeProfileComponent implements OnInit {
   user: User = {} as User;
   role: string = '';
-
+  submitted: boolean = false;
   changeProfileForm: FormGroup;
 
   constructor(
@@ -91,6 +91,7 @@ export class ChangeProfileComponent implements OnInit {
     );
 
     if (this.changeProfileForm.valid && !passwordMatchError) {
+      this.submitted = true;
       const formData = this.changeProfileForm.value;
       const updatedUser: User = {
         id: this.user.id,

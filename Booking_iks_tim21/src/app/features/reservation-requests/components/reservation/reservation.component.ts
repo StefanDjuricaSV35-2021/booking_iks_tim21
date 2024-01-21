@@ -41,6 +41,7 @@ export class ReservationComponent {
   status: string;
   noGuests: string;
   price: string;
+  cancels:number;
 
   constructor(
     private userService: UserService,
@@ -67,6 +68,10 @@ export class ReservationComponent {
       .subscribe((data) => {
         this.accName = data.name!;
       });
+
+    this.reqService.getUserCancels(this.res.userId).subscribe((data) => {
+      this.cancels = data!;
+    });
 
     this.dateFrom = formatDate(
       new Date(

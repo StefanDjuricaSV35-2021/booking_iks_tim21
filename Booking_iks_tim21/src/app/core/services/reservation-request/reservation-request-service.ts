@@ -42,6 +42,12 @@ export class ReservationRequestService {
       environment.apiHost + 'reservationRequests/' + id + '/reservationRequests'
     );
   }
+
+  public getUserCancels(id: number): Observable<number> {
+    return this.http.get<number>(
+      environment.apiHost + 'reservationRequests/' + id + '/cancel-count'
+    );
+  }
   public getOwnerRequests(id: number): Observable<ReservationRequestDTO[]> {
     return this.http.get<ReservationRequestDTO[]>(
       environment.apiHost +

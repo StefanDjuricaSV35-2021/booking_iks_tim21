@@ -7,6 +7,13 @@
     <span>User</span>
     <span>{{ userName }}</span>
   </div>
+  <div class="tr"
+       *ngIf="
+        this.role == 'OWNER'"
+  >
+    <span>Cancels</span>
+    <span>{{ cancels }}</span>
+  </div>
   <div class="tr">
     <span>Date From</span>
     <span>{{ dateFrom }}</span>
@@ -41,8 +48,7 @@
     class="tr"
     *ngIf="
       ReservationRequestStatus[ReservationRequestStatus[this.res.status]] ==
-        'Waiting' && this.role == 'GUEST'
-    "
+        'Waiting' && this.role == 'GUEST'"
   >
     <button (click)="cancel()">Cancel</button>
   </div>

@@ -137,7 +137,7 @@ export class DaterangeReportComponent {
 
     this.analyticsService.getAccommodationsProfit(ownerId,dateFromFormatted,dateToFormatted).subscribe((data) => {
       let profitData=data;
-      
+
 
       this.analyticsService.getAccommodationReservationCount(ownerId,dateFromFormatted,dateToFormatted).subscribe((data) => {
 

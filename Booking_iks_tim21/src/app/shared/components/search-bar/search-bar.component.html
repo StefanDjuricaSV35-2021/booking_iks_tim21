@@ -6,19 +6,19 @@
 
     <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
       <mat-label>Location</mat-label>
-      <input [(ngModel)]="location" matInput formControlName="location" >
+      <input id="location-input" [(ngModel)]="location" matInput formControlName="location" >
     </mat-form-field>
 
       <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
         <mat-label>Arrival</mat-label>
-        <input (dateChange)="arrivalChanged(arrivalVal)"  [formControl]="date" matInput [matDatepicker]="pickerArrival" #arrivalVal>
+        <input id="start-date-input" (dateChange)="arrivalChanged(arrivalVal)"  [formControl]="date" matInput [matDatepicker]="pickerArrival" #arrivalVal>
         <mat-datepicker-toggle matIconSuffix [for]="pickerArrival"></mat-datepicker-toggle>
         <mat-datepicker  #pickerArrival></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field hideRequiredMarker  [subscriptSizing]="'dynamic'" >
         <mat-label>Departure</mat-label>
-        <input (dateChange)="departureChanged(departureVal)"  [formControl]="date2" matInput [matDatepicker]="pickerDeparture" #departureVal>
+        <input id="end-date-input" (dateChange)="departureChanged(departureVal)"  [formControl]="date2" matInput [matDatepicker]="pickerDeparture" #departureVal>
         <mat-datepicker-toggle matIconSuffix [for]="pickerDeparture"></mat-datepicker-toggle>
         <mat-datepicker #pickerDeparture></mat-datepicker>
       </mat-form-field>
@@ -26,13 +26,13 @@
 
     <mat-form-field hideRequiredMarker [subscriptSizing]="'dynamic'" >
       <mat-label>Guests</mat-label>
-      <input [(ngModel)]="noGuests" matInput type="number" formControlName="noGuests" >
+      <input id="guests-number-input" [(ngModel)]="noGuests" matInput type="number" formControlName="noGuests" >
     </mat-form-field>
 
   </form>
 
   <div >
-    <button mat-mini-fab color="primary" class="lightBlue" (click)="validateForm() ">
+    <button id="search-btn" mat-mini-fab color="primary" class="lightBlue" (click)="validateForm() ">
       <mat-icon>search</mat-icon>
     </button>
   </div>

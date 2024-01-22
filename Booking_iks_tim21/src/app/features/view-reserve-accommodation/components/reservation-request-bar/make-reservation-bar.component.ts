@@ -80,6 +80,7 @@ export class MakeReservationBarComponent {
         ],
       ],
     });
+
     this.reservationForm.setValidators([
       ValidateDates,
       ValidateAvailability(this.reservationForm, this.acc.dates!),
@@ -180,12 +181,15 @@ export const ValidateDates: ValidatorFn = (fg: AbstractControl) => {
   const dateFromInput: string = fg.get('dateFrom')!.value;
   const dateToFormInput: string = fg.get('dateTo')!.value;
 
+
   let dateFrom = new Date(new Date(dateFromInput).setHours(0, 0, 0, 0));
   let dateTo = new Date(new Date(dateToFormInput).setHours(0, 0, 0, 0));
-
-  return dateFromInput != null && dateToFormInput != null && dateFrom < dateTo
-    ? null
-    : { range: true };
+  let ver=(dateFromInput != null) && (dateToFormInput != null) && (dateFrom < dateTo);
+  if( (dateFromInput != null) && (dateToFormInput != null) && (dateFrom < dateTo)){
+    return null;
+  }else{
+    return { range: true };
+  }
 };
 
 export function ValidateAvailability(

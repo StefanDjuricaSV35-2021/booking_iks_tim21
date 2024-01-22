@@ -51,14 +51,14 @@ export class AccommodationDetailsService {
     dateFrom: string,
     dateTo: string,
     noGuests: string
-  ): Observable<number[]> {
+  ): Observable<number> {
     let params = new HttpParams()
       .set('dateFrom', dateFrom)
       .set('dateTo', dateTo)
       .set('id', id)
       .set('noGuests', noGuests);
 
-    return this.http.get<number[]>(
+    return this.http.get<number>(
       environment.apiHost + 'accommodations/price',
       { params: params }
     );

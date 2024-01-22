@@ -21,7 +21,7 @@
 
     <mat-form-field hideRequiredMarker  [subscriptSizing]="'dynamic'" >
       <mat-label>Guests</mat-label>
-      <input (change)="updatePrice(arrivalVal,departureVal,noGuests)" #noGuests matInput type="number" formControlName="noGuests" >
+      <input id="guests-input" (change)="updatePrice(arrivalVal,departureVal,noGuests)" #noGuests matInput type="number" formControlName="noGuests" >
     </mat-form-field>
 
   </form>
@@ -31,7 +31,7 @@
       <input [(ngModel)]="price" matInput type="number"  readonly>
     </mat-form-field>
 
-    <button color="primary" mat-button class="lightBlue" (click)="submitRequest()" [disabled]="!reservationForm.valid">
+    <button id="search-btn" color="primary" mat-button class="lightBlue" (click)="submitRequest()" [disabled]="!reservationForm.valid">
     Reserve
     </button>
 </div>

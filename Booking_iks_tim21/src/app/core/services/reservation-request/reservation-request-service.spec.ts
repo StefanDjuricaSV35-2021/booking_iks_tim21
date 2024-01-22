@@ -25,7 +25,7 @@ describe('MakeReservationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule,HttpClientTestingModule],
+      imports: [HttpClientTestingModule],
       providers: [ReservationRequestService],
     });
 
@@ -40,6 +40,7 @@ describe('MakeReservationService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 
   it('should create a request', () => {
 

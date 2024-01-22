@@ -46,7 +46,5 @@ describe('AccommodationDetailsService', () => {
     req.flush(300);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+
 });

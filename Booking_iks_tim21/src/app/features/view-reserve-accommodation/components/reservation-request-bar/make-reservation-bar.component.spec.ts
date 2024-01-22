@@ -115,7 +115,6 @@ describe('MakeReservationBarComponent', () => {
     const bla = jasmine.createSpyObj('Router', ['navigate']);
      serviceReqSpy = jasmine.createSpyObj('ReservationRequestService', ['createReservationReq']);
      userServiceSpy = jasmine.createSpyObj('UserService', ['getUserByEmail']);
-     notifServiceSpy = jasmine.createSpyObj('NotificationService', ['sendNotification']);
 
     TestBed.configureTestingModule({
       declarations: [MakeReservationBarComponent],

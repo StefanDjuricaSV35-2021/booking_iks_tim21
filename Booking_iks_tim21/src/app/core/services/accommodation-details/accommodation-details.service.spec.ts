@@ -14,7 +14,7 @@ describe('AccommodationDetailsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AuthService],
+      providers: [AccommodationDetailsService],
     });
 
     service = TestBed.inject(AccommodationDetailsService);
@@ -23,6 +23,10 @@ describe('AccommodationDetailsService', () => {
 
   afterEach(() => {
     httpController.verify();
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 
   it('should return a price', () => {

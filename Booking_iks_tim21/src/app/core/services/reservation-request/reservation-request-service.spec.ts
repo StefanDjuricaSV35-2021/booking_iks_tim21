@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ReservationRequestService } from './reservation-request-service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {AuthService} from "../../../infrastructure/auth/auth.service";
-import {SignUp} from "../../../infrastructure/auth/model/signup.model";
-import {Role, User} from "../../models/user.model";
 import {environment} from "../../../../env/env";
 import {ReservationRequestDTO, ReservationRequestStatus} from "../../models/ReservationRequestDTO";
 import {TimeSlot} from "../../models/timeSlot.model";
+import {HttpClientModule} from "@angular/common/http";
 
 
 function createMockedReq(): ReservationRequestDTO {
@@ -26,8 +25,8 @@ describe('MakeReservationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [AuthService],
+      imports: [HttpClientModule,HttpClientTestingModule],
+      providers: [ReservationRequestService],
     });
 
     service = TestBed.inject(ReservationRequestService);

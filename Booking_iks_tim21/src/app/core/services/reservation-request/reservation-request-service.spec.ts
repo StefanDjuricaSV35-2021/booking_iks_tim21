@@ -19,7 +19,7 @@ function createMockedReq(): ReservationRequestDTO {
   return req;
 }
 
-describe('MakeReservationService', () => {
+describe('MakeReservationRequestService', () => {
   let service: ReservationRequestService;
   let httpController : HttpTestingController;
 

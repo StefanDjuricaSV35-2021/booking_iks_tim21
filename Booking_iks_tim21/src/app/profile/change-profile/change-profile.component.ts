@@ -124,7 +124,7 @@ export class ChangeProfileComponent implements OnInit {
 
             sessionStorage.removeItem('user');
             this.router.navigate(['/homePage']);
-            window.location.reload();
+            // window.location.reload();
           }
         },
         error: (error) => {
@@ -151,7 +151,7 @@ export class ChangeProfileComponent implements OnInit {
       next: (_) => {
         sessionStorage.removeItem('user');
         this.router.navigate(['/homePage']);
-        window.location.reload();
+        // window.location.reload();
       },
       error: (error) => {
         if (this.role == 'GUEST') {

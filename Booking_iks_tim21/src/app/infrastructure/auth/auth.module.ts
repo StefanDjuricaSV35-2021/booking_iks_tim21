@@ -14,7 +14,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivateAccountComponent } from './signup/activate.account/activate.account.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -33,6 +33,7 @@ import { ActivateAccountComponent } from './signup/activate.account/activate.acc
     MatIconModule,
     JwtModule,
     MatCheckboxModule,
+    BrowserAnimationsModule,
   ],
 })
 export class AuthModule {}

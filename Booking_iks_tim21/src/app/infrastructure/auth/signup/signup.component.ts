@@ -116,4 +116,8 @@ export class SignupComponent implements OnInit {
       }
     }
   }
+
+  getRouter(): Router {
+    return this.router;
+  }
 }
